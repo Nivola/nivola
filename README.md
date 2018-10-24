@@ -13,7 +13,7 @@ We use Semantic Versioning for versioning. (http://semver.org)
 See the list of contributors who participated in this project in the file AUTHOR.md contained in each specific project.
 
 ## License
-See the LICENSE.md file contained in each specific project for details.
+See the LICENSE.txt file contained in each specific project for details.
 
 ## Community site (Optional)
 At http://www.nivolapiemonte.it/ could find all the informations about the project.
