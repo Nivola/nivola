@@ -7,14 +7,15 @@ nella creazione del proprio sistema informativo e nella migrazione delle applica
 ## Product and Components
 This project contains the Product **nivola**.
 The product contains some components:
-* beecell 1.0.0
-* beedrones 1.0.0
-* beehive 1.0.0
-* beehive-oauth2 1.0.0
-* beehive-resource 1.0.0
-* beehive-service 1.0.0
-* beehive-cli 1.0.0
-* beehive-mgmt 1.0.0
+* beecell
+* beedrones
+* beehive
+* beehive-oauth2
+* beehive-resource
+* beehive-service
+* beehive-ssh
+* beehive-cli
+* beehive-mgmt
 
 ## Contributing
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.

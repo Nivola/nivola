@@ -1,21 +1,36 @@
 # Changelog
 
-## Version 1.0 (Jul 31 2018)
+## Version 1.1 (January 13, 2019)
 
 First release.
 
 * Added
+* Fixed
+  * beecell 1.1.0
+  * beedrones 1.1.0
+  * beehive 1.1.0
+  * beehive-resource 1.2.0
+  * beehive-service 1.1.0
+  * beehive-ssh 1.0.0
+  * beehive-mgmt 1.0.0
+  * beehive-cli 1.1.0 
+* integrated
+* various bugfixes
 
-  * Beecell 1.0.0
-  * Beedrones 1.0.0
-  * Beehive 1.0.0
-  * Beehive-oauth2 1.0.0
-  * Beehive-resource 1.0.0
-  * Beehive-service 1.0.0
-  * Beehive-ssh 1.0.0
-  * Beehive-mgmt 1.0.0
-  * Beehive-cli 1.0.0  
+## Version 1.0 (July 31 2018)
 
+First release.
+
+* Added
+  * beecell 1.0.0
+  * beedrones 1.0.0
+  * beehive 1.0.0
+  * beehive-oauth2 1.0.0
+  * beehive-resource 1.0.0
+  * beehive-service 1.0.0
+  * beehive-ssh 1.0.0
+  * beehive-mgmt 1.0.0
+  * beehive-cli 1.0.0  
 * Fixed
 * integrated
 * various bugfixes
