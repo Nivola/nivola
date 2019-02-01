@@ -7,7 +7,6 @@ First release.
 * Added
 * Fixed
   * beecell 1.2.0
-  * beedrones 1.1.0
   * beehive 1.2.0
   * beehive-resource 1.3.0
   * beehive-service 1.2.0
