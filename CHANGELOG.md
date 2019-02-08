@@ -1,8 +1,18 @@
 # Changelog
 
-## Version 1.2 (February 01, 2019)
+## Version 1.3 (February 08, 2019)
 
-First release.
+* Added
+* Fixed
+  * beecell 1.3.0
+  * beehive 1.3.0
+  * beehive-resource 1.4.0
+  * beehive-service 1.3.0
+  * beehive-cli 1.3.0 
+* integrated
+* various bugfixes
+
+## Version 1.2 (February 01, 2019)
 
 * Added
 * Fixed
@@ -15,8 +25,6 @@ First release.
 * various bugfixes
 
 ## Version 1.1 (January 13, 2019)
-
-First release.
 
 * Added
 * Fixed
