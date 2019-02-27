@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 1.3 (February 08, 2019)
+## Version 1.3 (February 27, 2019)
 
 * Added
 * Fixed
