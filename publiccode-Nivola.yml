@@ -1,17 +1,17 @@
-﻿publiccodeYmlVersion: # Mandatory
+﻿publiccodeYmlVersion:
     "0.2" 
 
- name: # Mandatory
+ name:
     Nivola
  applicationSuite: 
- url: # Mandatory
+ url:
     "https://github.com/Nivola/nivola.git" 
     landingURL: "https://github.com/nivola"
- softwareVersion: # Mandatory
-    "1.0"  # Da aggornare in base alla data di rilascio a cura di Sergio
- releaseDate: # Mandatory
-    "2019-04-15" # Da aggiornare in base alla data di rilascio a cura di Sergio
- logo: img/logo.svg #Da caricare il logo nel repository di github di Nivola a cura di Sergio. Il path indicato qui è relativo rispetto alla url
+ softwareVersion:
+    "1.3"
+ releaseDate:
+    "2019-02-27"
+ logo: img/logo.png
 
  inputTypes: #Da controllare il formato
  - application/json
@@ -20,10 +20,10 @@
  - application/json
  - text/xml
 
- platforms: # Mandatory
+ platforms:
  - web
 
- categories: # Mandatory
+ categories:
     - cloud-management
     - it-management
 
@@ -34,10 +34,10 @@
 
  roadmap: "https://doc.nivolapiemonte.it/userguide/roadmap.html"
 
- developmentStatus: # Mandatory
+ developmentStatus:
     stable
 
- softwareType: # Mandatory
+ softwareType:
     "standalone/other" 
 
  intendedAudience:
@@ -46,16 +46,16 @@
  countries:
  - it
 
- description: # Mandatory
- it: # Mandatory
+ description:
+ it:
  localisedName: Nivola
- genericName: # Mandatory
+ genericName:
     Piattaforma Cloud di gestione di asset infrastrutturali 
- shortDescription: # Mandatory
+ shortDescription:
     > 
     Nivola è una piattaforma open source che semplifica 
     l’utilizzo dei servizi cloud da parte della pubblica amministrazione.
-   longDescription: # Mandatory
+   longDescription:
     > 
     Nivola è una piattaforma open source che semplifica l’utilizzo 
     dei servizi cloud da parte della pubblica amministrazione.
@@ -68,33 +68,33 @@
  documentation: "https://doc.nivolapiemonte.it/userguide/"
  apiDocumentation: "https://doc.nivolapiemonte.it/userguide/swagger-ui/"
 
- features: # Mandatory
+ features:
  - Creazione macchine virtuali
  - Gestione Virtual Private Cloud
  - Gestione profilata accessi
  awards:
  - Menzione Speciale Premio Agenda Digitale 2017 - Osservatorio Agenda Digitale - Politecnico di Milano - 5 dicembre 2017
 
- legal: # Mandatory
+ legal:
  license:# Mandatory
     GPL-3.0-or-later 
  mainCopyrightOwner: CSI Piemonte
  repoOwner: CSI Piemonte
  authorsFile: AUTHORS
 
- maintenance: # Mandatory
- type: # Mandatory
+ maintenance:
+ type:
     "internal" 
 
-  contacts: # Mandatory se type="internal" o "community"
- - name: # Mandatory
+  contacts: se type="internal" o "community"
+ - name:
     Sergio Tonani 
     email: "sergio.tonani@csi.it"
  
- localisation: # Mandatory
- localisationReady: # Mandatory
+ localisation:
+ localisationReady:
     no # Da verificare a cura di Sergio
- availableLanguages: # Mandatory
+ availableLanguages:
  - it
  
  dependsOn:
@@ -116,8 +116,8 @@
  proprietary:
  hardware:
  
- it: # Mandatory
- countryExtensionVersion: # Mandatory
+ it:
+ countryExtensionVersion:
     "0.2"
 
  conforme:
@@ -132,6 +132,6 @@
  anpr: no
  pagopa: no
 
- riuso: # Mandatory
- codiceIPA: # Mandatory
+ riuso:
+ codiceIPA:
     csi_piem
