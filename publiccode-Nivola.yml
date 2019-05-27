@@ -1,0 +1,137 @@
+﻿publiccodeYmlVersion: # Mandatory
+    "0.2" 
+
+ name: # Mandatory
+    Nivola
+ applicationSuite: 
+ url: # Mandatory
+    "https://github.com/Nivola/nivola.git" 
+    landingURL: "https://github.com/nivola"
+ softwareVersion: # Mandatory
+    "1.0"  # Da aggornare in base alla data di rilascio a cura di Sergio
+ releaseDate: # Mandatory
+    "2019-04-15" # Da aggiornare in base alla data di rilascio a cura di Sergio
+ logo: img/logo.svg #Da caricare il logo nel repository di github di Nivola a cura di Sergio. Il path indicato qui è relativo rispetto alla url
+
+ inputTypes: #Da controllare il formato
+ - application/json
+ - text/xml
+ outputTypes:
+ - application/json
+ - text/xml
+
+ platforms: # Mandatory
+ - web
+
+ categories: # Mandatory
+    - cloud-management
+    - it-management
+
+ usedBy:
+ - Regione Piemonte
+ - Città di Torino
+ - Città di Vercelli
+
+ roadmap: "https://doc.nivolapiemonte.it/userguide/roadmap.html"
+
+ developmentStatus: # Mandatory
+    stable
+
+ softwareType: # Mandatory
+    "standalone/other" 
+
+ intendedAudience:
+ scope:
+ - infrastructures
+ countries:
+ - it
+
+ description: # Mandatory
+ it: # Mandatory
+ localisedName: Nivola
+ genericName: # Mandatory
+    Piattaforma Cloud di gestione di asset infrastrutturali 
+ shortDescription: # Mandatory
+    > 
+    Nivola è una piattaforma open source che semplifica 
+    l’utilizzo dei servizi cloud da parte della pubblica amministrazione.
+   longDescription: # Mandatory
+    > 
+    Nivola è una piattaforma open source che semplifica l’utilizzo 
+    dei servizi cloud da parte della pubblica amministrazione.
+    La piattaforma Nivola è realizzata dal CSI Piemonte utilizzando i progetti
+    pubblicati e mette a disposizione potenza di calcolo, storage, rete e 
+    database e molto altro. Il risultato è quello di offrire a ogni amministrazione 
+    la completa autonomia nella creazione del proprio sistema informativo 
+    e nella migrazione delle applicazioni, in assoluta sicurezza.
+
+ documentation: "https://doc.nivolapiemonte.it/userguide/"
+ apiDocumentation: "https://doc.nivolapiemonte.it/userguide/swagger-ui/"
+
+ features: # Mandatory
+ - Creazione macchine virtuali
+ - Gestione Virtual Private Cloud
+ - Gestione profilata accessi
+ awards:
+ - Menzione Speciale Premio Agenda Digitale 2017 - Osservatorio Agenda Digitale - Politecnico di Milano - 5 dicembre 2017
+
+ legal: # Mandatory
+ license:# Mandatory
+    GPL-3.0-or-later 
+ mainCopyrightOwner: CSI Piemonte
+ repoOwner: CSI Piemonte
+ authorsFile: AUTHORS
+
+ maintenance: # Mandatory
+ type: # Mandatory
+    "internal" 
+
+  contacts: # Mandatory se type="internal" o "community"
+ - name: # Mandatory
+    Sergio Tonani 
+    email: "sergio.tonani@csi.it"
+ 
+ localisation: # Mandatory
+ localisationReady: # Mandatory
+    no # Da verificare a cura di Sergio
+ availableLanguages: # Mandatory
+ - it
+ 
+ dependsOn:
+ open:
+ - name: MySQL
+    version: "5.7"
+ - name: Redis
+    version:  "3"
+ - name: RabbitMQ
+    version: "3.7.14"
+ - name: Nginx
+    version: "1.15.8"
+ - name: Uwsgi
+    version: "2.0.17.1"
+ - name: Camunda
+    version: "7.7"
+ - name: openstack
+    version: "queens"
+ proprietary:
+ hardware:
+ 
+ it: # Mandatory
+ countryExtensionVersion: # Mandatory
+    "0.2"
+
+ conforme:
+ lineeGuidaDesign: yes  # Da verificare a cura di Sergio
+ modelloInteroperabilita: yes
+ misureMinimeSicurezza: yes
+ gdpr: yes
+
+ piattaforme:
+ spid: yes
+ cie: no
+ anpr: no
+ pagopa: no
+
+ riuso: # Mandatory
+ codiceIPA: # Mandatory
+    csi_piem
