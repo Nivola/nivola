@@ -1,0 +1,7 @@
+*.py[co]
+_build/
+*.so
+.project
+.pydevproject
+.idea/
+.manage.*

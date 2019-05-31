@@ -1,0 +1,110 @@
+﻿# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+name: Nivola
+url: 'https://github.com/Nivola/nivola.git'
+landingURL: 'https://github.com/nivola'
+softwareVersion: '1.3'
+releaseDate: '2019-02-27'
+logo: img/logo.png
+inputTypes:
+  - application/json
+  - text/xml
+outputTypes:
+  - application/json
+  - text/xml
+platforms:
+  - web
+categories:
+  - cloud-management
+  - it-management
+usedBy:
+  - Regione Piemonte
+  - Città di Torino
+  - Città di Vercelli
+roadmap: 'https://doc.nivolapiemonte.it/userguide/roadmap.html'
+developmentStatus: stable
+softwareType: standalone/other
+intendedAudience:
+  scope:
+    - infrastructures
+  countries:
+    - it
+dependsOn:
+  open:
+    - name: MySQL
+      version: '5.7'
+    - name: Redis
+      version: '3'
+    - name: RabbitMQ
+      version: 3.7.14
+    - name: Nginx
+      version: 1.15.8
+    - name: Uwsgi
+      version: 2.0.17.1
+    - name: Camunda
+      version: '7.7'
+    - name: openstack
+      version: queens
+
+it:
+  countryExtensionVersion: '0.2'
+  conforme:
+    lineeGuidaDesign: yes
+    modelloInteroperabilita: yes
+    misureMinimeSicurezza: yes
+    gdpr: yes
+  piattaforme:
+    spid: yes
+    cie: no
+    anpr: no
+    pagopa: no
+  riuso:
+    codiceIPA: csi_piem
+
+
+maintenance:
+  type: internal
+  contacts:
+    - name: Sergio Tonani
+      email: sergio.tonani@csi.it
+
+legal:
+  license: GPL-3.0-or-later
+  mainCopyrightOwner: CSI Piemonte
+  repoOwner: CSI Piemonte
+  authorsFile: AUTHORS
+localisation:
+  localisationReady: false
+  availableLanguages:
+    - it
+description:
+  it:
+    localisedName: Nivola
+    genericName: Piattaforma Cloud di gestione
+    shortDescription: >-
+      Nivola è una piattaforma open source che semplifica l’utilizzo dei servizi
+      cloud da parte della pubblica amministrazione
+    longDescription: >
+      Nivola è una piattaforma open source che semplifica l’utilizzo dei servizi
+      cloud da parte della pubblica amministrazione. La piattaforma Nivola è
+      realizzata dal CSI Piemonte utilizzando i progetti pubblicati e mette a
+      disposizione potenza di calcolo, storage, rete, database e molto altro. Il
+      risultato è quello di offrire a ogni amministrazione la completa autonomia
+      nella creazione del proprio sistema informativo e nella migrazione delle
+      applicazioni, in assoluta sicurezza. Attualmente la piattaforma è usata da
+      diverse Pubbliche Amministrazioni italiane.
+    documentation: 'https://doc.nivolapiemonte.it/userguide/'
+    apiDocumentation: 'https://doc.nivolapiemonte.it/userguide/swagger-ui/'
+    features:
+      - Creazione macchine virtuali
+      - Gestione Virtual Private Cloud
+      - Gestione profilata accessi
+    awards:
+      - >-
+        Menzione Speciale Premio Agenda Digitale 2017 Osservatorio Agenda
+        Digitale - Politecnico di Milano - 5 dicembre 2017
+intendedAudience:
+    - infrastructures
