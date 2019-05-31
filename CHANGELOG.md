@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 1.4 (May 24, 2019)
+
+* Added
+* Fixed
+  * beecell 1.4.0
+  * beedrones 1.2.0  
+  * beehive 1.4.0
+  * beehive-oauth2 1.1.0
+  * beehive-resource 1.5.0
+  * beehive-service 1.4.0
+  * beehive-ssh 1.1.0  
+  * beehive-cli 1.4.0 
+* integrated
+* various bugfixes
+
 ## Version 1.3 (February 27, 2019)
 
 * Added

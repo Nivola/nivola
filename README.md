@@ -23,7 +23,7 @@ Please read CONTRIBUTING.md for details on our code of conduct, and the process 
 ## Versioning
 We use Semantic Versioning for versioning. (http://semver.org)
 
-Current version is: 1.0
+Current version is: 1.4
 
 ## Authors
 See the list of contributors who participated in this project in the file AUTHOR.md contained in each specific project.
