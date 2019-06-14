@@ -26,7 +26,7 @@ We use Semantic Versioning for versioning. (http://semver.org)
 Current version is: 1.4
 
 ## Authors
-See the list of contributors who participated in this project in the file AUTHORS contained in each specific project.
+See the list of contributors who participated in this project in the file AUTHORS.md contained in each specific project.
 
 ## License
 See the LICENSE.txt file contained in each specific project for details.
