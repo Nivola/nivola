@@ -5,17 +5,17 @@ calcolo, storage, rete e database e molto altro. Il risultato è quello di offri
 nella creazione del proprio sistema informativo e nella migrazione delle applicazioni, in assoluta sicurezza.
 
 ## Product and Components
-This project contains the Product **nivola**.
+This is a meta-repository that lists the individual repositories related to the Product **nivola**.
 The product contains some components:
-* beecell
-* beedrones
-* beehive
-* beehive-oauth2
-* beehive-resource
-* beehive-service
-* beehive-ssh
-* beehive-cli
-* beehive-mgmt
+* [beecell](https://github.com/Nivola/beecell)
+* beedrones (not yet released)
+* beehive (not yet released)
+* beehive-oauth2 (not yet released)
+* beehive-resource (not yet released)
+* beehive-service (not yet released)
+* beehive-ssh (not yet released)
+* beehive-cli (not yet released)
+* beehive-mgmt (not yet released)
 
 ## Contributing
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
