@@ -7,6 +7,7 @@ nella creazione del proprio sistema informativo e nella migrazione delle applica
 ## Product and Components
 This is a meta-repository that lists the individual repositories related to the Product **nivola**.
 The product contains some components:
+
 * [beecell](https://github.com/Nivola/beecell)
 * beedrones (not yet released)
 * beehive (not yet released)
@@ -26,7 +27,7 @@ We use Semantic Versioning for versioning. (http://semver.org)
 Current version is: 1.4
 
 ## Authors
-See the list of contributors who participated in this project in the file AUTHOR.md contained in each specific project.
+See the list of contributors who participated in this project in the file AUTHORS.md contained in each specific project.
 
 ## License
 See the LICENSE.txt file contained in each specific project for details.

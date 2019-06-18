@@ -75,7 +75,7 @@ legal:
   license: GPL-3.0-or-later
   mainCopyrightOwner: CSI Piemonte
   repoOwner: CSI Piemonte
-  authorsFile: AUTHORS
+  authorsFile: AUTHORS.md
 localisation:
   localisationReady: false
   availableLanguages:
