@@ -23,10 +23,13 @@ Please read CONTRIBUTING.md for details on our code of conduct, and the process 
 ## Versioning
 We use Semantic Versioning for versioning. (http://semver.org)
 
-Current version is: 1.4
+Current version is: 1.5
 
 ## Authors
 See the list of contributors who participated in this project in the file AUTHOR.md contained in each specific project.
+
+## Copyright
+CSI Piemonte - 2018-2019
 
 ## License
 See the LICENSE.txt file contained in each specific project for details.
