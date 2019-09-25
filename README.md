@@ -1,8 +1,6 @@
 # Nivola
-Nivola è una piattaforma open source che semplifica l’utilizzo dei servizi cloud da parte della pubblica amministrazione.
-La piattaforma Nivola è realizzata dal CSI Piemonte utilizzando i progetti pubblicati e mette a disposizione potenza di 
-calcolo, storage, rete e database e molto altro. Il risultato è quello di offrire a ogni amministrazione la completa autonomia
-nella creazione del proprio sistema informativo e nella migrazione delle applicazioni, in assoluta sicurezza.
+Nivola is a platform that semplify the use of cloud service from public administration.
+Nivola Platforrm is realized from CSI Piemonte and provides computational, storage and network resources.
 
 ## Product and Components
 This project contains the Product **nivola**.
