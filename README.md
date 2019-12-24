@@ -1,15 +1,13 @@
 # Nivola
-Nivola è una piattaforma open source che semplifica l’utilizzo dei servizi cloud da parte della pubblica amministrazione.
-La piattaforma Nivola è realizzata dal CSI Piemonte utilizzando i progetti pubblicati e mette a disposizione potenza di 
-calcolo, storage, rete e database e molto altro. Il risultato è quello di offrire a ogni amministrazione la completa autonomia
-nella creazione del proprio sistema informativo e nella migrazione delle applicazioni, in assoluta sicurezza.
+Nivola is a platform that semplify the use of cloud service from public administration.
+Nivola Platforrm is realized from CSI Piemonte and provides computational, storage and network resources.
 
 ## Product and Components
 This project contains the Product **nivola**.
 The product contains some components:
 * [beecell](https://github.com/Nivola/beecell)
 * beedrones
-* beehive
+* [beehive](https://github.com/Nivola/beehive)
 * beehive-oauth2
 * beehive-resource
 * beehive-service
@@ -23,10 +21,14 @@ Please read CONTRIBUTING.md for details on our code of conduct, and the process 
 ## Versioning
 We use Semantic Versioning for versioning. (http://semver.org)
 
-Current version is: 1.4
+Current version is: 1.6
 
 ## Authors
 See the list of contributors who participated in this project in the file AUTHORS.md contained in each specific project.
+
+## Copyright
+CSI Piemonte - 2018-2019
+CSI Piemonte - 2019-2020
 
 ## License
 See the LICENSE.txt file contained in each specific project for details.
