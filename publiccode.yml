@@ -75,7 +75,7 @@ legal:
   license: GPL-3.0-or-later
   mainCopyrightOwner: CSI Piemonte
   repoOwner: CSI Piemonte
-  authorsFile: AUTHORS
+  authorsFile: AUTHORS.md
 localisation:
   localisationReady: false
   availableLanguages:
@@ -106,5 +106,3 @@ description:
       - >-
         Menzione Speciale Premio Agenda Digitale 2017 Osservatorio Agenda
         Digitale - Politecnico di Milano - 5 dicembre 2017
-intendedAudience:
-    - infrastructures
