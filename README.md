@@ -7,7 +7,7 @@ This project contains the Product **nivola**.
 The product contains some components:
 * [beecell](https://github.com/Nivola/beecell)
 * beedrones
-* beehive
+* [beehive](https://github.com/Nivola/beehive)
 * beehive-oauth2
 * beehive-resource
 * beehive-service
@@ -21,13 +21,14 @@ Please read CONTRIBUTING.md for details on our code of conduct, and the process 
 ## Versioning
 We use Semantic Versioning for versioning. (http://semver.org)
 
-Current version is: 1.5
+Current version is: 1.6
 
 ## Authors
 See the list of contributors who participated in this project in the file AUTHORS.md contained in each specific project.
 
 ## Copyright
 CSI Piemonte - 2018-2019
+CSI Piemonte - 2019-2020
 
 ## License
 See the LICENSE.txt file contained in each specific project for details.
