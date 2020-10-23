@@ -1,5 +1,35 @@
 # Changelog
 
+## Version 1.8 (Oct 23, 2020)
+
+* Added ...
+    * add sql_stack_v2 with sql stack based on stack_v2
+    * added dbaas api v2.0. Class ApiDatabaseServiceInstance was replaced with ApiDatabaseServiceInstanceV2
+    * added ApiComputeInstance action to add/remove security group
+    * added ApiComputeInstance action to add/remove/revert snapshots
+    * added ApiServiceDefinition field config in update api
+    * add resource entity api to clean cache
+* Fixed 
+	* some minor fixed in schema fields definitions in order to get better swagger descriptions
+	* api oid field declaration for post services with {oid} in path
+* Integrated ...
+    * added ApiStorageEFS api param PerformanceMode used to manage share based on netapp and new share base on local 
+      openstack server
+* Various bugfixes
+    * apply patch to method ApiComputeSecurityGroup.get_rule_info_params
+	* fixed error generating swagger specification
+* Internal Packages
+  * beecell 1.6.1
+  * beedrones 1.4.2
+  * beehive 1.7.2
+  * beehive-oauth2 1.2.2  
+  * beehive-resource 1.9.0
+  * beehive-service 1.6.0
+  * beehive-service-netaas 1.0.0
+  * beehive-ssh 1.3.0
+  * beehive-ansible 1.2.0
+  * beehive3-cli 1.4.0
+
 ## Version 1.7 (Jun 21, 2020)
 
 * Added
