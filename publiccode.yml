@@ -6,8 +6,8 @@ publiccodeYmlVersion: '0.2'
 name: Nivola
 url: 'https://github.com/Nivola/nivola.git'
 landingURL: 'https://github.com/nivola'
-softwareVersion: '1.6'
-releaseDate: '2019-02-27'
+softwareVersion: '1.8'
+releaseDate: '2020-10-23'
 logo: img/logo.png
 inputTypes:
   - application/json
@@ -34,16 +34,16 @@ intendedAudience:
     - it
 dependsOn:
   open:
-    - name: MySQL
-      version: '5.7'
+    - name: Mariadb
+      version: '10.4'
     - name: Redis
-      version: '3'
+      version: '6'
     - name: RabbitMQ
-      version: 3.7.14
+      version: '3.8'
     - name: Nginx
-      version: 1.15.8
+      version: '1.15.8'
     - name: Uwsgi
-      version: 2.0.18
+      version: '2.0.18'
     - name: Camunda
       version: '7.7'
     - name: openstack

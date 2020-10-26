@@ -5,6 +5,8 @@
 * Added ...
     * add sql_stack_v2 with sql stack based on stack_v2
     * added dbaas api v2.0. Class ApiDatabaseServiceInstance was replaced with ApiDatabaseServiceInstanceV2
+        * engine supported: mysql, postgresql, oracle, sqlserver
+    * added ComputeCustomization and AppliedComputeCustomization to run ansible playbook on ComputeInstance
     * added ApiComputeInstance action to add/remove security group
     * added ApiComputeInstance action to add/remove/revert snapshots
     * added ApiServiceDefinition field config in update api
