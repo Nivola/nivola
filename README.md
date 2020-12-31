@@ -19,7 +19,7 @@ The product contains some components:
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
-We use Semantic Versioning for versioning. (http://semver.org)
+We use Semantic Versioning for versioning. (https://semver.org)
 
 Current version is: 1.6
 
@@ -35,4 +35,4 @@ CSI Piemonte - 2019-2020
 See the LICENSE.txt file contained in each specific project for details.
 
 ## Community site (Optional)
-At http://www.nivolapiemonte.it/ could find all the informations about the project.
+At https://www.nivolapiemonte.it/ could find all the informations about the project.
