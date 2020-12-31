@@ -1,5 +1,23 @@
 # Changelog
 
+## Version 1.8.1 (Dec 31, 2020)
+
+* Added ...
+* Fixed
+* Integrated ...
+* Various bugfixes
+* Internal Packages
+  * beecell 1.7.0
+  * beedrones 1.5.0
+  * beehive 1.8.0
+  * beehive-oauth2 1.2.2  
+  * beehive-resource 1.9.0
+  * beehive-service 1.6.0
+  * beehive-service-netaas 1.0.0
+  * beehive-ssh 1.3.0
+  * beehive-ansible 1.2.0
+  * beehive3-cli 1.4.0
+
 ## Version 1.8 (Oct 23, 2020)
 
 * Added ...
