@@ -21,7 +21,7 @@ Please read CONTRIBUTING.md for details on our code of conduct, and the process 
 ## Versioning
 We use Semantic Versioning for versioning. (https://semver.org)
 
-Current version is: 1.8.1
+Current version is: 1.8.2
 
 ## Authors
 See the list of contributors who participated in this project in the file AUTHORS.md contained in each specific project.

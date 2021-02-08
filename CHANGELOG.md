@@ -1,5 +1,29 @@
 # Changelog
 
+## Version 1.8.2 (Feb 05, 2021)
+
+* Added ...
+  * add new api ping (with sql check), capabilities and version to /v1.0/nas, /v1.0/nes, /v1.0/nws, /v1.0/nrs, /v1.0/gas
+  * add service instance check api
+  * add service instance name validation
+  * add owner propagation from keypair to ssh key  
+* Fixed
+  * removed error propagation that block dbaas instance query
+  * fixed implementation of share delete  
+* Integrated ...
+* Various bugfixes
+* Internal Packages
+  * beecell 1.7.1
+  * beedrones 1.5.1
+  * beehive 1.9.0
+  * beehive-oauth2 1.2.2  
+  * beehive-resource 1.10.0
+  * beehive-service 1.8.0
+  * beehive-service-netaas 1.0.0
+  * beehive-ssh 1.4.0
+  * beehive-ansible 1.3.0
+  * beehive3-cli 1.6.0
+
 ## Version 1.8.1 (Dec 31, 2020)
 
 * Added ...
@@ -12,7 +36,7 @@
   * beehive 1.8.0
   * beehive-oauth2 1.2.2  
   * beehive-resource 1.9.0
-  * beehive-service 1.6.0
+  * beehive-service 1.7.0
   * beehive-service-netaas 1.0.0
   * beehive-ssh 1.3.0
   * beehive-ansible 1.2.0
@@ -44,7 +68,7 @@
   * beehive 1.7.2
   * beehive-oauth2 1.2.2  
   * beehive-resource 1.9.0
-  * beehive-service 1.6.0
+  * beehive-service 1.7.0
   * beehive-service-netaas 1.0.0
   * beehive-ssh 1.3.0
   * beehive-ansible 1.2.0
