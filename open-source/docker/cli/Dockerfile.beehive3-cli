@@ -40,6 +40,7 @@ RUN mkdir -p /home/beehive3/.beehive3/config && \
     cd $PYTHONPATH && pip3 install beehive-service-netaas/  && \
     cd $PYTHONPATH && pip3 install beehive-resource/  && \
     cd $PYTHONPATH && pip3 install beehive-ssh/  && \
+    cd $PYTHONPATH && pip3 install beehive3-cli/  && \
     # segue script standard
     mkdir -p /home/beehive3/.ansible/tmp && \
     chown -R beehive3:beehive3 /home/beehive3/.ansible && \
