@@ -1,0 +1,13 @@
+FROM python:3.8.6
+
+#COPY ./files/requirements.txt /tmp/requirements.txt
+
+RUN adduser --disabled-password beehive3 && \
+    mkdir /etc/beehive3 && chown -R beehive3:beehive3 /etc/beehive3 && \
+    apt update && \
+    apt -y install libldap2-dev sshpass rsync mariadb-client git libffi-dev libssl-dev libsasl2-dev pkg-config libvirt-dev
+    #pip3 install -r /tmp/requirements.txt
+
+WORKDIR /home/beehive3
+
+# CMD [ "uwsgi", "/etc/uwsgi/uwsgi.ini"]

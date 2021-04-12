@@ -1,0 +1,66 @@
+FROM opensource/console-python
+
+ARG GITUSER=''
+ARG GITPWD=''
+ARG BRANCH=devel
+ARG GITURI=https://$GITUSER:$GITPWD@gitlab.csi.it/nivola
+
+ENV GITUSER ${GITUSER}
+ENV GITPWD ${GITPWD}
+
+#ARG PYTHONPATH=/usr/local/lib/python3.7/site-packages
+ARG PYTHONPATH=/home/beehive3/pkgs
+
+COPY ./files/beehive3 /usr/bin/beehive3
+
+RUN mkdir -p /home/beehive3/.beehive3/config && \
+    mkdir -p /home/beehive3/.beehive3/env && \
+    mkdir -p /home/beehive3/.beehive3/.tokens && \
+    mkdir -p /home/beehive3/pkgs && \
+    chown -R beehive3:beehive3 /home/beehive3 && \
+    chmod +x /usr/bin/beehive3 && \
+    ln -s /usr/bin/beehive3 /usr/bin/beehive && \
+    git clone -b $BRANCH $GITURI/cmp2/beehive.git $PYTHONPATH/beehive && \
+    git clone -b $BRANCH $GITURI/cmp3/beecell.git $PYTHONPATH/beecell && \
+    git clone -b $BRANCH $GITURI/cmp2/beedrones.git $PYTHONPATH/beedrones && \
+    #git clone -b $BRANCH $GITURI/cmp2/beehive-ansible.git $PYTHONPATH/beehive-ansible && \
+    git clone -b $BRANCH $GITURI/cmp2/beehive-ssh.git $PYTHONPATH/beehive-ssh && \
+    git clone -b $BRANCH $GITURI/cmp2/beehive-resource.git $PYTHONPATH/beehive-resource && \
+    git clone -b $BRANCH $GITURI/cmp2/beehive-service.git $PYTHONPATH/beehive-service && \
+    git clone -b $BRANCH $GITURI/cmp2/beehive-service.git $PYTHONPATH/beehive-service-netaas && \
+    git clone -b $BRANCH $GITURI/cmp2/beehive-oauth2.git $PYTHONPATH/beehive-oauth2 && \
+    git clone -b $BRANCH $GITURI/cmp3/beehive3-cli.git $PYTHONPATH/beehive3-cli && \
+    #git clone $GITURI/cmp3/beehive-tests.git $PYTHONPATH/beehive-tests && \
+    # installazione progetti
+    cd $PYTHONPATH && pip3 install beecell/  && \
+    cd $PYTHONPATH && pip3 install beedrones/  && \
+    cd $PYTHONPATH && pip3 install beehive/  && \
+    cd $PYTHONPATH && pip3 install beehive-oauth2/  && \
+    cd $PYTHONPATH && pip3 install beehive-service/  && \
+    cd $PYTHONPATH && pip3 install beehive-service-netaas/  && \
+    cd $PYTHONPATH && pip3 install beehive-resource/  && \
+    cd $PYTHONPATH && pip3 install beehive-ssh/  && \
+    # segue script standard
+    mkdir -p /home/beehive3/.ansible/tmp && \
+    chown -R beehive3:beehive3 /home/beehive3/.ansible && \
+    curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
+    chmod +x kubectl && \
+    mv ./kubectl /usr/local/bin/kubectl && \
+    echo '[defaults]\nhost_key_checking = False' > /home/beehive3/.ansible/ansible.cfg && \
+    # echo 'source <(kubectl completion bash)' >> .bashrc && \
+    mkdir -p /home/beehive3/.ssh/ && \
+    echo 'Host *\n   StrictHostKeyChecking no\n   UserKnownHostsFile=/dev/null' > /home/beehive3/.ssh/config && \
+    echo '\nsource /home/beehive3/pkgs/beehive3-cli/beehive3_cli/ext/beehive_completion.rc /home/beehive3/pkgs/beehive3-cli/beehive3_cli/ext/commands' >> .bashrc
+
+
+#ENV PYTHONPATH /home/beehive3/pkgs/beehive:/home/beehive3/pkgs/beecell:/home/beehive3/pkgs/beedrones:\
+#/home/beehive3/pkgs/beehive-ansible:/home/beehive3/pkgs/beehive-ssh:/home/beehive3/pkgs/beehive-resource:\
+#/home/beehive3/pkgs/beehive-service:/home/beehive3/pkgs/beehive-service-netass:/home/beehive3/pkgs/beehive-oauth2:\
+#/home/beehive3/pkgs/beehive3-cli:/home/beehive3/pkgs/beehive-tests
+
+#vi ~/.beehive3/config/beehive.yml
+
+WORKDIR /home/beehive3
+USER beehive3:beehive3
+
+# CMD [ "uwsgi", "/etc/uwsgi/uwsgi.ini"]

@@ -1,0 +1,3 @@
+#!/bin/bash
+#/usr/local/lib/python3.7/site-packages/beehive3_cli/main.py $@
+/home/beehive3/pkgs/beehive3-cli/beehive3_cli/main.py $@

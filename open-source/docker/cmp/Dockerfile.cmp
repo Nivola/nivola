@@ -1,0 +1,44 @@
+FROM opensource/nivola-uwsgi
+
+ARG GITUSER=''
+ARG GITPWD=''
+ARG BRANCH=devel
+ARG GITURI=https://$GITUSER:$GITPWD@gitlab.csi.it/nivola
+
+ENV GITUSER ${GITUSER}
+ENV GITPWD ${GITPWD}
+
+#ARG PYTHONPATH=/usr/local/lib/python3.7/site-packages
+ARG PYTHONPATH=/usr/local/uwsgi/pkgs
+
+RUN mkdir -p /usr/local/uwsgi/pkgs && \
+    chown -R uwsgi:uwsgi /usr/local/uwsgi && \
+    echo "clone from git branch: $BRANCH" && \
+    git clone -b $BRANCH $GITURI/cmp3/beecell.git $PYTHONPATH/beecell && \
+    git clone -b $BRANCH $GITURI/cmp2/beedrones.git $PYTHONPATH/beedrones && \
+    git clone -b $BRANCH $GITURI/cmp2/beehive.git $PYTHONPATH/beehive && \
+    git clone -b $BRANCH $GITURI/cmp2/beehive-oauth2.git $PYTHONPATH/beehive-oauth2 && \
+    git clone -b $BRANCH $GITURI/cmp2/beehive-service.git $PYTHONPATH/beehive-service && \
+    git clone -b $BRANCH $GITURI/cmp3/beehive-service-netaas.git $PYTHONPATH/beehive-service-netaas && \
+    git clone -b $BRANCH $GITURI/cmp2/beehive-resource.git $PYTHONPATH/beehive-resource && \
+    git clone -b $BRANCH $GITURI/cmp2/beehive-ssh.git $PYTHONPATH/beehive-ssh && \
+    # cd $PYTHONPATH/beecell && python $PYTHONPATH/beecell/setup.py
+    cd $PYTHONPATH && pip3 install beecell/  && \
+    cd $PYTHONPATH && pip3 install beedrones/  && \
+    cd $PYTHONPATH && pip3 install beehive/  && \
+    cd $PYTHONPATH && pip3 install beehive-oauth2/  && \
+    cd $PYTHONPATH && pip3 install beehive-service/  && \
+    cd $PYTHONPATH && pip3 install beehive-service-netaas/  && \
+    cd $PYTHONPATH && pip3 install beehive-resource/  && \
+    cd $PYTHONPATH && pip3 install beehive-ssh/ 
+    
+#ENV PYTHONPATH $PYTHONPATH/beehive:$PYTHONPATH/beecell:$PYTHONPATH/beedrones:$PYTHONPATH/beehive-oauth2:\
+#$PYTHONPATH/beehive-service:$PYTHONPATH/beehive-service-netaas:$PYTHONPATH/beehive-resource:$PYTHONPATH/beehive-ssh
+
+WORKDIR /usr/local/uwsgi
+USER uwsgi:uwsgi
+#EXPOSE 8070
+#EXPOSE 8080
+EXPOSE 9191
+
+CMD [ "uwsgi", "/etc/uwsgi/uwsgi.ini"]
