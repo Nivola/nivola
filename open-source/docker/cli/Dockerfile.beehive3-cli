@@ -20,21 +20,21 @@ RUN mkdir -p /home/beehive3/.beehive3/config && \
     chown -R beehive3:beehive3 /home/beehive3 && \
     chmod +x /usr/bin/beehive3 && \
     ln -s /usr/bin/beehive3 /usr/bin/beehive && \
-    git clone -b $BRANCH $GITURI/cmp2/beehive.git $PYTHONPATH/beehive && \
     git clone -b $BRANCH $GITURI/cmp3/beecell.git $PYTHONPATH/beecell && \
     git clone -b $BRANCH $GITURI/cmp2/beedrones.git $PYTHONPATH/beedrones && \
+    git clone -b $BRANCH $GITURI/cmp2/beehive.git $PYTHONPATH/beehive && \
     #git clone -b $BRANCH $GITURI/cmp2/beehive-ansible.git $PYTHONPATH/beehive-ansible && \
     git clone -b $BRANCH $GITURI/cmp2/beehive-ssh.git $PYTHONPATH/beehive-ssh && \
     git clone -b $BRANCH $GITURI/cmp2/beehive-resource.git $PYTHONPATH/beehive-resource && \
     git clone -b $BRANCH $GITURI/cmp2/beehive-service.git $PYTHONPATH/beehive-service && \
-    git clone -b $BRANCH $GITURI/cmp2/beehive-service.git $PYTHONPATH/beehive-service-netaas && \
+    git clone -b $BRANCH $GITURI/cmp3/beehive-service-netaas.git $PYTHONPATH/beehive-service-netaas && \
     git clone -b $BRANCH $GITURI/cmp2/beehive-oauth2.git $PYTHONPATH/beehive-oauth2 && \
     git clone -b $BRANCH $GITURI/cmp3/beehive3-cli.git $PYTHONPATH/beehive3-cli && \
     #git clone $GITURI/cmp3/beehive-tests.git $PYTHONPATH/beehive-tests && \
     # installazione progetti
+    cd $PYTHONPATH && pip3 install beehive/  && \
     cd $PYTHONPATH && pip3 install beecell/  && \
     cd $PYTHONPATH && pip3 install beedrones/  && \
-    cd $PYTHONPATH && pip3 install beehive/  && \
     cd $PYTHONPATH && pip3 install beehive-oauth2/  && \
     cd $PYTHONPATH && pip3 install beehive-service/  && \
     cd $PYTHONPATH && pip3 install beehive-service-netaas/  && \
