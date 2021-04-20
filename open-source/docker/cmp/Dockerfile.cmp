@@ -11,18 +11,28 @@ ENV GITPWD ${GITPWD}
 #ARG PYTHONPATH=/usr/local/lib/python3.7/site-packages
 ARG PYTHONPATH=/usr/local/uwsgi/pkgs
 
+# copy da workspace invece di git clone
+COPY beecell $PYTHONPATH/beecell/
+COPY beedrones/ $PYTHONPATH/beedrones/
+COPY beehive/ $PYTHONPATH/beehive/
+COPY beehive-oauth2/ $PYTHONPATH/beehive-oauth2/
+COPY beehive-resource/ $PYTHONPATH/beehive-resource/
+COPY beehive-service/ $PYTHONPATH/beehive-service/
+COPY beehive-service-netaas/ $PYTHONPATH/beehive-service-netaas/
+COPY beehive-ssh/ $PYTHONPATH/beehive-ssh/
+
 RUN mkdir -p /usr/local/uwsgi/pkgs && \
     chown -R uwsgi:uwsgi /usr/local/uwsgi && \
     echo "clone from git branch: $BRANCH" && \
-    git clone -b $BRANCH $GITURI/cmp3/beecell.git $PYTHONPATH/beecell && \
-    git clone -b $BRANCH $GITURI/cmp2/beedrones.git $PYTHONPATH/beedrones && \
-    git clone -b $BRANCH $GITURI/cmp2/beehive.git $PYTHONPATH/beehive && \
-    git clone -b $BRANCH $GITURI/cmp2/beehive-oauth2.git $PYTHONPATH/beehive-oauth2 && \
-    git clone -b $BRANCH $GITURI/cmp2/beehive-service.git $PYTHONPATH/beehive-service && \
-    git clone -b $BRANCH $GITURI/cmp3/beehive-service-netaas.git $PYTHONPATH/beehive-service-netaas && \
-    git clone -b $BRANCH $GITURI/cmp2/beehive-resource.git $PYTHONPATH/beehive-resource && \
-    git clone -b $BRANCH $GITURI/cmp2/beehive-ssh.git $PYTHONPATH/beehive-ssh && \
-    # cd $PYTHONPATH/beecell && python $PYTHONPATH/beecell/setup.py
+    # git clone invece di copy da workspace
+    #git clone -b $BRANCH $GITURI/cmp3/beecell.git $PYTHONPATH/beecell && \
+    #git clone -b $BRANCH $GITURI/cmp2/beedrones.git $PYTHONPATH/beedrones && \
+    #git clone -b $BRANCH $GITURI/cmp2/beehive.git $PYTHONPATH/beehive && \
+    #git clone -b $BRANCH $GITURI/cmp2/beehive-service.git $PYTHONPATH/beehive-service && \
+    #git clone -b $BRANCH $GITURI/cmp3/beehive-service-netaas.git $PYTHONPATH/beehive-service-netaas && \
+    #git clone -b $BRANCH $GITURI/cmp2/beehive-resource.git $PYTHONPATH/beehive-resource && \
+    #git clone -b $BRANCH $GITURI/cmp2/beehive-ssh.git $PYTHONPATH/beehive-ssh && \
+    #git clone -b $BRANCH $GITURI/cmp2/beehive-oauth2.git $PYTHONPATH/beehive-oauth2 && \
     cd $PYTHONPATH && pip3 install beecell/  && \
     cd $PYTHONPATH && pip3 install beedrones/  && \
     cd $PYTHONPATH && pip3 install beehive/  && \
