@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proxysql
+  labels:
+    app: proxysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: proxysql
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: proxysql
+    spec:
+      restartPolicy: Always
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - proxysql-hard
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - image: proxysql/proxysql:2.0.14
+        name: proxysql
+        volumeMounts:
+        - name: proxysql-config
+          mountPath: /etc/proxysql.cnf
+          subPath: proxysql.cnf
+        ports:
+        - containerPort: 6033
+          name: proxysql-mysql
+        - containerPort: 6032
+          name: proxysql-admin
+        - containerPort: 6080
+          name: proxysql-stats
+        env:
+          - name: TZ
+            value: Europe/Rome
+      volumes:
+      - name: proxysql-config
+        configMap:
+          name: proxysql-configmap
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: proxysql
+  labels:
+    app: proxysql
+spec:
+  type: NodePort
+  ports:
+  - port: 6033
+    targetPort: 6033
+    #nodePort: 30032
+    protocol: TCP
+    name: proxysql-mysql
+  - port: 6032
+    targetPort: 6032
+    #nodePort: 30033
+    protocol: TCP
+    name: proxysql-admin
+  - port: 6080
+    targetPort: 6080
+    #nodePort: 30034
+    protocol: TCP
+    name: proxysql-stats
+  selector:
+    app: proxysql

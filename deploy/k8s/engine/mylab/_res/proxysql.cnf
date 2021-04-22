@@ -1,0 +1,89 @@
+admin_variables = {
+    admin_credentials="sqladmin:EKbK8yQ7q05N",
+    stats_credentials="stats:stats",
+    mysql_ifaces="0.0.0.0:6032",
+    refresh_interval=2000,
+    web_enabled=true,
+    web_port=6080
+}
+mysql_variables = {
+    threads=4,
+    max_connections=2048,
+    monitor_username="proxysql",
+    monitor_password="EKbK8yQ7q05N"
+}
+mysql_servers = (
+    { address="10.138.144.135" , port=3306 , hostgroup=10, max_connections=256, weight=1 },
+    { address="10.138.176.135" , port=3306 , hostgroup=10, max_connections=256, weight=5 },
+    { address="10.138.208.135" , port=3306 , hostgroup=10, max_connections=256, weight=10 }
+)
+mysql_users = (
+    {
+        username="root",
+        password="root",
+        default_hostgroup=10,
+        active=1,
+        max_connections=10,
+        transaction_persistent=0
+    },
+    {
+        username="auth_stage",
+        password="auth_stage",
+        default_schema="auth_stage",
+        default_hostgroup=10,
+        active=1,
+        max_connections=256,
+        transaction_persistent=0
+    },
+    {
+        username="event_stage",
+        password="event_stage",
+        default_schema="event_stage",
+        default_hostgroup=10,
+        active=1,
+        max_connections=256,
+        transaction_persistent=0
+    },
+    {
+        username="ssh_stage",
+        password="ssh_stage",
+        default_schema="ssh_stage",
+        default_hostgroup=10,
+        active=1,
+        max_connections=256,
+        transaction_persistent=0
+    },
+    {
+        username="resource_stage",
+        password="resource_stage",
+        default_schema="resource_stage",
+        default_hostgroup=10,
+        active=1,
+        max_connections=256,
+        transaction_persistent=0
+    },
+    {
+        username="service_stage",
+        password="service_stage",
+        default_schema="service_stage",
+        default_hostgroup=10,
+        active=1,
+        max_connections=256,
+        transaction_persistent=0
+    },
+)
+mysql_galera_hostgroups = (
+    {
+        writer_hostgroup= 10
+        backup_writer_hostgroup= 20
+        reader_hostgroup= 30
+        offline_hostgroup= 9999
+        active= 1
+        max_writers= 1
+        writer_is_also_reader= 1
+        max_transactions_behind= 20
+        comment= "mariadb galera cluster"
+    }
+)
+mysql_query_rules = (
+)

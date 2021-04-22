@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: haproxy-mariadb-app
+  labels:
+    name: event
+    role: galeralb
+  namespace: beehive
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: haproxy-mariadb-pod
+  template:
+    metadata:
+      labels:
+        app: haproxy-mariadb-pod
+    spec:
+      containers:
+      - name: haproxy-mariadb
+        image: haproxy:2.1.7
+        imagePullPolicy: Always
+        # command: ["uwsgi", "--yaml", "/etc/uwsgi/uwsgi.yaml"]
+        ports:
+          - containerPort: 3306
+        volumeMounts:
+          - name: haproxy-config-vol
+            mountPath: /usr/local/etc/haproxy/haproxy.cfg
+            subPath: haproxy-mariadb.cfg
+      volumes:
+        - name: haproxy-config-vol
+          configMap:
+            name: haproxy-config

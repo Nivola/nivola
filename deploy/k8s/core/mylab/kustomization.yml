@@ -1,0 +1,8 @@
+commonLabels:
+  environment: mylab
+namespace: beehive-mylab
+resources:
+  - namespace.yml
+  - beehive-volume.yml
+  - tmp-volume.yml
+  - service.yml

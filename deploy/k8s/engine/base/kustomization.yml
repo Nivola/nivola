@@ -1,0 +1,6 @@
+resources:
+#  - service.yml
+#  - haproxy.yml
+  - proxysql.yml
+  - rabbitmq.yml
+  - redis.yml

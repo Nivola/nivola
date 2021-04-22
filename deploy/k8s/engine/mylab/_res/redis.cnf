@@ -1,0 +1,26 @@
+timeout 300
+
+loglevel notice
+
+# To enable logging to the system logger, just set 'syslog-enabled' to yes,
+# and optionally update the other syslog parameters to suit your needs.
+syslog-enabled "yes"
+# syslog-ident redis
+# syslog-facility local0
+
+databases 8
+
+rdbcompression "yes"
+dbfilename dump.rdb
+
+maxclients 128
+
+maxmemory 0
+maxmemory-policy "noeviction"
+maxmemory-samples 5
+
+appendonly "no"
+appendfsync "everysec"
+no-appendfsync-on-rewrite no
+
+requirepass "t5vo5ChFCCe8I1toguvOFXFUW1jU9WSJr4H13aNiOAV"

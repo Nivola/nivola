@@ -1,0 +1,25 @@
+#namePrefix: local-
+commonLabels:
+  environment: mylab
+namespace: beehive-mylab
+bases:
+  - ../base
+#resources:
+#  - nginx.yml
+configMapGenerator:
+#- name: haproxy-config
+#  files:
+#  - _res/haproxy-mariadb.cfg
+- name: proxysql-configmap
+  files:
+  - _res/proxysql.cnf
+- name: redis-configmap
+  files:
+  -  _res/redis.cnf
+- name: nginx-config
+  files:
+  - _res/nginx.cnf
+#- name: nginx-certificate-config
+#  files:
+#  - _res/nginx.crt
+#  - _res/nginx.key
