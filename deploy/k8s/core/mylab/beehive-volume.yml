@@ -12,7 +12,8 @@ spec:
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: <WORKSPACE>
+    path: /opt/cmp
+    #path: <WORKSPACE>
 
 ---
 

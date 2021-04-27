@@ -1,0 +1,446 @@
+apiVersion: v1
+data:
+  uwsgi-auth.yml: |
+    # SPDX-License-Identifier: GPL-3.0-or-later
+    #
+    # (C) Copyright 2018-2019 CSI-Piemonte
+    # (C) Copyright 2019-2020 CSI-Piemonte
+
+    uwsgi:
+        api_id: auth
+        api_name: beehive
+        api_subsystem: auth
+        api_package: beehive
+        api_env: $(API_ENV)
+        api_prefix: $(API_PREFIX)
+        api_fernet_key: $(API_FERNET_KEY)
+        api_host: $(API_POD_IP)
+        api_fqdn: $(API_POD_IP)
+        api_catalog: $(API_CATALOG)
+        api_endpoint: $(API_ENDPOINT)
+        api_cluster_ip: $(API_CLUSTER_IP)
+        api_timeout: $(API_TIMEOUT)
+        api_log: $(API_LOG)
+        api_swagger_spec_path: /usr/local/uwsgi/pkgs/beehive/beehive/server/swagger.yml
+        api_logging_level: $(LOGGING_LEVEL)
+
+        # socket configuration uwsgi, http
+        socket: :8070
+        http-socket: :8080
+
+        # startup user
+        uid: uwsgi
+        gid: uwsgi
+
+        #per lunghe querystring default 4096 max 65535
+        buffer-size: 8192
+
+        # daemon configuration
+        #daemonize: /tmp/auth-01.api.out
+        #pidfile: /tmp/auth-01.pid
+        #vacuum: true
+
+        # python configuration
+        #virtualenv: %d../../
+        plugins: python3,gevent_python3
+        py-programname: python3
+
+        # process configuration
+        # master: true
+        enable-threads: true
+        # workers: 1
+        gevent: $(GEVENT_NUMBER)
+        gevent-monkey-patch: true
+        #procname: auth
+        # cpu-affinity: 1
+
+        # queue configuration
+        #queue: 10
+        #queue-blocksize: 64000
+
+        #cache2: name=portal_cache,items=100
+
+        # app configuration
+        module: beehive.server.api:app
+
+        oauth2_endpoint: $(OAUTH2_ENDPOINT)
+
+        # database uri
+        database_uri: $(MYSQL_URI)
+
+        # redis uri
+        redis_identity_uri: $(REDIS_IDENTITY_URI)
+        redis_uri: $(REDIS_URI)
+        redis_queue_uri: $(REDIS_QUEUE_URI)
+        redis_celery_uri: $(REDIS_QUEUE_URI)
+
+        # elasticsearch nodes
+        elasticsearch_nodes: $(ELASTIC_NODES)
+
+        # sendmail
+        sendmail_server: $(MAIL_SERVER)
+        sendmail_sender: $(MAIL_SENDER)
+
+        # task manager / scheduler
+        # broker_url: $(REDIS_QUEUE_URI)
+        broker_url: $(CELERY_BROKER_URI)
+        broker_queue: celery.auth.$(API_ENV)
+        broker_queue_event: celery.event.$(API_ENV)
+        broker_queue_catalog: celery.catalog.$(API_ENV)
+        result_backend: $(REDIS_QUEUE_URI)
+        expire: $(TASK_EXPIRE)
+        task_time_limit: $(TASK_TIME_LIMIT)
+
+        # task modules
+        task_module: 3
+        task_module.1: beehive.module.scheduler_v2.tasks
+        task_module.2: beehive.module.auth.tasks_v2
+        task_module.3: beehive.module.catalog.tasks_v2
+
+        # api modules
+        api_module: 5
+        api_module.1: beehive.module.basic.mod.BasicModule
+        api_module.2: beehive.module.auth.mod.AuthModule,true
+        api_module.3: beehive_oauth2.mod.Oauth2Module
+        api_module.4: beehive.module.catalog.mod.CatalogModule
+        api_module.5: beehive.module.scheduler_v2.mod.SchedulerModuleV2
+
+        # api plugins
+        # api_plugin: 0
+
+        # event handler
+        # event_handler: 0
+
+        identity_provider: 4
+        identity_provider.1.type: db
+        identity_provider.1.host: localhost
+        identity_provider.1.provider: local
+        identity_provider.1.ssl: false
+        identity_provider.1.timeout: 30
+        identity_provider.2.type: ldap
+        identity_provider.2.host: domnt.csi.it
+        identity_provider.2.provider: domnt.csi.it
+        identity_provider.2.ssl: false
+        identity_provider.2.timeout: 30
+        identity_provider.2.dn: OU=OU_Csi_Piemonte,DC=domnt,DC=csi,DC=it
+        identity_provider.2.search_filter: (mail={username})
+        identity_provider.2.search_id: mail
+        identity_provider.2.bind_user: $(LDAP.DOMNT.BIND_USER)
+        identity_provider.2.bind_pwd: $(LDAP.DOMNT.BIND_PWD)
+        identity_provider.3.ssl: true
+        identity_provider.3.host: ldap-servizirete.csi.it
+        identity_provider.3.type: ldap
+        identity_provider.3.provider: csi.it
+        identity_provider.3.timeout: 30
+        identity_provider.3.dn: ou=People,o=servizirete,c=it
+        identity_provider.3.search_filter: (uid={username})
+        identity_provider.3.search_id: uid
+        identity_provider.3.bind_user: $(LDAP.LDAP.BIND_USER)
+        identity_provider.3.bind_pwd: $(LDAP.LDAP.BIND_PWD)
+        identity_provider.4.type: db
+        identity_provider.4.host: localhost
+        identity_provider.4.provider: portal
+        identity_provider.4.ssl: false
+        identity_provider.4.timeout: 30
+kind: ConfigMap
+metadata:
+  labels:
+    environment: mylab
+  name: auth-config-2928c2tmt4
+  namespace: beehive-mylab
+---
+apiVersion: v1
+data:
+  API_CATALOG: beehive-internal
+  API_ENDPOINT: ""
+  API_ENV: mylab
+  API_FERNET_KEY: wwN8462BS0RQCfBeREcCL6UGuUNbsUpZu7eAHuxzu4M=
+  API_LOG: /tmp/
+  API_PREFIX: ""
+  API_TIMEOUT: "60"
+  CELERY_BROKER_URI: amqp://beehive:EKbK8yQ7q05N@$(RABBITMQ_SERVICE_HOST):5672/nivola
+  ELASTIC_NODES: dev-beehive-07.tstsddc.csi.it
+  GEVENT_NUMBER: "200"
+  LDAP.DOMNT.BIND_PWD: Cum0l0!coipinoli
+  LDAP.DOMNT.BIND_USER: SvcJoinNivola@domnt.csi.it
+  LDAP.PSNET.BIND_PWD: mRmgcnTf63cs4D7z
+  LDAP.PSNET.BIND_USER: uid=nivola.grafana,ou=Admins,o=csi,c=it
+  LOGGING_LEVEL: "10"
+  MAIL_SENDER: sergio.tonani@csi.it
+  MAIL_SERVER: mailfarm-app.csi.it
+  MYSQL_URI: mysql+pymysql://auth:auth@dev-beehive-07.tstsddc.csi.it:3306/auth
+  OAUTH2_ENDPOINT: https://dev-beehive-07.tstsddc.csi.it
+  PYTHONBASEPATH: /usr/local/lib/python3.7/site-packages
+  REDIS_IDENTITY_URI: redis://:t5vo5ChFCCe8I1toguvOFXFUW1jU9WSJr4H13aNiOAV@$(REDIS_SERVICE_HOST):6379/0
+  REDIS_QUEUE_URI: redis://:t5vo5ChFCCe8I1toguvOFXFUW1jU9WSJr4H13aNiOAV@$(REDIS_SERVICE_HOST):6379/0
+  REDIS_URI: redis://:t5vo5ChFCCe8I1toguvOFXFUW1jU9WSJr4H13aNiOAV@$(REDIS_SERVICE_HOST):6379/0
+  TASK_EXPIRE: "86400"
+  TASK_TIME_LIMIT: "1200"
+kind: ConfigMap
+metadata:
+  labels:
+    environment: mylab
+  name: env-config-b7ghb29dd5
+  namespace: beehive-mylab
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    environment: mylab
+    name: auth
+    role: beat
+  name: beat-auth-app
+  namespace: beehive-mylab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: beat-auth-pod
+      environment: mylab
+  template:
+    metadata:
+      labels:
+        app: beat-auth-pod
+        environment: mylab
+    spec:
+      containers:
+      - command:
+        - /usr/local/uwsgi/pkgs/beehive/beehive/server/scheduler_v2.py
+        - /etc/uwsgi/uwsgi.yaml
+        - 2>&1
+        env:
+        - name: TZ
+          value: Europe/Rome
+        - name: API_CLUSTER_IP
+          value: $(UWSGI_AUTH_CLUSTERIP_SERVICE_HOST)
+        - name: API_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        envFrom:
+        - configMapRef:
+            name: env-config-b7ghb29dd5
+        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        imagePullPolicy: Always
+        name: beat-auth
+        volumeMounts:
+        - mountPath: /tmp
+          name: beat-tmp-volume
+        - mountPath: /usr/local/uwsgi/pkgs
+          name: beat-beehive-volume
+        - mountPath: /etc/uwsgi/uwsgi.yaml
+          name: uwsgi-config
+          subPath: uwsgi-auth.yml
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 30
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 30
+      volumes:
+      - name: beat-tmp-volume
+        persistentVolumeClaim:
+          claimName: tmp-volume-claim
+      - name: beat-beehive-volume
+        persistentVolumeClaim:
+          claimName: beehive-volume-claim
+      - configMap:
+          name: auth-config-2928c2tmt4
+        name: uwsgi-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    environment: mylab
+    name: auth
+    role: catalog
+  name: catalog-auth-app
+  namespace: beehive-mylab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catalog-auth-pod
+      environment: mylab
+  template:
+    metadata:
+      labels:
+        app: catalog-auth-pod
+        environment: mylab
+    spec:
+      containers:
+      - command:
+        - /usr/local/uwsgi/pkgs/beehive/beehive/server/catalog_v2.py
+        - /etc/uwsgi/uwsgi.yaml
+        - 2>&1
+        - '>/tmp/auth.catalog.log'
+        env:
+        - name: TZ
+          value: Europe/Rome
+        - name: API_CLUSTER_IP
+          value: $(UWSGI_AUTH_CLUSTERIP_SERVICE_HOST)
+        - name: API_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        envFrom:
+        - configMapRef:
+            name: env-config-b7ghb29dd5
+        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        imagePullPolicy: Always
+        name: catalog-auth
+        volumeMounts:
+        - mountPath: /tmp
+          name: catalog-tmp-volume
+        - mountPath: /usr/local/uwsgi/pkgs
+          name: catalog-beehive-volume
+        - mountPath: /etc/uwsgi/uwsgi.yaml
+          name: uwsgi-config
+          subPath: uwsgi-auth.yml
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 30
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 30
+      volumes:
+      - name: catalog-tmp-volume
+        persistentVolumeClaim:
+          claimName: tmp-volume-claim
+      - name: catalog-beehive-volume
+        persistentVolumeClaim:
+          claimName: beehive-volume-claim
+      - configMap:
+          name: auth-config-2928c2tmt4
+        name: uwsgi-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    environment: mylab
+    name: auth
+    role: uwsgi
+  name: uwsgi-auth-app
+  namespace: beehive-mylab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uwsgi-auth-pod
+      environment: mylab
+  template:
+    metadata:
+      labels:
+        app: uwsgi-auth-pod
+        environment: mylab
+    spec:
+      containers:
+      - command:
+        - uwsgi
+        - --yaml
+        - /etc/uwsgi/uwsgi.yaml
+        env:
+        - name: TZ
+          value: Europe/Rome
+        - name: API_CLUSTER_IP
+          value: $(UWSGI_AUTH_CLUSTERIP_SERVICE_HOST)
+        - name: API_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        envFrom:
+        - configMapRef:
+            name: env-config-b7ghb29dd5
+        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        imagePullPolicy: Always
+        name: uwsgi-auth
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /tmp
+          name: uwsgi-tmp-volume
+        - mountPath: /usr/local/uwsgi/pkgs
+          name: uwsgi-beehive-volume
+        - mountPath: /etc/uwsgi/uwsgi.yaml
+          name: uwsgi-config
+          subPath: uwsgi-auth.yml
+      volumes:
+      - name: uwsgi-tmp-volume
+        persistentVolumeClaim:
+          claimName: tmp-volume-claim
+      - name: uwsgi-beehive-volume
+        persistentVolumeClaim:
+          claimName: beehive-volume-claim
+      - configMap:
+          name: auth-config-2928c2tmt4
+        name: uwsgi-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    environment: mylab
+    name: auth
+    role: worker
+  name: worker-auth-app
+  namespace: beehive-mylab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker-auth-pod
+      environment: mylab
+  template:
+    metadata:
+      labels:
+        app: worker-auth-pod
+        environment: mylab
+    spec:
+      containers:
+      - command:
+        - /usr/local/uwsgi/pkgs/beehive/beehive/server/task_v2.py
+        - /etc/uwsgi/uwsgi.yaml
+        - 2>&1
+        - '>/tmp/auth.worker.log'
+        env:
+        - name: TZ
+          value: Europe/Rome
+        - name: API_CLUSTER_IP
+          value: $(UWSGI_AUTH_CLUSTERIP_SERVICE_HOST)
+        - name: API_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        envFrom:
+        - configMapRef:
+            name: env-config-b7ghb29dd5
+        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        imagePullPolicy: Always
+        name: worker-auth
+        volumeMounts:
+        - mountPath: /tmp
+          name: worker-tmp-volume
+        - mountPath: /usr/local/uwsgi/pkgs
+          name: worker-beehive-volume
+        - mountPath: /etc/uwsgi/uwsgi.yaml
+          name: uwsgi-config
+          subPath: uwsgi-auth.yml
+      volumes:
+      - name: worker-tmp-volume
+        persistentVolumeClaim:
+          claimName: tmp-volume-claim
+      - name: worker-beehive-volume
+        persistentVolumeClaim:
+          claimName: beehive-volume-claim
+      - configMap:
+          name: auth-config-2928c2tmt4
+        name: uwsgi-config

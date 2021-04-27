@@ -1,18 +1,18 @@
 limit_req_zone $binary_remote_addr zone=cmplimit:10m rate=20r/s;
 
-upstream httpcluster-ssl-lab7-auth {
+upstream httpcluster-ssl-mylab-auth {
     server uwsgi-auth-clusterip:30000 max_conns=100 max_fails=2 fail_timeout=2;
 }
-upstream httpcluster-ssl-lab7-event {
+upstream httpcluster-ssl-mylab-event {
     server 10.102.160.17:30001 max_conns=100 max_fails=2 fail_timeout=2;
 }
-upstream httpcluster-ssl-lab7-resource {
+upstream httpcluster-ssl-mylab-resource {
     server 10.102.160.17:30003 max_conns=100 max_fails=2 fail_timeout=2;
 }
-upstream httpcluster-ssl-lab7-service {
+upstream httpcluster-ssl-mylab-service {
     server 10.102.160.17:30004 max_conns=100 max_fails=2 fail_timeout=2;
 }
-upstream httpcluster-ssl-lab7-ssh {
+upstream httpcluster-ssl-mylab-ssh {
     server 10.102.160.17:30002 max_conns=100 max_fails=2 fail_timeout=2;
 }
 
@@ -40,185 +40,185 @@ server {
     add_header X-XSS-Protection "1; mode=block";
 
     charset utf-8;
-    access_log  /var/log/nginx/beehive.api.lab7.access.log  main;
-    error_log  /var/log/nginx/beehive.api.lab7.error.log  warn;
+    access_log  /var/log/nginx/beehive.api.mylab.access.log  main;
+    error_log  /var/log/nginx/beehive.api.mylab.error.log  warn;
 
-    location /lab7/v1.0/server/ {
+    location /mylab/v1.0/server/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         #allow 158.102.160.0/24;
         #allow 10.0.0.0/8;
         #deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-auth/v1.0/server/;
+        proxy_pass http://httpcluster-ssl-mylab-auth/v1.0/server/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
         proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
     }
 
-    location /lab7/v1.0/nas/ {
+    location /mylab/v1.0/nas/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         allow 158.102.160.0/24;
         allow 10.0.0.0/8;
         deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-auth/v1.0/nas/;
+        proxy_pass http://httpcluster-ssl-mylab-auth/v1.0/nas/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
         proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
     }
 
-    location /lab7/v2.0/nas/ {
+    location /mylab/v2.0/nas/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         allow 158.102.160.0/24;
         allow 10.0.0.0/8;
         deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-auth/v2.0/nas/;
+        proxy_pass http://httpcluster-ssl-mylab-auth/v2.0/nas/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
         proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
     }
 
-    location /lab7/v1.0/oauth2/ {
+    location /mylab/v1.0/oauth2/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         allow 158.102.160.0/24;
         allow 10.0.0.0/8;
         deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-auth/v1.0/oauth2/;
+        proxy_pass http://httpcluster-ssl-mylab-auth/v1.0/oauth2/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
         proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
     }
 
-    location /lab7/v1.0/ncs/ {
+    location /mylab/v1.0/ncs/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         allow 158.102.160.0/24;
         allow 10.0.0.0/8;
         deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-auth/v1.0/ncs/;
+        proxy_pass http://httpcluster-ssl-mylab-auth/v1.0/ncs/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
         proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
     }
 
-    location /lab7/v1.0/nws/ {
+    location /mylab/v1.0/nws/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         allow 158.102.160.0/24;
         allow 10.0.0.0/8;
         deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-service/v1.0/nws/;
+        proxy_pass http://httpcluster-ssl-mylab-service/v1.0/nws/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
         proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
     }
 
-    location /lab7/v1.1/nws/ {
+    location /mylab/v1.1/nws/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         allow 158.102.160.0/24;
         allow 10.0.0.0/8;
         deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-service/v1.1/nws/;
+        proxy_pass http://httpcluster-ssl-mylab-service/v1.1/nws/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
         proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
     }
 
-    location /lab7/v2.0/nws/ {
+    location /mylab/v2.0/nws/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         allow 158.102.160.0/24;
         allow 10.0.0.0/8;
         deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-service/v2.0/nws/;
+        proxy_pass http://httpcluster-ssl-mylab-service/v2.0/nws/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
         proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
     }
 
-    location /lab7/v1.0/nes/ {
+    location /mylab/v1.0/nes/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         allow 158.102.160.0/24;
         allow 10.0.0.0/8;
         deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-event/v1.0/nes/;
+        proxy_pass http://httpcluster-ssl-mylab-event/v1.0/nes/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
         proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
     }
 
-    location /lab7/v2.0/nes/ {
+    location /mylab/v2.0/nes/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         allow 158.102.160.0/24;
         allow 10.0.0.0/8;
         deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-event/v2.0/nes/;
+        proxy_pass http://httpcluster-ssl-mylab-event/v2.0/nes/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
         proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
     }
 
-    location /lab7/v1.0/nrs/ {
+    location /mylab/v1.0/nrs/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         allow 158.102.160.0/24;
         allow 10.0.0.0/8;
         deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-resource/v1.0/nrs/;
+        proxy_pass http://httpcluster-ssl-mylab-resource/v1.0/nrs/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
         proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
     }
 
-    location /lab7/v2.0/nrs/ {
+    location /mylab/v2.0/nrs/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         allow 158.102.160.0/24;
         allow 10.0.0.0/8;
         deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-resource/v2.0/nrs/;
+        proxy_pass http://httpcluster-ssl-mylab-resource/v2.0/nrs/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
         proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
     }
 
-    location /lab7/v1.0/gas/ {
+    location /mylab/v1.0/gas/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         allow 158.102.160.0/24;
         allow 10.0.0.0/8;
         deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-ssh/v1.0/gas/;
+        proxy_pass http://httpcluster-ssl-mylab-ssh/v1.0/gas/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
         proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
     }
 
-    location /lab7/v2.0/gas/ {
+    location /mylab/v2.0/gas/ {
         limit_req zone=cmplimit burst=20 nodelay;
         limit_req_status 503; # Service Temporarily Unavailable
         allow 158.102.160.0/24;
         allow 10.0.0.0/8;
         deny  all;
-        proxy_pass http://httpcluster-ssl-lab7-ssh/v2.0/gas/;
+        proxy_pass http://httpcluster-ssl-mylab-ssh/v2.0/gas/;
         proxy_set_header   Host               $host;
         proxy_set_header   X-Real-IP          $remote_addr;
         proxy_set_header   X-Forwarded-Proto  $scheme;
