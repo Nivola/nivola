@@ -7,8 +7,8 @@ RUN adduser --disabled-password uwsgi && \
         uwsgi uwsgi-plugin-python3 uwsgi-plugin-asyncio-python3 uwsgi-plugin-gevent-python3 curl bash \
         libvirt-dev    
 
-COPY --chown=uwsgi:uwsgi ./files/uwsgi.ini /etc/uwsgi/uwsgi.ini
-COPY --chown=uwsgi:uwsgi ./files/app.py /usr/local/uwsgi/app.py
+COPY --chown=uwsgi:uwsgi ./nivola/deploy/k8s/files/uwsgi.ini /etc/uwsgi/uwsgi.ini
+COPY --chown=uwsgi:uwsgi ./nivola/deploy/k8s/files/app.py /usr/local/uwsgi/app.py
 
 WORKDIR /usr/local/uwsgi
 EXPOSE 8070

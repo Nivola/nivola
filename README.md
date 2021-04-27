@@ -27,12 +27,42 @@ Move to folder nivola/deploy/k8s
 Creation of namespace and api exposure services of the components of the cmp
 Replace <WORKSPACE> in nivola/deploy/k8s/core/mylab/beehive-volume.yml 
 launch:
-    kubectl create -k core/mylab
+```
+$ kubectl create -k core/mylab
+```
 
 ### Creation of engines used by cmp
 Creation of engines such as redis, rabbitmq, proxysql
 launch:
-    kubectl create -k engine/mylab
+```
+$ kubectl create -k engine/mylab
+```
+
+### Build CMP Docker image
+docker image build --tag nivola/nivola-uwsgi -f nivola/deploy/k8s/Dockerfile.uwsgi-py3 .
+
+docker image build --build-arg GITUSER=<USER> --build-arg GITPWD=<PASSWORD> --tag nivola/cmp -f nivola/deploy/k8s/Dockerfile.cmp .
+
+
+
+### Auth component creation
+Auth is the fundamental component that implements all the authentication and authorization api and makes available the endpoint catalogs of all the api. It is a central component that is used from other components and external users.
+
+#### Schema and user creation on mariadb
+To continue, the cli must be installed.
+```
+beehive3 platform mysql dbs add auth 
+beehive3 platform mysql dbusers add auth auth 
+beehive3 platform mysql dbusers grant auth auth 
+```
+
+Data population on the database and registration of permissions on some entities
+```
+beehive3 platform cmp subsystems create auth pkgs/beehive-ansible/beehive_ansible/subsystems/auth.yml
+
+beehive3 platform cmp subsystems create auth pkgs/nivola/deploy/k8s/subsystems/auth.yml
+```
+
 
 
 ## Contributing
