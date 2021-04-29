@@ -191,7 +191,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-hm2kf9cb9t
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: uwsgi-ssh
         ports:

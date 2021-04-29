@@ -199,7 +199,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-tt4627gk96
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: beat-service
         volumeMounts:
@@ -270,7 +270,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-tt4627gk96
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: uwsgi-service
         ports:
@@ -335,7 +335,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-tt4627gk96
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: worker-service
         volumeMounts:

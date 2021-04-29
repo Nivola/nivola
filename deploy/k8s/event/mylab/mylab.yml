@@ -205,7 +205,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-826ddkbk92
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: beat-event
         volumeMounts:
@@ -277,7 +277,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-826ddkbk92
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: consumer-event
         volumeMounts:
@@ -348,7 +348,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-826ddkbk92
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: uwsgi-event
         ports:
@@ -413,7 +413,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-826ddkbk92
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: worker-event
         volumeMounts:

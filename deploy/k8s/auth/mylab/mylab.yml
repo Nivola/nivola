@@ -221,7 +221,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-b7ghb29dd5
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: beat-auth
         volumeMounts:
@@ -291,7 +291,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-b7ghb29dd5
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: catalog-auth
         volumeMounts:
@@ -360,7 +360,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-b7ghb29dd5
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: uwsgi-auth
         ports:
@@ -423,7 +423,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-b7ghb29dd5
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: worker-auth
         volumeMounts:

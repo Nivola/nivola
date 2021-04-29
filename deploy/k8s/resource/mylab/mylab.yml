@@ -199,7 +199,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-fdc2t74m77
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: beat-resource
         volumeMounts:
@@ -270,7 +270,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-fdc2t74m77
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: uwsgi-resource
         ports:
@@ -335,7 +335,7 @@ spec:
         envFrom:
         - configMapRef:
             name: env-config-fdc2t74m77
-        image: docker-nivola.ecosis.csi.it/nivola-cmp:prova_lib_updated
+        image: nivola/cmp
         imagePullPolicy: Always
         name: worker-resource
         volumeMounts:
