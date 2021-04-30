@@ -222,7 +222,8 @@ spec:
         - configMapRef:
             name: env-config-b7ghb29dd5
         image: nivola/cmp
-        imagePullPolicy: Always
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
         name: beat-auth
         volumeMounts:
         - mountPath: /tmp
@@ -292,7 +293,8 @@ spec:
         - configMapRef:
             name: env-config-b7ghb29dd5
         image: nivola/cmp
-        imagePullPolicy: Always
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
         name: catalog-auth
         volumeMounts:
         - mountPath: /tmp
@@ -361,7 +363,8 @@ spec:
         - configMapRef:
             name: env-config-b7ghb29dd5
         image: nivola/cmp
-        imagePullPolicy: Always
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
         name: uwsgi-auth
         ports:
         - containerPort: 8080
@@ -424,7 +427,8 @@ spec:
         - configMapRef:
             name: env-config-b7ghb29dd5
         image: nivola/cmp
-        imagePullPolicy: Always
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
         name: worker-auth
         volumeMounts:
         - mountPath: /tmp

@@ -19,15 +19,20 @@ The product contains some components:
 ## Installing Cloud Management Platform (CMP)
 
 ### Prerequisites
-- Have installed a MySql database and a Elasticsearch server.
+- You must have already downloaded the projects beecell, beedrones, beehive.
+- Install a MySql database
+- Install Elasticsearch server where write logs.
 - CMP deployment using the Kubernetes command-line tool, kubectl.
 - Install Docker for building images.
 - Move to folder nivola/deploy/k8s
 
 ### Core components creation
 Creation of namespace and api exposure services of the components of the cmp
-Replace <WORKSPACE> in nivola/deploy/k8s/core/mylab/beehive-volume.yml with your project folder
-launch:
+In nivola/deploy/k8s/core/mylab/beehive-volume.yml look at "hostPath".
+If you start minikube with --driver=none replace <WORKSPACE> with your project folder
+otherwise mount your workspace passing to minikube '--mount=true --mount-string="<WORKSPACE>:/pkgs" '
+
+Launch:
 ```
 $ kubectl create -k core/mylab
 ```
@@ -61,12 +66,23 @@ or copying projects into image (in this case you have to go to folder where you 
 docker image build --tag nivola/cmp -f nivola/deploy/k8s/Dockerfile.cmp .
 ```
 
+NOTE: image "nivola/cmp" is referenced in k8s files used below
+If you start minikube with --driver=docker
+you can upload image to a docker registry and update references in kubernates files auth/mylab.yml...
+or save your image in a file and then load it in minikube docker:
+```
+docker save nivola/cmp:latest > $HOME/nivola_cmp_latest.tar
+eval $(minikube docker-env)
+docker load < $HOME/nivola_cmp_latest.tar
+docker images
+```
+In both cases, check also imagePullPolicy
 
 
 ### Auth component creation
 Auth is the fundamental component that implements all the authentication and authorization api and makes available the endpoint catalogs of all the api. It is a central component that is used from other components and external users.
 
-Schema and user creation on mariadb
+Schema and user creation on db
 To continue, the cli must be installed.
 ```
 beehive3 platform mysql dbs add auth 
@@ -78,7 +94,9 @@ Data population on the database and registration of permissions on some entities
 ```
 <TODO> necessario? verificare path
 beehive3 platform cmp subsystems create auth pkgs/beehive-ansible/beehive_ansible/subsystems/auth.yml
-beehive3 platform cmp subsystems create auth pkgs/nivola/deploy/k8s/subsystems/auth.yml
+
+<ALTERNATIVA>
+beehive3 auth users add -email nome.cognome@gmail.com -password xxxxxxxxx nome.cognome@domain.it
 ```
 
 Starting deployment.app on the k8s cluster
