@@ -16,7 +16,7 @@ spec:
     # (mount your workspace passing to minikube --mount=true --mount-string="<WORKSPACE>:/pkgs")
     path: /pkgs
     # if you start minikube with --driver=none
-    #path: <WORKSPACE> 
+    #path: <WORKSPACE>
     
 
 ---

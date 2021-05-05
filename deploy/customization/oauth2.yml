@@ -1,0 +1,81 @@
+configs:
+  oauth2:
+    scopes:
+      - name: beehive
+        desc: beehive scope
+      - name: auth
+        desc: authorization scope
+      - name: cli
+        desc: cli scope
+      - name: portal
+        desc: portal scope
+      - name: symon
+        desc: SyMon scope
+      - name: ada
+        desc: Ada scope
+      - name: va
+        desc: vulnerability assessment scope
+    clients:
+      - name: client-beehive
+        grant_type: client_credentials
+        redirect_uri: https://localhost:7443/authorize
+        desc: client beehive internal
+        response_type: code
+        scopes: beehive
+        expirydate: '2099-12-31'
+      - name: client-ada1
+        grant_type: client_credentials
+        redirect_uri: https://localhost:7443/authorize
+        desc: client ada
+        response_type: code
+        scopes: ada
+        expirydate: '2021-07-31'
+      - name: client-ada2
+        grant_type: password
+        redirect_uri: https://localhost:7443/authorize
+        desc: client ada
+        response_type: code
+        scopes: ada
+        expirydate: '2021-07-31'
+      - name: client-symon1
+        grant_type: client_credentials
+        redirect_uri: https://localhost:7443/authorize
+        desc: client SyMon
+        response_type: code
+        scopes: symon
+        expirydate: '2021-07-31'
+      - name: client-symon2
+        grant_type: password
+        redirect_uri: https://localhost:7443/authorize
+        desc: client SyMon
+        response_type: code
+        scopes: symon
+        expirydate: '2021-07-31'
+      - name: client-portal1
+        grant_type: urn:ietf:params:oauth:grant-type:jwt-bearer
+        redirect_uri: https://localhost:7443/authorize
+        desc: client portal
+        response_type: code
+        scopes: portal
+        expirydate: '2021-07-31'
+      - name: client-portal
+        grant_type: authorization_code
+        redirect_uri: https://localhost:7443/authorize
+        desc: client portal
+        response_type: code
+        scopes: portal
+        expirydate: '2021-07-31'
+      - name: client-cli
+        grant_type: urn:ietf:params:oauth:grant-type:jwt-bearer
+        redirect_uri: https://localhost:7443/authorize
+        desc: client cli
+        response_type: code
+        scopes: cli
+        expirydate: '2021-07-31'
+      - name: client-va
+        grant_type: urn:ietf:params:oauth:grant-type:jwt-bearer
+        redirect_uri: https://localhost:7443/authorize
+        desc: client vulnerability assessment
+        response_type: code
+        scopes: va
+        expirydate: '2021-07-31'
