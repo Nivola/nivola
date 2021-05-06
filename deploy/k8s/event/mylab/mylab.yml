@@ -18,7 +18,8 @@ data:
   MAIL_SENDER: sergio.tonani@csi.it
   MAIL_SERVER: mailfarm-app.csi.it
   MYSQL_URI: mysql+pymysql://event:event@dev-beehive-07.tstsddc.csi.it:3306/event
-  OAUTH2_ENDPOINT: https://dev-beehive-07.tstsddc.csi.it
+  #OAUTH2_ENDPOINT: https://dev-beehive-07.tstsddc.csi.it
+  OAUTH2_ENDPOINT: https://192.168.49.4:443
   PYTHONBASEPATH: /usr/local/lib/python3.7/site-packages
   REDIS_IDENTITY_URI: redis://:t5vo5ChFCCe8I1toguvOFXFUW1jU9WSJr4H13aNiOAV@$(REDIS_SERVICE_HOST):6379/0
   REDIS_QUEUE_URI: redis://:t5vo5ChFCCe8I1toguvOFXFUW1jU9WSJr4H13aNiOAV@$(REDIS_SERVICE_HOST):6379/0
@@ -206,7 +207,8 @@ spec:
         - configMapRef:
             name: env-config-826ddkbk92
         image: nivola/cmp
-        imagePullPolicy: Always
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
         name: beat-event
         volumeMounts:
         - mountPath: /tmp
@@ -278,7 +280,8 @@ spec:
         - configMapRef:
             name: env-config-826ddkbk92
         image: nivola/cmp
-        imagePullPolicy: Always
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
         name: consumer-event
         volumeMounts:
         - mountPath: /tmp
@@ -349,7 +352,8 @@ spec:
         - configMapRef:
             name: env-config-826ddkbk92
         image: nivola/cmp
-        imagePullPolicy: Always
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
         name: uwsgi-event
         ports:
         - containerPort: 8081
@@ -414,7 +418,8 @@ spec:
         - configMapRef:
             name: env-config-826ddkbk92
         image: nivola/cmp
-        imagePullPolicy: Always
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
         name: worker-event
         volumeMounts:
         - mountPath: /tmp

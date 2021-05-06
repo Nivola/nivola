@@ -1,0 +1,17 @@
+---
+api_system: beehive
+api_subsystem: event
+api_module: 3
+api_module.1: beehive.module.event.mod.EventModule
+api_module.2: beehive.module.config.mod.ConfigModule
+api_module.3: beehive.module.scheduler_v2.mod.SchedulerModuleV2
+api_plugin: 0
+api_catalog: "{{ cmp.catalog }}"
+api_endpoint: "{{ cmp.endpoints.auth }}"
+api_prefix: "{{ cmp.prefix_path }}"
+api_user: "{{ cmp.user }}"
+api_user_password: "{{ cmp.pwd }}"
+db_uri: "mysql+pymysql://event:event@{{ mysql.host }}:{{ mysql.port }}/event"
+db_managers:
+- beehive.module.event.model.EventDbManager
+config: []

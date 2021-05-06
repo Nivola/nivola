@@ -13,18 +13,35 @@ The product contains some components:
 * beehive-service
 * beehive-ssh
 * [beehive3-cli](https://github.com/Nivola/beehive3-cli)
-* <<< TODO>>> togliere? beehive-mgmt
 
 
 ## Installing Cloud Management Platform (CMP)
 
 ### Prerequisites
 - You must have already downloaded the projects beecell, beedrones, beehive.
-- Install a MySql database
+- You must have the CLI already installed
+- You must have "minikube" installed
+- Install a MySql/MariaDB database (MySql version > 5.7, MariaDB version > 10.5)
 - Install Elasticsearch server where write logs.
 - CMP deployment using the Kubernetes command-line tool, kubectl.
 - Install Docker for building images.
 - Move to folder nivola/deploy/k8s
+
+### Minikube start
+Start your minikube with the docker driver, replacing <WORKSPACE> with folder where you downloaded projects
+We suggest that minikube process starts in a docker network "nivolanet" for being reachable from CLI and Nginx.
+```
+$ minikube start --driver=docker --cpus=4 --mount=true --mount-string="<WORKSPACE>:/pkgs" --network nivolanet
+```
+
+To obtail minikube IP launch:
+```
+$ minikube ip
+```
+
+
+### Nginx installation and update CLI configuration
+
 
 ### Core components creation
 Creation of namespace and api exposure services of the components of the cmp
@@ -92,11 +109,8 @@ beehive3 platform mysql dbusers grant auth auth
 
 Data population on the database and registration of permissions on some entities
 ```
-<TODO> necessario? verificare path
+# to create Auth tables
 beehive3 platform cmp subsystems create auth pkgs/beehive-ansible/beehive_ansible/subsystems/auth.yml
-
-<ALTERNATIVA>
-beehive3 auth users add -email nome.cognome@gmail.com -password xxxxxxxxx nome.cognome@domain.it
 ```
 
 Starting deployment.app on the k8s cluster
@@ -120,27 +134,28 @@ Console api test
 beehive3 auth users get
 beehive3 auth users get -id admin@local
 beehive3 auth roles get
-beehive3 catalog get
+beehive3 catalogs get
 ```
 
 Perform some customize
+- copy nivola/deploy/customization/oauth2.yml /tmp
+
 ```
-<TODO> necessario? verificare path
-beehive3 platform cmp customize run test/auth/role 
-beehive3 platform cmp customize run test/auth/user 
-beehive3 platform cmp customize run test/auth/group 
-beehive3 platform cmp customize run test/auth/oauth2 
+beehive3 auth roles add test-role -desc desc-test-role
+beehive3 auth users add -email name.surname@domain.com -password xxxxxxxxx name.surname@domain.it
+
+# oauth2 client
+beehive3 platform cmp customize run oauth2 
 ```
 
 Assign the ApiSuperAdmin role to the oauth2 client that you use for server to server communication.
 ```
-<TODO> necessario? verificare
 beehive3 auth users add-role client-beehive@local ApiSuperAdmin
 ```
 
 Update the customization files for the various modules by setting the client uuid and the secret. Client data can be obtained with the command:
 ```
-beehive3 auth oauth2-clients get -id client-beehive 
+beehive3 auth oauth2-clients get -id client-beehive
 ```
 
 
@@ -156,8 +171,7 @@ beehive3 platform mysql dbusers grant event event
 
 Data population on the database and registration of permissions on some entities
 ```
-<TODO> necessario? verificare
-beehive3 platform cmp subsystems create event pkgs/beehive-ansible/beehive_ansible/subsystems/event.yml
+beehive3 platform cmp subsystems create event pkgs/nivola/deploy/customization/event.yml
 ```
 
 Starting deployment.app on the k8s cluster
@@ -201,11 +215,11 @@ beehive3 platform mysql dbusers grant ssh ssh
 
 Data population on the database and registration of permissions on some entities
 ```
-beehive3 platform cmp subsystems create ssh pkgs/beehive-ansible/beehive_ansible/subsystems/ssh.yml
+beehive3 platform cmp subsystems create ssh pkgs/nivola/deploy/customization/ssh.yml
 ```
 
 Starting deployment.app on the k8s cluster
-Update in auth/mylab/mylab.yml the following properties with reference to your hosts:
+Update in ssh/mylab/mylab.yml the following properties with reference to your hosts:
 - ELASTIC_NODES
 - MYSQL_URI
 - OAUTH2_ENDPOINT
@@ -218,18 +232,6 @@ Test deployment.app on the k8s cluster
 kubectl get pod -n beehive-mylab -o wide
 kubectl describe pod ... -n beehive-mylab 
 kubectl logs ... -n beehive-mylab -f
-```
-
-Perform some customize
-```
-<TODO> necessario? verificare
-beehive3 auth tokens delete all -y
-beehive3 platform cmp customize run test/ssh/group
-beehive3 platform cmp customize run test/ssh/key
-beehive3 platform cmp customize run test/ssh/docker
-beehive3 platform cmp customize run test/ssh/cmp
-beehive3 platform cmp customize run test/ssh/openstack-test
-beehive3 platform cmp customize run test/ssh/strumenti 
 ```
 
 Console api test
@@ -252,12 +254,12 @@ beehive3 platform mysql dbusers grant resource resource
 
 Data population on the database and registration of permissions on some entities
 ```
-beehive3 platform cmp subsystems create resource pkgs/beehive-ansible/beehive_ansible/subsystems/resource.yml 
+beehive3 platform cmp subsystems create resource pkgs/nivola/deploy/customization/resource.yml
 ```
 
 Starting deployment.app on the k8s cluster
 ```
-kubectl create -f resource/mylab 
+kubectl create -f resource/mylab
 ```
 
 Test deployment.app on the k8s cluster
@@ -269,10 +271,8 @@ kubectl logs ... -n beehive-mylab -f
 
 Perform some customize
 ```
-<TODO> necessario? verificare
 beehive3 auth tokens delete all -y
 beehive3 platform cmp customize run test/resource/tag
-beehive3 platform cmp customize run test/resource/container
 ```
 
 Console api test
@@ -293,7 +293,7 @@ beehive3 platform mysql dbusers grant service service
 
 Data population on the database and registration of permissions on some entities
 ```
-beehive3 platform cmp subsystems create service pkgs/beehive-ansible/beehive_ansible/subsystems/service.yml 
+beehive3 platform cmp subsystems create service pkgs/nivola/deploy/customization/service.yml
 ```
 
 Starting deployment.app on the k8s cluster
@@ -306,13 +306,6 @@ Test deployment.app on the k8s cluster
 kubectl get pod -n beehive-labx -o wide
 kubectl describe pod ... -n beehive-mylab
 kubectl logs ... -n beehive-mylab  -f
-```
-
-Perform some customize
-```
-<TODO> necessario? verificare
-beehive3 auth tokens delete all -y
-beehive3 platform cmp customize run test/service/
 ```
 
 Console api test

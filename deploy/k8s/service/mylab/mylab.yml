@@ -14,7 +14,8 @@ data:
   MAIL_SENDER: sergio.tonani@csi.it
   MAIL_SERVER: mailfarm-app.csi.it
   MYSQL_URI: mysql+pymysql://service:service@dev-beehive-01.tstsddc.csi.it:3306/service
-  OAUTH2_ENDPOINT: https://dev-beehive-01.tstsddc.csi.it
+  #OAUTH2_ENDPOINT: https://dev-beehive-01.tstsddc.csi.it
+  OAUTH2_ENDPOINT: https://192.168.49.4:443
   PYTHONBASEPATH: /usr/local/lib/python3.7/site-packages
   REDIS_IDENTITY_URI: redis://:t5vo5ChFCCe8I1toguvOFXFUW1jU9WSJr4H13aNiOAV@$(REDIS_SERVICE_HOST):6379/0
   REDIS_QUEUE_URI: redis://:t5vo5ChFCCe8I1toguvOFXFUW1jU9WSJr4H13aNiOAV@$(REDIS_SERVICE_HOST):6379/0
@@ -200,7 +201,8 @@ spec:
         - configMapRef:
             name: env-config-tt4627gk96
         image: nivola/cmp
-        imagePullPolicy: Always
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
         name: beat-service
         volumeMounts:
         - mountPath: /tmp
@@ -271,7 +273,8 @@ spec:
         - configMapRef:
             name: env-config-tt4627gk96
         image: nivola/cmp
-        imagePullPolicy: Always
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
         name: uwsgi-service
         ports:
         - containerPort: 8084
@@ -336,7 +339,8 @@ spec:
         - configMapRef:
             name: env-config-tt4627gk96
         image: nivola/cmp
-        imagePullPolicy: Always
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
         name: worker-service
         volumeMounts:
         - mountPath: /tmp
