@@ -28,19 +28,61 @@ The product contains some components:
 - Move to folder nivola/deploy/k8s
 
 ### Minikube start
-Start your minikube with the docker driver, replacing <WORKSPACE> with folder where you downloaded projects
+Start your minikube with the docker driver, replacing <WORKSPACE> with folder where you downloaded projects.
 We suggest that minikube process starts in a docker network "nivolanet" for being reachable from CLI and Nginx.
 ```
 $ minikube start --driver=docker --cpus=4 --mount=true --mount-string="<WORKSPACE>:/pkgs" --network nivolanet
 ```
 
-To obtail minikube IP launch:
+To obtail minikube IP launch (you will need it to configure nginx)
 ```
 $ minikube ip
 ```
 
-
 ### Nginx installation and update CLI configuration
+You need a nginx to call in https CMP components.
+In deploy directory __beehive3-cli/deploy/nginx__ you find dockerfile.
+In configuration file __beehive3-cli/deploy/nginx/nginx-files/beehive-ssl-api.lab1.conf__ update "minikube ip"
+
+Build nginx image "nivola/https-nginx"
+```
+docker image build --tag nivola/https-nginx -f Dockerfile.https.nginx .
+```
+
+We suggest that nginx process starts in a docker network "nivolanet"
+```
+docker run --network nivolanet --name tmp-nginx-container -d nivola/https-nginx
+```
+
+See nginx log
+```
+docker exec -it tmp-nginx-container tail -f /var/log/nginx/beehive.api.test.access.log
+docker exec -it tmp-nginx-container tail -f /var/log/nginx/beehive.api.test.error.log
+```
+
+Find docker nginx IP address, for update CLI configuration endpoints
+```
+docker ps | grep tmp-nginx-container
+docker inspect xxx | grep "IPAddress"
+```
+
+Test nginx configuration using CLI
+```
+curl -k https://xxx:443
+    ...<title>Welcome to nginx!</title>
+```
+
+Update CLI endpoints in file /config/env/mylab.yml and restart CLI
+```
+cmp:
+    endpoints:
+        # https connection through nginx
+        auth: https://xxx:443
+        event: https://xxx:443
+        ssh: https://xxx:443
+        resource: https://xxx:443
+        service: https://xxx:443
+```
 
 
 ### Core components creation
@@ -93,7 +135,7 @@ eval $(minikube docker-env)
 docker load < $HOME/nivola_cmp_latest.tar
 docker images
 ```
-In both cases, check also imagePullPolicy
+In both cases, check also imagePullPolicy in mylab.yml files.
 
 
 ### Auth component creation
@@ -129,6 +171,11 @@ kubectl describe pod ... -n beehive-mylab
 kubectl logs ... -n beehive-mylab -f
 ```
 
+You can verify deployment of Auth components calling in your browser:
+```
+http://<MINIKUBE_IP>:30000/v1.0/server/ping
+```
+
 Console api test
 ```
 beehive3 auth users get
@@ -141,11 +188,12 @@ Perform some customize
 - copy nivola/deploy/customization/oauth2.yml /tmp
 
 ```
+# oauth2 client
+beehive3 platform cmp customize run oauth2
+
+# example tests
 beehive3 auth roles add test-role -desc desc-test-role
 beehive3 auth users add -email name.surname@domain.com -password xxxxxxxxx name.surname@domain.it
-
-# oauth2 client
-beehive3 platform cmp customize run oauth2 
 ```
 
 Assign the ApiSuperAdmin role to the oauth2 client that you use for server to server communication.
@@ -153,11 +201,13 @@ Assign the ApiSuperAdmin role to the oauth2 client that you use for server to se
 beehive3 auth users add-role client-beehive@local ApiSuperAdmin
 ```
 
-Update the customization files for the various modules by setting the client uuid and the secret. Client data can be obtained with the command:
+Update the customization files for the various modules by setting the client uuid and the secret.
+Look in files /deploy/k8s/<COMPONENT>/mylab/mylab.yml at property API_OAUTH2_CLIENT, 
+that you have to set with "UUID : SECRET".
+Client data can be obtained with the command:
 ```
 beehive3 auth oauth2-clients get -id client-beehive
 ```
-
 
 
 ### Event component creation
@@ -204,7 +254,6 @@ beehive3 platform scheduler tasks log auth <task id>
 ```
 
 
-
 ### SSH component creation
 Schema and user creation on db
 ```
@@ -243,7 +292,6 @@ beehive3 ssh keys get
 ```
 
 
-
 ### Resource component creation
 Schema and user creation on db
 ```
@@ -280,7 +328,6 @@ Console api test
 beehive3 res entities get
 beehive3 platform scheduler tasks test resource 
 ```
-
 
 
 ### Service component creation
