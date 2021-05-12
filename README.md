@@ -193,7 +193,7 @@ beehive3 platform cmp customize run oauth2
 
 # example tests
 beehive3 auth roles add test-role -desc desc-test-role
-beehive3 auth users add -email name.surname@domain.com -password xxxxxxxxx name.surname@domain.it
+beehive3 auth users add -email name1@local -password xxxxxxxxx name1@local
 ```
 
 Assign the ApiSuperAdmin role to the oauth2 client that you use for server to server communication.
