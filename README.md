@@ -412,11 +412,9 @@ Current version is: 1.8.2
 See the list of contributors who participated in this project in the file AUTHORS.md contained in each specific project.
 
 ## Copyright
-CSI Piemonte - 2018-2019
+CSI Piemonte - 2018-2021
 
-CSI Piemonte - 2019-2020
-
-CSI Piemonte - 2020-2021
+Regione Piemonte - 2019-2021
 
 ## License
 See the LICENSE.txt file contained in each specific project for details.
