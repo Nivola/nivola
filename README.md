@@ -5,21 +5,42 @@ Nivola Platform is realized from CSI Piemonte and provides computational, storag
 ## Product and Components
 This project contains the Product **nivola**.
 The product contains some components:
-* [beecell](https://github.com/Nivola/beecell)
-* [beedrones](https://github.com/Nivola/beedrones)
-* [beehive](https://github.com/Nivola/beehive)
-* beehive-oauth2
-* beehive-resource
-* beehive-service
-* beehive-ssh
-* [beehive3-cli](https://github.com/Nivola/beehive3-cli)
+
+* beecell 
+[GitHub](https://github.com/Nivola/beecell) - 
+[GitLab](https://gitlab.csi.it/nivola/cmp3/beecell/tree/devel)
+* beedrones 
+[GitHub](https://github.com/Nivola/beedrones) - 
+[GitLab](https://gitlab.csi.it/nivola/cmp2/beedrones/tree/devel)
+* beehive 
+[GitHub](https://github.com/Nivola/beehive) - 
+[GitLab](https://gitlab.csi.it/nivola/cmp2/beehive/tree/devel)
+* beehive-oauth2 
+[GitHub]() - 
+[GitLab](https://gitlab.csi.it/nivola/cmp2/beehive-oauth2/tree/devel)
+* beehive-resource 
+[GitHub]() - 
+[GitLab](https://gitlab.csi.it/nivola/cmp2/beehive-resource/tree/devel)
+* beehive-service 
+[GitHub]() - 
+[GitLab](https://gitlab.csi.it/nivola/cmp2/beehive-service/tree/devel)
+* beehive-service-netaas 
+[GitHub]() - 
+[GitLab](https://gitlab.csi.it/nivola/cmp3/beehive-service-netaas/tree/devel)
+* beehive-ssh 
+[GitHub]() - 
+[GitLab](https://gitlab.csi.it/nivola/cmp2/beehive-ssh/tree/devel)
+* beehive3-cli 
+[GitHub](https://github.com/Nivola/beehive3-cli) - 
+[GitLab](https://gitlab.csi.it/nivola/cmp3/beehive3-cli/tree/devel)
 
 
 ## Installing Cloud Management Platform (CMP)
 
 ### Prerequisites
 - You must have already downloaded the projects beecell, beedrones, beehive.
-- You must have the CLI already installed
+- You must have the Nivola CLI (shell console) already installed. 
+See __beehive3-cli__ project [GitHub](https://github.com/Nivola/beehive3-cli) - [GitLab](https://gitlab.csi.it/nivola/cmp3/beehive3-cli/tree/devel)
 - You must have "minikube" installed
 - Install a MySql/MariaDB database (MySql version > 5.7, MariaDB version > 10.5)
 - Install Elasticsearch server where write logs.
@@ -28,7 +49,7 @@ The product contains some components:
 - Move to folder nivola/deploy/k8s
 
 ### Minikube start
-Start your minikube with the docker driver, replacing <WORKSPACE> with folder where you downloaded projects.
+Start your minikube with the docker driver, replacing replacing placeholder <WORKSPACE> with folder where you downloaded projects.
 We suggest that minikube process starts in a docker network "nivolanet" for being reachable from CLI and Nginx.
 ```
 $ minikube start --driver=docker --cpus=4 --mount=true --mount-string="<WORKSPACE>:/pkgs" --network nivolanet
@@ -40,35 +61,35 @@ $ minikube ip
 ```
 
 ### Nginx installation and update CLI configuration
-You need a nginx to call in https CMP components.
+You need a Nginx correctly configured to call in https CMP components.
 In deploy directory __beehive3-cli/deploy/nginx__ you find dockerfile.
 In configuration file __beehive3-cli/deploy/nginx/nginx-files/beehive-ssl-api.lab1.conf__ update "minikube ip"
 
-Build nginx image "nivola/https-nginx"
+Build Nginx image "nivola/https-nginx"
 ```
 docker image build --tag nivola/https-nginx -f Dockerfile.https.nginx .
 ```
 
-We suggest that nginx process starts in a docker network "nivolanet"
+We suggest that Nginx process starts in a docker network "nivolanet"
 ```
 docker run --network nivolanet --name tmp-nginx-container -d nivola/https-nginx
 ```
 
-See nginx log
+See Nginx log
 ```
 docker exec -it tmp-nginx-container tail -f /var/log/nginx/beehive.api.test.access.log
 docker exec -it tmp-nginx-container tail -f /var/log/nginx/beehive.api.test.error.log
 ```
 
-Find docker nginx IP address, for update CLI configuration endpoints
+Find docker Nginx IP address, for update CLI configuration endpoints
 ```
 docker ps | grep tmp-nginx-container
-docker inspect xxx | grep "IPAddress"
+docker inspect tmp-nginx-container | grep "IPAddress"
 ```
 
 Test nginx configuration using CLI
 ```
-curl -k https://xxx:443
+curl -k https://<NGINX_IP>:443
     ...<title>Welcome to nginx!</title>
 ```
 
@@ -77,11 +98,11 @@ Update CLI endpoints in file /config/env/mylab.yml and restart CLI
 cmp:
     endpoints:
         # https connection through nginx
-        auth: https://xxx:443
-        event: https://xxx:443
-        ssh: https://xxx:443
-        resource: https://xxx:443
-        service: https://xxx:443
+        auth: https://<NGINX_IP>:443
+        event: https://<NGINX_IP>:443
+        ssh: https://<NGINX_IP>:443
+        resource: https://<NGINX_IP>:443
+        service: https://<NGINX_IP>:443
 ```
 
 
@@ -106,24 +127,35 @@ $ kubectl create -k engine/mylab
 
 
 ### Build CMP Docker image
-In deploy directory __beehive3_cli/deploy__ you find dockerfiles.
+To create the complete CMP Docker image 
+you have also to download the projects:
+* beehive-oauth2 
+* beehive-resource 
+* beehive-service 
+* beehive-service-netaas 
+* beehive-ssh  
+
+In deploy directory __nivola/deploy/k8s__ you find dockerfiles.
 Build docker image "nivola/nivola-uwsgi":
 ```
 docker image build --tag nivola/nivola-uwsgi -f nivola/deploy/k8s/Dockerfile.uwsgi-py3 .
 ```
 
 Build docker image "nivola/cmp" that start from image "nivola/nivola-uwsgi"
-or downloading projects into image and passing git user/password
+You can do this or copying projects into image (in this case you have to go to folder where you downloaded projects)
+
+```
+docker image build --tag nivola/cmp -f nivola/deploy/k8s/Dockerfile.cmp .
+```
+
+or downloading projects into image and passing git user/password.
+Look at dockerfile and comment/uncomment relative sections.
 
 ```
 docker image build --build-arg GITUSER=<USER> --build-arg GITPWD=<PASSWORD> --tag nivola/cmp -f nivola/deploy/k8s/Dockerfile.cmp .
 ```
 
-or copying projects into image (in this case you have to go to folder where you downloaded projects)
 
-```
-docker image build --tag nivola/cmp -f nivola/deploy/k8s/Dockerfile.cmp .
-```
 
 NOTE: image "nivola/cmp" is referenced in k8s files used below
 If you start minikube with --driver=docker
@@ -362,6 +394,10 @@ beehive3 bu orgs get
 beehive3 bu divs get
 beehive3 bu accounts get
 ```
+
+[comment]: <> (### Come registrare gli orchestratori - TODO)
+[comment]: <> (### Inizializzazione resource - TODO)
+[comment]: <> (### Authoring servizi - TODO)
 
 
 ## Contributing

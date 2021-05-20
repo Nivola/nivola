@@ -4,6 +4,7 @@ ARG GITUSER=''
 ARG GITPWD=''
 ARG BRANCH=devel
 ARG GITURI=https://$GITUSER:$GITPWD@gitlab.csi.it/nivola
+#ARG GITURI=https://$GITUSER:$GITPWD@github.com/Nivola
 
 ENV GITUSER ${GITUSER}
 ENV GITPWD ${GITPWD}
@@ -11,7 +12,7 @@ ENV GITPWD ${GITPWD}
 #ARG PYTHONPATH=/usr/local/lib/python3.7/site-packages
 ARG PYTHONPATH=/usr/local/uwsgi/pkgs
 
-# copy da workspace invece di git clone
+# copy projects from workspace (instead of doing a git clone from repository)
 COPY beecell $PYTHONPATH/beecell/
 COPY beedrones/ $PYTHONPATH/beedrones/
 COPY beehive/ $PYTHONPATH/beehive/
@@ -23,7 +24,7 @@ COPY beehive-ssh/ $PYTHONPATH/beehive-ssh/
 
 RUN mkdir -p /usr/local/uwsgi/pkgs && \
     chown -R uwsgi:uwsgi /usr/local/uwsgi && \
-    # git clone invece di copy da workspace
+    # git clone from repository (instead of copying projects from workspace
     #echo "clone from git branch: $BRANCH" && \
     #git clone -b $BRANCH $GITURI/cmp3/beecell.git $PYTHONPATH/beecell && \
     #git clone -b $BRANCH $GITURI/cmp2/beedrones.git $PYTHONPATH/beedrones && \
@@ -52,7 +53,7 @@ RUN mkdir -p /usr/local/uwsgi/pkgs && \
     #cd $PYTHONPATH && pip3 install beehive-resource/  && \
     #cd $PYTHONPATH && pip3 install beehive-ssh/
     
-# scommentare se NON vengono installati i progetti
+# uncomment if you don't install projects
 ENV PYTHONPATH $PYTHONPATH/beehive:$PYTHONPATH/beecell:$PYTHONPATH/beedrones:$PYTHONPATH/beehive-oauth2:\
 $PYTHONPATH/beehive-service:$PYTHONPATH/beehive-service-netaas:$PYTHONPATH/beehive-resource:$PYTHONPATH/beehive-ssh
 
