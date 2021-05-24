@@ -1,6 +1,6 @@
 # Nivola
-Nivola is a platform that semplify the use of cloud service from public administration.
-Nivola Platform is realized from CSI Piemonte and provides computational, storage and network resources.
+Nivola is a platform that simplifies the use of the cloud service by the public administration.
+The Nivola platform is created by CSI Piemonte and provides computing, storage and network resources.
 
 ## Product and Components
 This project contains the Product **nivola**.
