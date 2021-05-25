@@ -14,7 +14,8 @@ data:
   LOGGING_LEVEL: "10"
   MAIL_SENDER: sergio.tonani@csi.it
   MAIL_SERVER: mailfarm-app.csi.it
-  MYSQL_URI: mysql+pymysql://ssh:ssh@dev-beehive-07.tstsddc.csi.it:3306/ssh
+  #MYSQL_URI: mysql+pymysql://ssh:ssh@dev-beehive-07.tstsddc.csi.it:3306/ssh
+  MYSQL_URI: mysql+pymysql://ssh:ssh@192.168.49.100:3306/ssh
   #OAUTH2_ENDPOINT: https://dev-beehive-07.tstsddc.csi.it
   OAUTH2_ENDPOINT: https://192.168.49.4:443
   PYTHONBASEPATH: /usr/local/lib/python3.7/site-packages

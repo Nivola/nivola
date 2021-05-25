@@ -63,9 +63,10 @@ $ minikube ip
 ### Nginx installation and update CLI configuration
 You need a Nginx correctly configured to call in https CMP components.
 In deploy directory __beehive3-cli/deploy/nginx__ you find dockerfile.
-In configuration file __beehive3-cli/deploy/nginx/nginx-files/beehive-ssl-api.lab1.conf__ update "minikube ip"
+In configuration file __beehive3-cli/deploy/nginx/nginx-files/beehive-ssl-api.mylab.conf__ update all occurrences of "<MINIKUBE_IP>"
 
 Build Nginx image "nivola/https-nginx"
+Launch the following command from folder __beehive3-cli/deploy/nginx__
 ```
 docker image build --tag nivola/https-nginx -f Dockerfile.https.nginx .
 ```
@@ -75,22 +76,26 @@ We suggest that Nginx process starts in a docker network "nivolanet"
 docker run --network nivolanet --name tmp-nginx-container -d nivola/https-nginx
 ```
 
-See Nginx log
-```
-docker exec -it tmp-nginx-container tail -f /var/log/nginx/beehive.api.test.access.log
-docker exec -it tmp-nginx-container tail -f /var/log/nginx/beehive.api.test.error.log
-```
-
 Find docker Nginx IP address, for update CLI configuration endpoints
 ```
 docker ps | grep tmp-nginx-container
 docker inspect tmp-nginx-container | grep "IPAddress"
 ```
 
-Test nginx configuration using CLI
+Test nginx configuration using CLI or open "https://<NGINX_IP>:443" in your browser
 ```
 curl -k https://<NGINX_IP>:443
-    ...<title>Welcome to nginx!</title>
+    ...check if you see "<title>Welcome to nginx!</title>"
+```
+
+See Nginx error log in case of problem calling Nginx
+```
+docker exec -it tmp-nginx-container tail -f /var/log/nginx/beehive.api.test.error.log
+```
+
+See Nginx access log to see complete information about test call
+```
+docker exec -it tmp-nginx-container tail -f /var/log/nginx/beehive.api.test.access.log
 ```
 
 Update CLI endpoints in file /config/env/mylab.yml and restart CLI
@@ -176,15 +181,17 @@ Auth is the fundamental component that implements all the authentication and aut
 Schema and user creation on db
 To continue, the cli must be installed.
 ```
-beehive3 platform mysql dbs add auth 
-beehive3 platform mysql dbusers add auth auth 
-beehive3 platform mysql dbusers grant auth auth 
+beehive3 platform mysql dbs add auth
+beehive3 platform mysql dbusers add auth auth
+beehive3 platform mysql dbusers grant auth -db auth
 ```
 
 Data population on the database and registration of permissions on some entities
+Perform some customize
+- copy nivola/deploy/customization/auth.yml /tmp
 ```
 # to create Auth tables
-beehive3 platform cmp subsystems create auth pkgs/beehive-ansible/beehive_ansible/subsystems/auth.yml
+beehive3 platform cmp subsystems create auth pkgs/nivola/deploy/customization/auth.yml
 ```
 
 Starting deployment.app on the k8s cluster
@@ -248,7 +255,7 @@ Schema and user creation on db
 ```
 beehive3 platform mysql dbs add event 
 beehive3 platform mysql dbusers add event event 
-beehive3 platform mysql dbusers grant event event 
+beehive3 platform mysql dbusers grant event -db event 
 ```
 
 Data population on the database and registration of permissions on some entities
@@ -257,10 +264,10 @@ beehive3 platform cmp subsystems create event pkgs/nivola/deploy/customization/e
 ```
 
 Starting deployment.app on the k8s cluster
-Update in auth/mylab/mylab.yml the following properties with reference to your hosts:
+Update in event/mylab/mylab.yml the following properties with reference to your hosts:
 - ELASTIC_NODES
 - MYSQL_URI
-- OAUTH2_ENDPOINT
+- OAUTH2_ENDPOINT (link to Nginx)
 ```
 kubectl create -f event/mylab
 ```
@@ -291,7 +298,7 @@ Schema and user creation on db
 ```
 beehive3 platform mysql dbs add ssh
 beehive3 platform mysql dbusers add ssh ssh
-beehive3 platform mysql dbusers grant ssh ssh
+beehive3 platform mysql dbusers grant ssh -db ssh
 ```
 
 Data population on the database and registration of permissions on some entities
@@ -329,7 +336,7 @@ Schema and user creation on db
 ```
 beehive3 platform mysql dbs add resource 
 beehive3 platform mysql dbusers add resource resource
-beehive3 platform mysql dbusers grant resource resource 
+beehive3 platform mysql dbusers grant resource -db resource 
 ```
 
 Data population on the database and registration of permissions on some entities
@@ -367,7 +374,7 @@ Schema and user creation on db
 ```
 beehive3 platform mysql dbs add service
 beehive3 platform mysql dbusers add service service 
-beehive3 platform mysql dbusers grant service service 
+beehive3 platform mysql dbusers grant service -db service 
 ```
 
 Data population on the database and registration of permissions on some entities
