@@ -16,11 +16,11 @@ data:
   LOGSTASH_CA: ""
   LOGSTASH_CERT: ""
   LOGSTASH_PKEY: ""
-  MAIL_SENDER: sergio.tonani@csi.it
+  MAIL_SENDER: xxx@csi.it
   MAIL_SERVER: mailfarm-app.csi.it
-  #MYSQL_URI: mysql+pymysql://event:event@dev-beehive-07.tstsddc.csi.it:3306/event
+  #MYSQL_URI: mysql+pymysql://event:event@<HOST_DB>:3306/event
   MYSQL_URI: mysql+pymysql://event:event@192.168.49.100:3306/event
-  #OAUTH2_ENDPOINT: https://dev-beehive-07.tstsddc.csi.it
+  #OAUTH2_ENDPOINT: https://<MINIKUBE_IP>:443
   OAUTH2_ENDPOINT: https://192.168.49.4:443
   PYTHONBASEPATH: /usr/local/lib/python3.7/site-packages
   REDIS_IDENTITY_URI: redis://:t5vo5ChFCCe8I1toguvOFXFUW1jU9WSJr4H13aNiOAV@$(REDIS_SERVICE_HOST):6379/0

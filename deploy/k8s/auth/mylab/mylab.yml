@@ -159,18 +159,19 @@ data:
   API_PREFIX: ""
   API_TIMEOUT: "60"
   CELERY_BROKER_URI: amqp://beehive:EKbK8yQ7q05N@$(RABBITMQ_SERVICE_HOST):5672/nivola
+  # ELASTIC_NODES: <HOST_ELASTIC>
   ELASTIC_NODES: dev-beehive-07.tstsddc.csi.it
   GEVENT_NUMBER: "200"
-  LDAP.DOMNT.BIND_PWD: Cum0l0!coipinoli
-  LDAP.DOMNT.BIND_USER: SvcJoinNivola@domnt.csi.it
-  LDAP.PSNET.BIND_PWD: mRmgcnTf63cs4D7z
+  LDAP.DOMNT.BIND_PWD: xxx
+  LDAP.DOMNT.BIND_USER: xxx@domnt.csi.it
+  LDAP.PSNET.BIND_PWD: xxx
   LDAP.PSNET.BIND_USER: uid=nivola.grafana,ou=Admins,o=csi,c=it
   LOGGING_LEVEL: "10"
-  MAIL_SENDER: sergio.tonani@csi.it
+  MAIL_SENDER: xxx@csi.it
   MAIL_SERVER: mailfarm-app.csi.it
-  #MYSQL_URI: mysql+pymysql://auth:auth@dev-beehive-07.tstsddc.csi.it:3306/auth
+  #MYSQL_URI: mysql+pymysql://auth:auth@<HOST_DB>:3306/auth
   MYSQL_URI: mysql+pymysql://auth:auth@192.168.49.100:3306/auth
-  #OAUTH2_ENDPOINT: https://dev-beehive-07.tstsddc.csi.it
+  #OAUTH2_ENDPOINT: https://<MINIKUBE_IP>:443
   OAUTH2_ENDPOINT: https://192.168.49.4:443
   PYTHONBASEPATH: /usr/local/lib/python3.7/site-packages
   REDIS_IDENTITY_URI: redis://:t5vo5ChFCCe8I1toguvOFXFUW1jU9WSJr4H13aNiOAV@$(REDIS_SERVICE_HOST):6379/0

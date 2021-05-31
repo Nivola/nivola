@@ -42,7 +42,8 @@ The product contains some components:
 - You must have the Nivola CLI (shell console) already installed. 
 See __beehive3-cli__ project [GitHub](https://github.com/Nivola/beehive3-cli) - [GitLab](https://gitlab.csi.it/nivola/cmp3/beehive3-cli/tree/devel)
 - You must have "minikube" installed
-- Install a MySql/MariaDB database (MySql version > 5.7, MariaDB version > 10.5)
+- Install a MySql/MariaDB database (MySql version > 5.7, MariaDB version > 10.5).
+We suggest to use a Mysql Docker. See instructions in __beehive3-cli__ project.
 - Install Elasticsearch server where write logs.
 - CMP deployment using the Kubernetes command-line tool, kubectl.
 - Install Docker for building images.
@@ -141,12 +142,12 @@ you have also to download the projects:
 * beehive-ssh  
 
 In deploy directory __nivola/deploy/k8s__ you find dockerfiles.
-Build docker image "nivola/nivola-uwsgi":
+Build docker image "nivola/nivola-uwsgi" from your workspace folder:
 ```
 docker image build --tag nivola/nivola-uwsgi -f nivola/deploy/k8s/Dockerfile.uwsgi-py3 .
 ```
 
-Build docker image "nivola/cmp" that start from image "nivola/nivola-uwsgi"
+Build docker image "nivola/cmp" that start from image "nivola/nivola-uwsgi" from your workspace folder.
 You can do this or copying projects into image (in this case you have to go to folder where you downloaded projects)
 
 ```
@@ -159,7 +160,6 @@ Look at dockerfile and comment/uncomment relative sections.
 ```
 docker image build --build-arg GITUSER=<USER> --build-arg GITPWD=<PASSWORD> --tag nivola/cmp -f nivola/deploy/k8s/Dockerfile.cmp .
 ```
-
 
 
 NOTE: image "nivola/cmp" is referenced in k8s files used below
