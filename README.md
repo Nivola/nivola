@@ -2,6 +2,10 @@
 Nivola is a platform that simplifies the use of the cloud service by the public administration.
 The Nivola platform is created by CSI Piemonte and provides computing, storage and network resources.
 
+To have a more detailed view of the platform go to:
+- [institutional link](https://www.nivolapiemonte.it/)
+- [user guide](https://nivola-userguide.readthedocs.io/it/latest/)
+
 ## Product and Components
 This project contains the Product **nivola**.
 The product contains some components, you can find a description of each component within its README file:
