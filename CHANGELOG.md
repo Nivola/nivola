@@ -1,5 +1,40 @@
 # Changelog
 
+## Version 1.9.0 (Jun 11, 2021)
+
+* Added ...
+    * add service instance set config api
+	* add ComputeInstance import
+	* add ComputeInstance create from existing volume
+	* add ComputeInstance api to add/delete/change password to internal user
+	* add ComputeCustomization
+    * add ComputeInstance api rebootinstances
+	* add ComputeInstance api monitorinstances
+	* add ComputeInstance api forwardloginstances
+	* add DatabaseInstance db api describedbinstancedb, createdbinstancedb, deletedbinstancedb
+	* add DatabaseInstance user api describedbinstanceuser, createdbinstanceuser, deletedbinstanceuser,
+	  changedbinstanceuserpassword, grantdbinstanceuserprivileges, revokedbinstanceuserprivileges
+	* add filter by account in ComputeTag api
+* Fixed
+* Integrated ...
+	* add propagation of task error from resource to service
+	* add task field in some api view schemas
+	* add check of subnet type in db instance create. If subnet is public an error was returned
+	* add some check in compute volume attach and detach
+	* add account apis v2.0 with new delete api. Now when delete you can specify if delete all child services  
+* Various bugfixes
+* Internal Packages
+  * beecell 1.8.0
+  * beedrones 1.6.0
+  * beehive 1.10.0
+  * beehive-oauth2 1.2.2  
+  * beehive-resource 1.11.0
+  * beehive-service 1.9.0
+  * beehive-service-netaas 1.1.0
+  * beehive-ssh 1.5.0
+  * beehive-ansible 1.3.0
+  * beehive3-cli 1.8.0
+
 ## Version 1.8.2 (Feb 05, 2021)
 
 * Added ...
