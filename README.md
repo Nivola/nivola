@@ -4,7 +4,7 @@ The Nivola platform is created by CSI Piemonte and provides computing, storage a
 
 ## Product and Components
 This project contains the Product **nivola**.
-The product contains some components:
+The product contains some components, you can find a description of each component within its README file:
 
 * beecell 
 [GitHub](https://github.com/Nivola/beecell) - 
@@ -36,27 +36,32 @@ The product contains some components:
 
 
 ## Installing Cloud Management Platform (CMP)
+Overview of the parts you are going to create:
+- Nivola shell console (CLI)
+- Cloud Management Platform (CMP) the integration and automation platform that exposes all business services through API (Application programming Interface) that can be called up by the user, which includes accounting, profiling, security services
+- Nginx, a proxy server that allows the CLI to call the various components of the CMP in https
+- Mysql database where some schema will be created
 
 ### Prerequisites
-- You must have already downloaded the projects beecell, beedrones, beehive.
+- You must have already downloaded this project __nivola__ and to start the projects beecell, beedrones, beehive in a "workspace" folder
+- Install Docker for building images.
 - You must have the Nivola CLI (shell console) already installed. 
 See __beehive3-cli__ project [GitHub](https://github.com/Nivola/beehive3-cli) - [GitLab](https://gitlab.csi.it/nivola/cmp3/beehive3-cli/tree/devel)
-- You must have "minikube" installed
+- You must have "minikube" installed (a tool that lets you run a single-node Kubernetes cluster on your personal computer)
+- CMP deployment using the Kubernetes command-line tool, kubectl.
 - Install a MySql/MariaDB database (MySql version > 5.7, MariaDB version > 10.5).
 We suggest to use a Mysql Docker. See instructions in __beehive3-cli__ project.
 - Install Elasticsearch server where write logs.
-- CMP deployment using the Kubernetes command-line tool, kubectl.
-- Install Docker for building images.
-- Move to folder nivola/deploy/k8s
+
 
 ### Minikube start
-Start your minikube with the docker driver, replacing replacing placeholder <WORKSPACE> with folder where you downloaded projects.
+Start your minikube with the docker driver, replacing the following placeholder <WORKSPACE> with folder where you downloaded projects.
 We suggest that minikube process starts in a docker network "nivolanet" for being reachable from CLI and Nginx.
 ```
 $ minikube start --driver=docker --cpus=4 --mount=true --mount-string="<WORKSPACE>:/pkgs" --network nivolanet
 ```
 
-To obtail minikube IP launch (you will need it to configure nginx)
+To obtail minikube IP launch (you will need it to configure Nginx)
 ```
 $ minikube ip
 ```
@@ -114,7 +119,8 @@ cmp:
 
 ### Core components creation
 Creation of namespace and api exposure services of the components of the cmp
-In nivola/deploy/k8s/core/mylab/beehive-volume.yml look at "hostPath".
+Move to folder __nivola/deploy/k8s__.
+In core/mylab/beehive-volume.yml look at "hostPath" parameter.
 If you start minikube with --driver=none replace <WORKSPACE> with your project folder
 otherwise mount your workspace passing to minikube '--mount=true --mount-string="<WORKSPACE>:/pkgs" '
 
@@ -125,16 +131,15 @@ $ kubectl create -k core/mylab
 
 
 ### Creation of engines used by cmp
-Creation of engines such as redis, rabbitmq, proxysql
-launch:
+Creation of engines such as redis, rabbitmq, proxysql.
+Always from __nivola/deploy/k8s__ folder, launch:
 ```
 $ kubectl create -k engine/mylab
 ```
 
 
 ### Build CMP Docker image
-To create the complete CMP Docker image 
-you have also to download the projects:
+To create the complete CMP Docker image you have also to download the projects:
 * beehive-oauth2 
 * beehive-resource 
 * beehive-service 
@@ -161,10 +166,10 @@ Look at dockerfile and comment/uncomment relative sections.
 docker image build --build-arg GITUSER=<USER> --build-arg GITPWD=<PASSWORD> --tag nivola/cmp -f nivola/deploy/k8s/Dockerfile.cmp .
 ```
 
+NOTE: image "nivola/cmp" is referenced in k8s files used below.
 
-NOTE: image "nivola/cmp" is referenced in k8s files used below
 If you start minikube with --driver=docker
-you can upload image to a docker registry and update references in kubernates files auth/mylab.yml...
+you can upload image to a docker registry and update references in kubernates files auth/mylab.yml...  
 or save your image in a file and then load it in minikube docker:
 ```
 docker save nivola/cmp:latest > $HOME/nivola_cmp_latest.tar
@@ -172,7 +177,7 @@ eval $(minikube docker-env)
 docker load < $HOME/nivola_cmp_latest.tar
 docker images
 ```
-In both cases, check also imagePullPolicy in mylab.yml files.
+In both cases, check also "imagePullPolicy" parameter in mylab.yml files of the following components.
 
 
 ### Auth component creation
@@ -240,9 +245,9 @@ Assign the ApiSuperAdmin role to the oauth2 client that you use for server to se
 beehive3 auth users add-role client-beehive@local ApiSuperAdmin
 ```
 
-Update the customization files for the various modules by setting the client uuid and the secret.
+Update the customization files for the various modules by setting the client uuid and the secret.  
 Look in files /deploy/k8s/<COMPONENT>/mylab/mylab.yml at property API_OAUTH2_CLIENT, 
-that you have to set with "UUID : SECRET".
+that you have to set with "UUID : SECRET".  
 Client data can be obtained with the command:
 ```
 beehive3 auth oauth2-clients get -id client-beehive
@@ -250,6 +255,7 @@ beehive3 auth oauth2-clients get -id client-beehive
 
 
 ### Event component creation
+This component exposes ability to capture and manipulate events
 
 Schema and user creation on db
 ```
@@ -294,6 +300,8 @@ beehive3 platform scheduler tasks log auth <task id>
 
 
 ### SSH component creation
+This component exposes host connection check and logging capabilities
+
 Schema and user creation on db
 ```
 beehive3 platform mysql dbs add ssh
@@ -332,6 +340,8 @@ beehive3 ssh keys get
 
 
 ### Resource component creation
+This component expose all the technological and low level orchestration capabilities. Interact with all the virtualization, cloud orchestration, backup, monitoring, logging infrastructure platforms. Expose synchronous and asynchronous capabilities using python celery framework
+
 Schema and user creation on db
 ```
 beehive3 platform mysql dbs add resource 
@@ -370,6 +380,10 @@ beehive3 platform scheduler tasks test resource
 
 
 ### Service component creation
+This component exposes all the business and high user level orchestration capabilities.  
+Interact with the resource subsystem.  
+Expose synchronous and asynchronous capabilities using business process
+
 Schema and user creation on db
 ```
 beehive3 platform mysql dbs add service
