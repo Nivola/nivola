@@ -11,32 +11,23 @@ This project contains the Product **nivola**.
 The product contains some components, you can find a description of each component within its README file:
 
 * beecell 
-[GitHub](https://github.com/Nivola/beecell) - 
-[GitLab](https://gitlab.csi.it/nivola/cmp3/beecell/tree/devel)
+[GitHub](https://github.com/Nivola/beecell)
 * beedrones 
-[GitHub](https://github.com/Nivola/beedrones) - 
-[GitLab](https://gitlab.csi.it/nivola/cmp2/beedrones/tree/devel)
+[GitHub](https://github.com/Nivola/beedrones)
 * beehive 
-[GitHub](https://github.com/Nivola/beehive) - 
-[GitLab](https://gitlab.csi.it/nivola/cmp2/beehive/tree/devel)
+[GitHub](https://github.com/Nivola/beehive)
 * beehive-oauth2 
-[GitHub]() - 
-[GitLab](https://gitlab.csi.it/nivola/cmp2/beehive-oauth2/tree/devel)
+[GitHub]()
 * beehive-resource 
-[GitHub]() - 
-[GitLab](https://gitlab.csi.it/nivola/cmp2/beehive-resource/tree/devel)
+[GitHub]()
 * beehive-service 
-[GitHub]() - 
-[GitLab](https://gitlab.csi.it/nivola/cmp2/beehive-service/tree/devel)
+[GitHub]()
 * beehive-service-netaas 
-[GitHub]() - 
-[GitLab](https://gitlab.csi.it/nivola/cmp3/beehive-service-netaas/tree/devel)
+[GitHub]()
 * beehive-ssh 
-[GitHub]() - 
-[GitLab](https://gitlab.csi.it/nivola/cmp2/beehive-ssh/tree/devel)
+[GitHub]()
 * beehive3-cli 
-[GitHub](https://github.com/Nivola/beehive3-cli) - 
-[GitLab](https://gitlab.csi.it/nivola/cmp3/beehive3-cli/tree/devel)
+[GitHub](https://github.com/Nivola/beehive3-cli)
 
 
 ## Installing Cloud Management Platform (CMP)
@@ -50,7 +41,7 @@ Overview of the parts you are going to create:
 - You must have already downloaded this project __nivola__ and to start the projects beecell, beedrones, beehive in a "workspace" folder
 - Install Docker for building images.
 - You must have the Nivola CLI (shell console) already installed. 
-See __beehive3-cli__ project [GitHub](https://github.com/Nivola/beehive3-cli) - [GitLab](https://gitlab.csi.it/nivola/cmp3/beehive3-cli/tree/devel)
+See __beehive3-cli__ project [GitHub](https://github.com/Nivola/beehive3-cli)
 - You must have "minikube" installed (a tool that lets you run a single-node Kubernetes cluster on your personal computer)
 - CMP deployment using the Kubernetes command-line tool, kubectl.
 - Install a MySql/MariaDB database (MySql version > 5.7, MariaDB version > 10.5).

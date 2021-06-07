@@ -8,7 +8,7 @@ FROM nivola/nivola-uwsgi
 ARG GITUSER=''
 ARG GITPWD=''
 ARG BRANCH=devel
-ARG GITURI=https://$GITUSER:$GITPWD@gitlab.csi.it/nivola
+ARG GITURI=https://$GITUSER:$GITPWD@github.com/Nivola
 #ARG GITURI=https://$GITUSER:$GITPWD@github.com/Nivola
 
 ENV GITUSER ${GITUSER}
