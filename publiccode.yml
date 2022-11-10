@@ -68,8 +68,8 @@ it:
 maintenance:
   type: internal
   contacts:
-    - name: Luca Scanavino
-      email: luca.scanavino@csi.it
+    - name: Csi Piemonte
+      email: nivola.engineering@csi.it
 
 legal:
   license: GPL-3.0-or-later
