@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 # (C) Copyright 2018-2022 CSI-Piemonte
-FROM python:3.7.7
+FROM python:3.9
 
 RUN adduser --disabled-password uwsgi && \
     mkdir /etc/uwsgi && chown -R uwsgi:uwsgi /etc/uwsgi && \

@@ -17,15 +17,15 @@ The product contains some components, you can find a description of each compone
 * beehive 
 [GitHub](https://github.com/Nivola/beehive)
 * beehive-oauth2 
-[GitHub]()
+[GitHub](https://github.com/Nivola/beehive-oauth2)
 * beehive-resource 
-[GitHub]()
-* beehive-service 
-[GitHub]()
-* beehive-service-netaas 
-[GitHub]()
+[GitHub](https://github.com/Nivola/beehive-resource)
+* beehive-service
+[GitHub](https://github.com/Nivola/beehive-service)
+* beehive-service-netaas
+[GitHub](https://github.com/Nivola/beehive-service-netaas )
 * beehive-ssh 
-[GitHub]()
+[GitHub](https://github.com/Nivola/beehive-ssh)
 * beehive3-cli 
 [GitHub](https://github.com/Nivola/beehive3-cli)
 
@@ -428,9 +428,9 @@ Current version is: 1.9.0
 See the list of contributors who participated in this project in the file AUTHORS.md contained in each specific project.
 
 ## Copyright
-CSI Piemonte - 2018-2021
+CSI Piemonte - 2018-2022
 
-Regione Piemonte - 2020-2021
+Regione Piemonte - 2020-2022
 
 ## License
 See the LICENSE.txt file contained in each specific project for details.
