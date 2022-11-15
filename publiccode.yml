@@ -6,8 +6,8 @@ publiccodeYmlVersion: '0.2'
 name: Nivola
 url: 'https://github.com/Nivola/nivola.git'
 landingURL: 'https://github.com/nivola'
-softwareVersion: '1.8'
-releaseDate: '2020-10-23'
+softwareVersion: '1.11'
+releaseDate: '2022-10-21'
 logo: img/logo.png
 inputTypes:
   - application/json
@@ -43,7 +43,7 @@ dependsOn:
     - name: Nginx
       version: '1.15.8'
     - name: Uwsgi
-      version: '2.0.18'
+      version: '2.0.20'
     - name: Camunda
       version: '7.7'
     - name: openstack

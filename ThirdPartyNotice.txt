@@ -1,0 +1,123 @@
+This file is based on or incorporates material from the projects listed below
+(collectively, "Third Party Code").
+
+CSI-Piemonte is not the original author of the Third Party Code.
+The original copyright notice and the license, under which CSI-Piemonte received such Third Party Code,
+are set forth below. You can find the original source code at the link set hereafter.
+Please refer to the accompanying credits file for additional notices.
+
+[MIT](https://opensource.org/licenses/MIT)\
+apispec,5.1.0
+apispec-webframeworks,0.5.2
+asciitree,0.3.3
+blessings,1.7.0
+dict-recursive-update,1.0.1
+flasgger,0.9.5
+Flask-Login,0.5.0
+gevent,21.8.0
+grafana_api,1.0.3
+httplib2,0.19.1
+colorlog,5.0.1
+pywinrm,0.4.2
+locust,2.1.0
+marshmallow,3.13.0
+proxmoxer,1.1.1
+pyjwt,2.1.0
+pymysql,1.0.2
+PyYAML,5.4.1
+redis,3.5.3
+sh,1.14.2
+six,1.16.0
+SQLAlchemy,1.4.23
+sshtunnel,0.4.0
+tabulate,0.8.9
+texttable,1.6.4
+tinydb,4.5.1
+urllib3,1.26.6
+wheel,0.37.0
+xmltodict,0.12.0
+
+geventhttpclient,1.5.1
+
+
+[BSD 3-clause](https://opensource.org/licenses/BSD-3-Clause)\
+click,8.0.3
+Flask,2.0.1
+Flask-SQLAlchemy,2.5.1
+PrettyTable,2.1.0
+werkzeug,2.0.2
+billiard,3.6.4.0
+celery,5.2.3
+cement,3.0.4
+Flask-Babel,2.0.0
+Flask-Session,0.4.0
+Flask-WTF,0.15.1
+flex,6.14.1
+hiredis,2.0.0
+netaddr,0.8.0
+oauthlib,3.1.1
+cryptography,3.4.7
+passlib,1.7.4
+pika,1.2.0
+psutil,5.8.0
+psycogreen,1.0.2
+pycryptodome,3.10.1
+pysmi,0.3.4
+pysnmp,4.4.12
+Sphinx,4.1.2
+
+netapp-ontap,9.8.0
+networkx,2.6.2
+ujson,4.1.0
+requests-oauthlib,1.3.0
+
+
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)\
+elasticsearch,8.1.2
+requests,2.26.0
+bcrypt,3.2.0
+kubernetes,21.7.0
+pymongo,3.12.0
+pyopenssl,20.0.1
+
+pyvmomi,7.0.2
+os-client-config,2.1.0
+oslo.utils,4.10.0
+python-dateutil,2.8.2
+minio,7.1.1
+netapp-lib,2021.6.25
+
+
+[LGPL 3.0](https://opensource.org/licenses/LGPL-3.0)\
+scp,0.13.6
+pyzmq,22.2.1
+chardet,4.0.0
+Paramiko,2.7.2
+libvirt-python,7.6.0
+psycopg2-binary,2.9.2
+
+
+[Python Software Foundation](https://docs.python.org/3/license.html)
+docutils,0.17.1
+ipaddress,1.0.23
+python-ldap,3.3.1
+
+python-docs-theme,2020.12
+
+
+[GNU General Public License v2.0](https://github.com/quandyfactory/dicttoxml/blob/master/LICENCE.txt)
+dicttoxml,1.7.4
+
+
+[GPL 2.0](https://opensource.org/licenses/GPL-2.0)\
+uWSGI,2.0.20
+
+[GPL 3.0](https://opensource.org/licenses/GPL-3.0)\
+ansible,4.4.0
+
+[Freeware](http://www.dnspython.org/LICENSE)
+dnspython,2.1.0
+
+[ISC](https://opensource.org/licenses/ISC)
+easywebdav,1.2.0
+
