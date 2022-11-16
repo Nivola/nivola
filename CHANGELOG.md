@@ -14,7 +14,7 @@
     * fixed problem with instance host_group when show flavor
 * Integrated ...
 * Various bugfixes
-* Internal Packages version now reference release version 1.11.0
+* Internal Packages updated
   * beecell 
   * beedrones 
   * beehive 
