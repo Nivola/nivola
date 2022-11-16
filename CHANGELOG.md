@@ -1,5 +1,69 @@
 # Changelog
 
+## Version 1.11.0 (oct 21, 2022)
+
+* Added ...
+    * now compute instance support static ip passed from api
+    * add compute instance host_group openstack: bck and nobck
+    * add field nvl_HostGroup in DescribeInstancesV20 api
+    * add LoggingServiceAPI, MonitoringSpaceServiceAPI, MonitoringInstanceServiceAPI,
+    * add ApiMonitoringService, ApiMonitoringSpace, ApiMonitoringInstance
+* Fixed
+    * fixed problem with default name of logging space
+    * fixed problem with icmp rule in security group
+    * fixed problem with instance host_group when show flavor
+* Integrated ...
+* Various bugfixes
+* Internal Packages version now reference release version 1.11.0
+  * beecell 
+  * beedrones 
+  * beehive 
+  * beehive-oauth2 
+  * beehive-resource
+  * beehive-service
+  * beehive-service-netaas 
+  * beehive-ssh 
+  * beehive-ansible 
+  * beehive3-cli
+
+## Version 1.10.0 (feb 11, 2022)
+
+* Added ...
+    * modified now return 404 if core service is not present when getting or modifying account's attributes
+    * add method v2.0/nws/accounts/.../definitions to get which definition are available for the account
+    * add AccountServiceDefinition. Now the Account knows which definition can instantiate
+    * add DatabaseInstanceV2 create method params Nvl_Options.Postgresql_GeoExtension to manage database options
+    * add DatabaseInstanceV2 import api from stack sql v2
+    * add InstanceV2 api with porting of the old v1.0 apis
+    * add InstanceV2 api get console
+    * add VolumeV2 api to manage volume type api update
+    * add ComputeInstanceBackupAPI api to manage backup job, restore points and restore [beta]
+    * add ComputeVolume pre_import method
+    * add ComputeShare label management to get custom svm
+    * extend ComputeShare to support ontap share
+    * add LoggingServiceAPI, LoggingSpaceServiceAPI, LoggingInstanceServiceAPI,
+    * add ApiLoggingService, ApiLoggingSpace, ApiLoggingInstance
+    * add database instance mailx configuration and haproxy registration based on definition config
+    * add model method get_service_definition_by_config
+* Fixed
+    * fixed bug in SecurityGroup set_service_info. It Does not manage icmp sub protocol field
+    * fixed api /v2.0/nws/computeservices/instance/describeinstancetypes to support new account service catalog.
+      Now required filter by account
+    * fixed api /v2.0/nws/databaseservices/instance/describedbinstancetypes to support new account service catalog
+      Now required filter by account
+    * fixed api /v2.0/nws/databaseservices/instance/enginetypes to support new account service catalog
+      Now required filter by account
+    * fixed type check in db instance and compute instance
+    * volume volumetype is read directly from resource
+    * update DBInstanceClass param in api GET. Value is get from resource
+    * update instanceType param in api GET. Value is get from resource
+    * update Share size param in api GET. Value is get from resource
+    * correct bug that blocks old sql stack delete
+* Integrated ...
+    * add ComputeVolume check when delete api is invoked. If volume is in-use error is returned
+    * update capabilities and account capabilities to support account definitions
+* Various bugfixes
+
 ## Version 1.9.0 (Jun 11, 2021)
 
 * Added ...
