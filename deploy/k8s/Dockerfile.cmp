@@ -55,6 +55,7 @@ RUN mkdir -p /usr/local/uwsgi/pkgs && \
     #cd $PYTHONPATH && pip3 install beehive-service-netaas/  && \
     #cd $PYTHONPATH && pip3 install beehive-resource/  && \
     #cd $PYTHONPATH && pip3 install beehive-ssh/
+    pip3 install uWSGI==2.0.20
     
 # uncomment if you don't install projects
 ENV PYTHONPATH $PYTHONPATH/beehive:$PYTHONPATH/beecell:$PYTHONPATH/beedrones:$PYTHONPATH/beehive-oauth2:\
