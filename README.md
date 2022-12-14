@@ -23,7 +23,7 @@ The product contains some components, you can find a description of each compone
 * beehive-service
 [GitHub](https://github.com/Nivola/beehive-service)
 * beehive-service-netaas
-[GitHub](https://github.com/Nivola/beehive-service-netaas )
+[GitHub](https://github.com/Nivola/beehive-service-netaas)
 * beehive-ssh 
 [GitHub](https://github.com/Nivola/beehive-ssh)
 * beehive3-cli 
