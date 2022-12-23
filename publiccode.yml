@@ -71,7 +71,7 @@ maintenance:
       email: nivola.engineering@csi.it
 
 legal:
-  license: GPL-3.0-or-later
+  license: EUPL-1.2
   mainCopyrightOwner: CSI Piemonte
   repoOwner: CSI Piemonte
   authorsFile: AUTHORS.md
