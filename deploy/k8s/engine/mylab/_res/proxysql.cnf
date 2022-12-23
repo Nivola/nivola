@@ -1,5 +1,5 @@
 admin_variables = {
-    admin_credentials="sqladmin:EKbK8yQ7q05N",
+    admin_credentials="sqladmin:xxx",
     stats_credentials="stats:stats",
     mysql_ifaces="0.0.0.0:6032",
     refresh_interval=2000,
@@ -10,7 +10,7 @@ mysql_variables = {
     threads=4,
     max_connections=2048,
     monitor_username="proxysql",
-    monitor_password="EKbK8yQ7q05N"
+    monitor_password="xxx"
 }
 mysql_servers = (
     { address="10.138.144.135" , port=3306 , hostgroup=10, max_connections=256, weight=1 },
@@ -20,7 +20,7 @@ mysql_servers = (
 mysql_users = (
     {
         username="root",
-        password="root",
+        password="xxx",
         default_hostgroup=10,
         active=1,
         max_connections=10,
@@ -28,7 +28,7 @@ mysql_users = (
     },
     {
         username="auth_stage",
-        password="auth_stage",
+        password="xxx",
         default_schema="auth_stage",
         default_hostgroup=10,
         active=1,
@@ -37,7 +37,7 @@ mysql_users = (
     },
     {
         username="event_stage",
-        password="event_stage",
+        password="xxx",
         default_schema="event_stage",
         default_hostgroup=10,
         active=1,
@@ -46,7 +46,7 @@ mysql_users = (
     },
     {
         username="ssh_stage",
-        password="ssh_stage",
+        password="xxx",
         default_schema="ssh_stage",
         default_hostgroup=10,
         active=1,
@@ -55,7 +55,7 @@ mysql_users = (
     },
     {
         username="resource_stage",
-        password="resource_stage",
+        password="xxx",
         default_schema="resource_stage",
         default_hostgroup=10,
         active=1,
@@ -64,7 +64,7 @@ mysql_users = (
     },
     {
         username="service_stage",
-        password="service_stage",
+        password="xxx",
         default_schema="service_stage",
         default_hostgroup=10,
         active=1,

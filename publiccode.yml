@@ -24,7 +24,6 @@ usedBy:
   - Regione Piemonte
   - Città di Torino
   - Città di Vercelli
-roadmap: 'https://doc.nivolapiemonte.it/userguide/roadmap.html'
 developmentStatus: stable
 softwareType: standalone/other
 intendedAudience:
@@ -96,8 +95,7 @@ description:
       nella creazione del proprio sistema informativo e nella migrazione delle
       applicazioni, in assoluta sicurezza. Attualmente la piattaforma è usata da
       diverse Pubbliche Amministrazioni italiane.
-    documentation: 'https://doc.nivolapiemonte.it/userguide/'
-    apiDocumentation: 'https://doc.nivolapiemonte.it/userguide/swagger-ui/'
+    documentation: 'https://nivola-userguide.readthedocs.io/it/latest/index.html'
     features:
       - Creazione macchine virtuali
       - Gestione Virtual Private Cloud

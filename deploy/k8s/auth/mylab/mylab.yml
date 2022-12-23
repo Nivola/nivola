@@ -156,11 +156,11 @@ data:
   API_CATALOG: beehive-internal
   API_ENDPOINT: ""
   API_ENV: mylab
-  API_FERNET_KEY: wwN8462BS0RQCfBeREcCL6UGuUNbsUpZu7eAHuxzu4M=
+  API_FERNET_KEY: xxxkey
   API_LOG: /tmp/
   API_PREFIX: ""
   API_TIMEOUT: "60"
-  CELERY_BROKER_URI: amqp://beehive:EKbK8yQ7q05N@$(RABBITMQ_SERVICE_HOST):5672/nivola
+  CELERY_BROKER_URI: amqp://beehive:xxx$(RABBITMQ_SERVICE_HOST):5672/nivola
   # ELASTIC_NODES: <HOST_ELASTIC>
   ELASTIC_NODES: dev-beehive-07.tstsddc.csi.it
   GEVENT_NUMBER: "200"
@@ -170,15 +170,15 @@ data:
   LDAP.PSNET.BIND_USER: uid=nivola.grafana,ou=Admins,o=csi,c=it
   LOGGING_LEVEL: "10"
   MAIL_SENDER: xxx@csi.it
-  MAIL_SERVER: mailfarm-app.csi.it
+  MAIL_SERVER: xxx.csi.it
   #MYSQL_URI: mysql+pymysql://auth:auth@<HOST_DB>:3306/auth
   MYSQL_URI: mysql+pymysql://auth:auth@192.168.49.100:3306/auth
   #OAUTH2_ENDPOINT: https://<MINIKUBE_IP>:443
   OAUTH2_ENDPOINT: https://192.168.49.4:443
   PYTHONBASEPATH: /usr/local/lib/python3.7/site-packages
-  REDIS_IDENTITY_URI: redis://:t5vo5ChFCCe8I1toguvOFXFUW1jU9WSJr4H13aNiOAV@$(REDIS_SERVICE_HOST):6379/0
-  REDIS_QUEUE_URI: redis://:t5vo5ChFCCe8I1toguvOFXFUW1jU9WSJr4H13aNiOAV@$(REDIS_SERVICE_HOST):6379/0
-  REDIS_URI: redis://:t5vo5ChFCCe8I1toguvOFXFUW1jU9WSJr4H13aNiOAV@$(REDIS_SERVICE_HOST):6379/0
+  REDIS_IDENTITY_URI: redis://:ppp@$(REDIS_SERVICE_HOST):6379/0
+  REDIS_QUEUE_URI: redis://:ppp@$(REDIS_SERVICE_HOST):6379/0
+  REDIS_URI: redis://:ppp@$(REDIS_SERVICE_HOST):6379/0
   TASK_EXPIRE: "86400"
   TASK_TIME_LIMIT: "1200"
 kind: ConfigMap
