@@ -1,0 +1,86 @@
+# SPDX-License-Identifier: EUPL-1.2
+#
+# (C) Copyright 2018-2022 CSI-Piemonte
+---
+api_system: beehive
+api_subsystem: auth
+api_module: 4
+api_module.1: beehive.module.auth.mod.AuthModule
+api_module.2: beehive.module.basic.mod.BasicModule
+api_module.3: beehive_oauth2.mod.Oauth2Module
+api_module.4: beehive.module.catalog.mod.CatalogModule
+api_plugin: 0
+api_catalog: "{{ cmp.catalog }}"
+api_endpoint: "{{ cmp.endpoints.auth }}"
+api_prefix: "{{ cmp.prefix_path }}"
+api_user: "{{ cmp.user }}"
+api_user_password: "{{ cmp.pwd }}"
+db_uri: "mysql+pymysql://auth:auth@{{ mysql.host }}:{{ mysql.port }}/auth"
+db_managers:
+- beehive.common.model.authorization.AuthDbManager
+- beehive_oauth2.model.Oauth2DbManager
+- beehive.module.catalog.model.CatalogDbManager
+config: []
+users:
+  - type: admin
+    name: admin@local
+    pwd: beehive_admin
+    desc: Super Administrator
+  - type: user
+    name: test1@local
+    pwd: beehive_test1
+    desc: Test user 1
+  - type: user
+    name: test2@local
+    pwd: beehive_test1
+    desc: Test user 2
+  - type: admin
+    name: test3@local
+    pwd: beehive_test3
+    desc: Test admin user 3
+    attribs:
+    - name: auth-filters
+      value: simplehttp
+      desc: simplehttp
+    - name: auth-cidrs
+      value: 158.102.160.0/24,10.102.160.0/24
+      desc: admin cidr
+  - type: admin
+    name: camunda@local
+    pwd: camunda
+    desc: Camunda user
+    attribs:
+    - name: auth-filters
+      value: simplehttp
+      desc: simplehttp
+    - name: auth-cidrs
+      value: 158.102.160.0/24,10.102.160.0/24,10.102.184.0/24
+      desc: admin cidr
+catalogs:
+  - name: beehive-internal
+    zone: internal
+    desc: Local catalog
+  - name: beehive-external
+    zone: external
+    desc: Internet catalog
+    endpoints:
+    - name: "auth-ext-endpoint"
+      desc: "Auth internet endpoint"
+      service: auth
+      uri: "{{ cmp.endpoints.auth }}"
+    - name: "event-ext-endpoint"
+      desc: "Event internet endpoint"
+      service: event
+      uri: "{{ cmp.endpoints.event }}"
+    - name: "resource-ext-endpoint"
+      desc: "Resource internet endpoint"
+      service: resource
+      uri: "{{ cmp.endpoints.resource }}"
+    - name: "service-ext-endpoint"
+      desc: "Service internet endpoint"
+      service: service
+      uri: "{{ cmp.endpoints.service }}"
+    - name: "ssh-ext-endpoint"
+      desc: "Ssh internet endpoint"
+      service: ssh
+      uri: "{{ cmp.endpoints.ssh }}"

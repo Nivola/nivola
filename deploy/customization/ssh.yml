@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: EUPL-1.2
+#
+# (C) Copyright 2018-2022 CSI-Piemonte
+---
+api_system: beehive
+api_subsystem: ssh
+api_module: 1
+api_module.1: beehive_ssh.mod.SshModule
+api_plugin: 0
+api_catalog: "{{ cmp.catalog }}"
+api_endpoint: "{{ cmp.endpoints.auth }}"
+api_prefix: "{{ cmp.prefix_path }}"
+api_user: "{{ cmp.user }}"
+api_user_password: "{{ cmp.pwd }}"
+db_uri: "mysql+pymysql://ssh:ssh@{{ mysql.host }}:{{ mysql.port }}/ssh"
+db_managers:
+- beehive_ssh.dao.SshDao.SshDbManager
+config: []

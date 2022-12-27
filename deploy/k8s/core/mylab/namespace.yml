@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: EUPL-1.2
+#
+# (C) Copyright 2018-2022 CSI-Piemonte
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: beehive-mylab
+  labels:
+    name: beehive-mylab

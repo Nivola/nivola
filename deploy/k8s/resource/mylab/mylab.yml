@@ -1,0 +1,366 @@
+# SPDX-License-Identifier: EUPL-1.2
+#
+# (C) Copyright 2018-2022 CSI-Piemonte
+apiVersion: v1
+data:
+  API_CATALOG: beehive-internal
+  API_ENV: mylab
+  API_FERNET_KEY: 3_k6xV77qhnuiRCKdCcwjIxUUHwPemQgLW3j_NdSVb8=
+  API_LOG: /tmp/
+  # API_OAUTH2_CLIENT = UUID : SECRET
+  API_OAUTH2_CLIENT: 0d1e4043-751e-4bc7-95d8-e95dd1202367:RD79QYeC5eIgyihrjCGzUm66JypTBXklxOnN9rNj
+  API_PREFIX: ""
+  API_TIMEOUT: "60"
+  CELERY_BROKER_URI: amqp://beehive:xxx$(RABBITMQ_SERVICE_HOST):5672/nivola
+  ELASTIC_NODES: dev-beehive-01.tstsddc.csi.it
+  GEVENT_NUMBER: "200"
+  LOGGING_LEVEL: "10"
+  MAIL_SENDER: xxx@csi.it
+  MAIL_SERVER: xxx.csi.it
+  #MYSQL_URI: mysql+pymysql://resource:resource@<HOST_DB>:3306/resource
+  MYSQL_URI: mysql+pymysql://resource:resource@192.168.49.100:3306/resource
+  #OAUTH2_ENDPOINT: https://<MINIKUBE_IP>:443
+  OAUTH2_ENDPOINT: https://192.168.49.4:443
+  PYTHONBASEPATH: /usr/local/lib/python3.7/site-packages
+  REDIS_IDENTITY_URI: redis://:ppp@$(REDIS_SERVICE_HOST):6379/0
+  REDIS_QUEUE_URI: redis://:ppp@$(REDIS_SERVICE_HOST):6379/0
+  REDIS_URI: redis://:ppp@$(REDIS_SERVICE_HOST):6379/0
+  TASK_EXPIRE: "86400"
+  TASK_TIME_LIMIT: "1200"
+kind: ConfigMap
+metadata:
+  labels:
+    environment: mylab
+  name: env-config-fdc2t74m77
+  namespace: beehive-mylab
+---
+apiVersion: v1
+data:
+  uwsgi-resource.yml: |
+    # SPDX-License-Identifier: EUPL-1.2
+    #
+    # (C) Copyright 2018-2022 CSI-Piemonte
+
+    uwsgi:
+        api_id: resource
+        api_name: beehive
+        api_subsystem: resource
+        api_package: beehive
+        api_env: $(API_ENV)
+        api_prefix: $(API_PREFIX)
+        api_fernet_key: $(API_FERNET_KEY)
+        api_host: $(API_POD_IP)
+        api_fqdn: $(API_POD_IP)
+        api_catalog: $(API_CATALOG)
+        api_endpoint: $(API_ENDPOINT)
+        api_oauth2_client: $(API_OAUTH2_CLIENT)
+        api_cluster_ip: $(API_CLUSTER_IP)
+        api_timeout: $(API_TIMEOUT)
+        api_log: $(API_LOG)
+        api_swagger_spec_path: /usr/local/uwsgi/pkgs/beehive/beehive/server/swagger.yml
+        api_logging_level: $(LOGGING_LEVEL)
+
+        # socket configuration uwsgi, http
+        socket: :8073
+        http-socket: :8083
+
+        # startup user
+        uid: uwsgi
+        gid: uwsgi
+
+        # per lunghe querystring default 4096 max 65535
+        buffer-size: 8192
+
+        # daemon configuration
+        #daemonize: /tmp/resource-01.api.out
+        #pidfile: /tmp/resource-01.pid
+        #vacuum: true
+
+        # python configuration
+        #virtualenv: %d../../
+        plugins: python3,gevent_python3
+        py-programname: python3
+
+        # process configuration
+        # master: true
+        enable-threads: true
+        # workers: 1
+        gevent: $(GEVENT_NUMBER)
+        # gevent-monkey-patch: true
+        #procname: resource
+        # cpu-affinity: 1
+
+        # queue configuration
+        #queue: 10
+        #queue-blocksize: 64000
+
+        #cache2: name=portal_cache,items=100
+
+        # app configuration
+        module: beehive.server.api:app
+
+        oauth2_endpoint: $(OAUTH2_ENDPOINT)
+
+        # database uri
+        database_uri: $(MYSQL_URI)
+
+        # redis uri
+        redis_identity_uri: $(REDIS_IDENTITY_URI)
+        redis_uri: $(REDIS_URI)
+        redis_queue_uri: $(REDIS_QUEUE_URI)
+        redis_celery_uri: $(REDIS_QUEUE_URI)
+
+        # elasticsearch nodes
+        elasticsearch_nodes: $(ELASTIC_NODES)
+
+        # sendmail
+        sendmail_server: $(MAIL_SERVER)
+        sendmail_sender: $(MAIL_SENDER)
+
+        # task manager / scheduler
+        # broker_url: $(REDIS_QUEUE_URI)
+        broker_url: $(CELERY_BROKER_URI)
+        broker_queue: celery.resource.$(API_ENV)
+        broker_queue_event: celery.event.$(API_ENV)
+        broker_queue_catalog: celery.catalog.$(API_ENV)
+        result_backend: $(REDIS_QUEUE_URI)
+        expire: $(TASK_EXPIRE)
+        task_time_limit: $(TASK_TIME_LIMIT)
+
+        # task modules
+        task_module: 8
+        task_module.1: beehive.module.scheduler_v2.tasks
+        task_module.2: beehive_resource.task_v2.core
+        task_module.3: beehive_resource.task_v2.container
+        task_module.4: beehive_resource.plugins.dummy.task_v2
+        task_module.5: beehive_resource.plugins.vsphere.task_v2
+        task_module.6: beehive_resource.plugins.provider.task_v2
+        task_module.7: beehive_resource.plugins.zabbix.task_v2
+        task_module.8: beehive_resource.plugins.awx.task_v2
+
+        # api modules
+        api_module: 3
+        api_module.1: beehive.module.basic.mod.BasicModule
+        api_module.2: beehive_resource.mod.ResourceModule,true
+        api_module.3: beehive.module.scheduler_v2.mod.SchedulerModuleV2
+
+        # api plugins
+        api_plugin: 7
+        api_plugin.1: ResourceModule,beehive_resource.plugins.dummy.DummyPlugin
+        api_plugin.2: ResourceModule,beehive_resource.plugins.openstack.OpenstackPlugin
+        api_plugin.3: ResourceModule,beehive_resource.plugins.vsphere.VspherePlugin
+        api_plugin.4: ResourceModule,beehive_resource.plugins.dns.DnsPlugin
+        api_plugin.5: ResourceModule,beehive_resource.plugins.provider.LocalProviderPlugin
+        api_plugin.6: ResourceModule,beehive_resource.plugins.zabbix.ZabbixPlugin
+        api_plugin.7: ResourceModule,beehive_resource.plugins.awx.AwxPlugin
+
+        # event handler
+        # event_handler: 0
+kind: ConfigMap
+metadata:
+  labels:
+    environment: mylab
+  name: resource-config-gh4t92m4mt
+  namespace: beehive-mylab
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    environment: mylab
+    name: resource
+    role: beat
+  name: beat-resource-app
+  namespace: beehive-mylab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: beat-resource-pod
+      environment: mylab
+  template:
+    metadata:
+      labels:
+        app: beat-resource-pod
+        environment: mylab
+    spec:
+      containers:
+      - command:
+        - /usr/local/uwsgi/pkgs/beehive/beehive/server/scheduler_v2.py
+        - /etc/uwsgi/uwsgi.yaml
+        - 2>&1
+        - '>/tmp/resource.beat.log'
+        env:
+        - name: TZ
+          value: Europe/Rome
+        - name: API_CLUSTER_IP
+          value: $(UWSGI_RESOURCE_CLUSTERIP_SERVICE_HOST)
+        - name: API_ENDPOINT
+          value: http://$(UWSGI_AUTH_CLUSTERIP_SERVICE_HOST):8080
+        - name: API_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        envFrom:
+        - configMapRef:
+            name: env-config-fdc2t74m77
+        image: nivola/cmp
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
+        name: beat-resource
+        volumeMounts:
+        - mountPath: /tmp
+          name: beat-tmp-volume
+        - mountPath: /usr/local/uwsgi/pkgs
+          name: beat-beehive-volume
+        - mountPath: /etc/uwsgi/uwsgi.yaml
+          name: uwsgi-config
+          subPath: uwsgi-resource.yml
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 30
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 30
+      volumes:
+      - name: beat-tmp-volume
+        persistentVolumeClaim:
+          claimName: tmp-volume-claim
+      - name: beat-beehive-volume
+        persistentVolumeClaim:
+          claimName: beehive-volume-claim
+      - configMap:
+          name: resource-config-gh4t92m4mt
+        name: uwsgi-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    environment: mylab
+    name: resource
+    role: uwsgi
+  name: uwsgi-resource-app
+  namespace: beehive-mylab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uwsgi-resource-pod
+      environment: mylab
+  template:
+    metadata:
+      labels:
+        app: uwsgi-resource-pod
+        environment: mylab
+    spec:
+      containers:
+      - command:
+        - uwsgi
+        - --yaml
+        - /etc/uwsgi/uwsgi.yaml
+        env:
+        - name: TZ
+          value: Europe/Rome
+        - name: API_CLUSTER_IP
+          value: $(UWSGI_RESOURCE_CLUSTERIP_SERVICE_HOST)
+        - name: API_ENDPOINT
+          value: http://$(UWSGI_AUTH_CLUSTERIP_SERVICE_HOST):8080
+        - name: API_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        envFrom:
+        - configMapRef:
+            name: env-config-fdc2t74m77
+        image: nivola/cmp
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
+        name: uwsgi-resource
+        ports:
+        - containerPort: 8083
+        volumeMounts:
+        - mountPath: /tmp
+          name: uwsgi-tmp-volume
+        - mountPath: /usr/local/uwsgi/pkgs
+          name: uwsgi-beehive-volume
+        - mountPath: /etc/uwsgi/uwsgi.yaml
+          name: uwsgi-config
+          subPath: uwsgi-resource.yml
+      volumes:
+      - name: uwsgi-tmp-volume
+        persistentVolumeClaim:
+          claimName: tmp-volume-claim
+      - name: uwsgi-beehive-volume
+        persistentVolumeClaim:
+          claimName: beehive-volume-claim
+      - configMap:
+          name: resource-config-gh4t92m4mt
+        name: uwsgi-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    environment: mylab
+    name: resource
+    role: worker
+  name: worker-resource-app
+  namespace: beehive-mylab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker-resource-pod
+      environment: mylab
+  template:
+    metadata:
+      labels:
+        app: worker-resource-pod
+        environment: mylab
+    spec:
+      containers:
+      - command:
+        - /usr/local/uwsgi/pkgs/beehive/beehive/server/task_v2.py
+        - /etc/uwsgi/uwsgi.yaml
+        - 2>&1
+        - '>/tmp/resource.worker.log'
+        env:
+        - name: TZ
+          value: Europe/Rome
+        - name: API_CLUSTER_IP
+          value: $(UWSGI_RESOURCE_CLUSTERIP_SERVICE_HOST)
+        - name: API_ENDPOINT
+          value: http://$(UWSGI_AUTH_CLUSTERIP_SERVICE_HOST):8080
+        - name: API_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        envFrom:
+        - configMapRef:
+            name: env-config-fdc2t74m77
+        image: nivola/cmp
+        #imagePullPolicy: Always
+        imagePullPolicy: Never
+        name: worker-resource
+        volumeMounts:
+        - mountPath: /tmp
+          name: worker-tmp-volume
+        - mountPath: /usr/local/uwsgi/pkgs
+          name: worker-beehive-volume
+        - mountPath: /etc/uwsgi/uwsgi.yaml
+          name: uwsgi-config
+          subPath: uwsgi-resource.yml
+      volumes:
+      - name: worker-tmp-volume
+        persistentVolumeClaim:
+          claimName: tmp-volume-claim
+      - name: worker-beehive-volume
+        persistentVolumeClaim:
+          claimName: beehive-volume-claim
+      - configMap:
+          name: resource-config-gh4t92m4mt
+        name: uwsgi-config

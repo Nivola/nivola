@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: EUPL-1.2
+#
+# (C) Copyright 2018-2022 CSI-Piemonte
+---
+api_system: beehive
+api_subsystem: service
+api_module: 1
+api_module.1: beehive_service.mod.ServiceModule
+api_plugin: 5
+api_plugin.1: ServiceModule,beehive_service.plugins.dummy.DummyPlugin
+api_plugin.2: ServiceModule,beehive_service.plugins.computeservice.ComputeServicePlugin
+api_plugin.3: ServiceModule,beehive_service.plugins.databaseservice.DatabaseServicePlugin
+api_plugin.4: ServiceModule,beehive_service.plugins.storageservice.StorageServicePlugin
+api_plugin.5: ServiceModule,beehive_service_netaas.networkservice.NetworkServicePlugin
+api_catalog: "{{ cmp.catalog }}"
+api_endpoint: "{{ cmp.endpoints.auth }}"
+api_prefix: "{{ cmp.prefix_path }}"
+api_user: "{{ cmp.user }}"
+api_user_password: "{{ cmp.pwd }}"
+db_uri: "mysql+pymysql://service:service@{{ mysql.host }}:{{ mysql.port }}/service"
+db_managers:
+- beehive_service.dao.ServiceDao.ServiceDbManager
+config: []

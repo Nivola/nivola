@@ -1,0 +1,110 @@
+# SPDX-License-Identifier: EUPL-1.2
+#
+# (C) Copyright 2018-2022 CSI-Piemonte
+apiVersion: v1
+kind: Service
+metadata:
+  name: uwsgi-auth-clusterip
+  labels:
+    name: auth
+  namespace: beehive
+spec:
+  type: NodePort
+  #ipFamily: IPv4
+  #clusterIP: 10.96.1.1
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30000
+  selector:
+    app: uwsgi-auth-pod
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: uwsgi-event-clusterip
+  labels:
+    name: event
+  namespace: beehive
+spec:
+  type: NodePort
+  #ipFamily: IPv4
+  #clusterIP: 10.96.1.1
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8081
+      targetPort: 8081
+      nodePort: 30001
+  selector:
+    app: uwsgi-event-pod
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: uwsgi-resource-clusterip
+  labels:
+    name: resource
+  namespace: beehive
+spec:
+  type: NodePort
+  #ipFamily: IPv4
+  #clusterIP: 10.96.1.1
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8083
+      targetPort: 8083
+      nodePort: 30003
+  selector:
+    app: uwsgi-resource-pod
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: uwsgi-service-clusterip
+  labels:
+    name: service
+  namespace: beehive
+spec:
+  type: NodePort
+  #ipFamily: IPv4
+  #clusterIP: 10.96.1.1
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8084
+      targetPort: 8084
+      nodePort: 30004
+  selector:
+    app: uwsgi-service-pod
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: uwsgi-ssh-clusterip
+  labels:
+    name: ssh
+  namespace: beehive
+spec:
+  type: NodePort
+  #ipFamily: IPv4
+  #clusterIP: 10.96.1.1
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8082
+      targetPort: 8082
+      nodePort: 30002
+  selector:
+    app: uwsgi-ssh-pod

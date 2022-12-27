@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: EUPL-1.2
+#
+# (C) Copyright 2018-2022 CSI-Piemonte
+commonLabels:
+  environment: mylab
+namespace: beehive-mylab
+resources:
+  - namespace.yml
+  - beehive-volume.yml
+  - tmp-volume.yml
+  - service.yml

@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: EUPL-1.2
+#
+# (C) Copyright 2018-2022 CSI-Piemonte
+apiVersion: v1
+kind: Service
+metadata:
+  name: haproxy-mariadb-clusterip
+  labels:
+    name: haproxy-mariadb
+  namespace: beehive
+spec:
+  ipFamily: IPv4
+  ports:
+    - name: mariadb
+      protocol: TCP
+      port: 3306
+      targetPort: 3306
+  selector:
+    app: haproxy-mariadb-pod
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: haproxy-stats-clusterip
+  labels:
+    name: haproxy-stats
+  namespace: beehive
+spec:
+  type: NodePort
+  ipFamily: IPv4
+  ports:
+    - name: stats
+      protocol: TCP
+      port: 9000
+      targetPort: 9000
+  selector:
+    app: haproxy-mariadb-pod

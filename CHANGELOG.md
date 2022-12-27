@@ -1,5 +1,135 @@
 # Changelog
 
+## Version 1.12.0
+* Fixed
+  * fixed problem new elastic library
+  * move from library dicttoxml to dict2xml
+  * fixed problem deleting vm
+  * fixed problem on dbinstance: check change type
+
+## Version 1.11.0 (oct 21, 2022)
+
+* Added ...
+    * now compute instance support static ip passed from api
+    * add compute instance host_group openstack: bck and nobck
+    * add field nvl_HostGroup in DescribeInstancesV20 api
+    * add LoggingServiceAPI, MonitoringSpaceServiceAPI, MonitoringInstanceServiceAPI,
+    * add ApiMonitoringService, ApiMonitoringSpace, ApiMonitoringInstance
+* Fixed
+    * fixed problem with default name of logging space
+    * fixed problem with icmp rule in security group
+    * fixed problem with instance host_group when show flavor
+* Integrated ...
+* Various bugfixes
+* Internal Packages updated
+  * beecell 
+  * beedrones 
+  * beehive 
+  * beehive-oauth2 
+  * beehive-resource
+  * beehive-service
+  * beehive-service-netaas 
+  * beehive-ssh 
+  * beehive-ansible 
+  * beehive3-cli
+
+## Version 1.10.0 (feb 11, 2022)
+
+* Added ...
+    * modified now return 404 if core service is not present when getting or modifying account's attributes
+    * add method v2.0/nws/accounts/.../definitions to get which definition are available for the account
+    * add AccountServiceDefinition. Now the Account knows which definition can instantiate
+    * add DatabaseInstanceV2 create method params Nvl_Options.Postgresql_GeoExtension to manage database options
+    * add DatabaseInstanceV2 import api from stack sql v2
+    * add InstanceV2 api with porting of the old v1.0 apis
+    * add InstanceV2 api get console
+    * add VolumeV2 api to manage volume type api update
+    * add ComputeInstanceBackupAPI api to manage backup job, restore points and restore [beta]
+    * add ComputeVolume pre_import method
+    * add ComputeShare label management to get custom svm
+    * extend ComputeShare to support ontap share
+    * add LoggingServiceAPI, LoggingSpaceServiceAPI, LoggingInstanceServiceAPI,
+    * add ApiLoggingService, ApiLoggingSpace, ApiLoggingInstance
+    * add database instance mailx configuration and haproxy registration based on definition config
+    * add model method get_service_definition_by_config
+* Fixed
+    * fixed bug in SecurityGroup set_service_info. It Does not manage icmp sub protocol field
+    * fixed api /v2.0/nws/computeservices/instance/describeinstancetypes to support new account service catalog.
+      Now required filter by account
+    * fixed api /v2.0/nws/databaseservices/instance/describedbinstancetypes to support new account service catalog
+      Now required filter by account
+    * fixed api /v2.0/nws/databaseservices/instance/enginetypes to support new account service catalog
+      Now required filter by account
+    * fixed type check in db instance and compute instance
+    * volume volumetype is read directly from resource
+    * update DBInstanceClass param in api GET. Value is get from resource
+    * update instanceType param in api GET. Value is get from resource
+    * update Share size param in api GET. Value is get from resource
+    * correct bug that blocks old sql stack delete
+* Integrated ...
+    * add ComputeVolume check when delete api is invoked. If volume is in-use error is returned
+    * update capabilities and account capabilities to support account definitions
+* Various bugfixes
+
+## Version 1.9.0 (Jun 11, 2021)
+
+* Added ...
+    * add service instance set config api
+	* add ComputeInstance import
+	* add ComputeInstance create from existing volume
+	* add ComputeInstance api to add/delete/change password to internal user
+	* add ComputeCustomization
+    * add ComputeInstance api rebootinstances
+	* add ComputeInstance api monitorinstances
+	* add ComputeInstance api forwardloginstances
+	* add DatabaseInstance db api describedbinstancedb, createdbinstancedb, deletedbinstancedb
+	* add DatabaseInstance user api describedbinstanceuser, createdbinstanceuser, deletedbinstanceuser,
+	  changedbinstanceuserpassword, grantdbinstanceuserprivileges, revokedbinstanceuserprivileges
+	* add filter by account in ComputeTag api
+* Fixed
+* Integrated ...
+	* add propagation of task error from resource to service
+	* add task field in some api view schemas
+	* add check of subnet type in db instance create. If subnet is public an error was returned
+	* add some check in compute volume attach and detach
+	* add account apis v2.0 with new delete api. Now when delete you can specify if delete all child services  
+* Various bugfixes
+* Internal Packages
+  * beecell 1.8.0
+  * beedrones 1.6.0
+  * beehive 1.10.0
+  * beehive-oauth2 1.2.2  
+  * beehive-resource 1.11.0
+  * beehive-service 1.9.0
+  * beehive-service-netaas 1.1.0
+  * beehive-ssh 1.5.0
+  * beehive-ansible 1.3.0
+  * beehive3-cli 1.8.0
+
+## Version 1.8.2 (Feb 05, 2021)
+
+* Added ...
+  * add new api ping (with sql check), capabilities and version to /v1.0/nas, /v1.0/nes, /v1.0/nws, /v1.0/nrs, /v1.0/gas
+  * add service instance check api
+  * add service instance name validation
+  * add owner propagation from keypair to ssh key  
+* Fixed
+  * removed error propagation that block dbaas instance query
+  * fixed implementation of share delete  
+* Integrated ...
+* Various bugfixes
+* Internal Packages
+  * beecell 1.7.1
+  * beedrones 1.5.1
+  * beehive 1.9.0
+  * beehive-oauth2 1.2.2  
+  * beehive-resource 1.10.0
+  * beehive-service 1.8.0
+  * beehive-service-netaas 1.0.0
+  * beehive-ssh 1.4.0
+  * beehive-ansible 1.3.0
+  * beehive3-cli 1.6.0
+
 ## Version 1.8.1 (Dec 31, 2020)
 
 * Added ...
@@ -12,7 +142,7 @@
   * beehive 1.8.0
   * beehive-oauth2 1.2.2  
   * beehive-resource 1.9.0
-  * beehive-service 1.6.0
+  * beehive-service 1.7.0
   * beehive-service-netaas 1.0.0
   * beehive-ssh 1.3.0
   * beehive-ansible 1.2.0
@@ -44,7 +174,7 @@
   * beehive 1.7.2
   * beehive-oauth2 1.2.2  
   * beehive-resource 1.9.0
-  * beehive-service 1.6.0
+  * beehive-service 1.7.0
   * beehive-service-netaas 1.0.0
   * beehive-ssh 1.3.0
   * beehive-ansible 1.2.0
