@@ -433,7 +433,7 @@ CSI Piemonte - 2018-2022
 Regione Piemonte - 2020-2022
 
 ## License
-See the LICENSE.txt file contained in each specific project for details.
+See the *LICENSE.txt file contained in each specific project for details.
 
 ## Community site (Optional)
 At https://www.nivolapiemonte.it/ could find all the informations about the project.
