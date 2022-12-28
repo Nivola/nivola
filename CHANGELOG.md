@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 1.12.0
+* Fixed
+  * fixed problem new elastic library
+  * move from library dicttoxml to dict2xml
+  * fixed problem deleting vm
+  * fixed problem on dbinstance: check change type
+
 ## Version 1.11.0 (oct 21, 2022)
 
 * Added ...

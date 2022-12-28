@@ -8,7 +8,12 @@ To have a more detailed view of the platform go to:
 
 ## Product and Components
 This project contains the Product **nivola**.
-The product contains some components, you can find a description of each component within its README file:
+
+The nivola project consists of Cloud Management Platform (CMP) and the Nivola Service Portal (NSP)
+
+For information about CMP see the description below.
+
+CMP contains some components, you can find a description of each component within its README file:
 
 * beecell 
 [GitHub](https://github.com/Nivola/beecell)
@@ -28,6 +33,17 @@ The product contains some components, you can find a description of each compone
 [GitHub](https://github.com/Nivola/beehive-ssh)
 * beehive3-cli 
 [GitHub](https://github.com/Nivola/beehive3-cli)
+
+
+The NSP is the portal for customers to set up their own cloud.
+
+It contains some components, you can find a description of each component within its README file:
+* serviceportal-backend 
+[GitHub](https://github.com/Nivola/serviceportal-backend)
+* serviceportal-webres 
+[GitHub](https://github.com/Nivola/serviceportal-webres)
+* serviceportal-db-scripts-utilities 
+[GitHub](https://github.com/Nivola/serviceportal-db-scripts-utilities)
 
 
 ## Installing Cloud Management Platform (CMP)
