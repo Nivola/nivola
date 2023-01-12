@@ -449,6 +449,7 @@ CSI Piemonte - 2018-2022
 Regione Piemonte - 2020-2022
 
 ## License
+The license is EUPL-1.2.
 See the *LICENSE.txt file contained in each specific project for details.
 
 ## Community site (Optional)
