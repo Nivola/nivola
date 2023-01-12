@@ -449,8 +449,8 @@ CSI Piemonte - 2018-2022
 Regione Piemonte - 2020-2022
 
 ## License
-The license is EUPL-1.2.
-See the *LICENSE.txt file contained in each specific project for details.
+The license used to distribute software is EUPL-1.2.
+See also the *LICENSE.txt file contained in this repository and in each specific project for details.
 
 ## Community site (Optional)
 At https://www.nivolapiemonte.it/ could find all the informations about the project.
