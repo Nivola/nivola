@@ -15,34 +15,34 @@ For information about CMP see the description below.
 
 CMP contains some components, you can find a description of each component within its README file:
 
-* beecell 
+* beecell
 [GitHub](https://github.com/Nivola/beecell)
-* beedrones 
+* beedrones
 [GitHub](https://github.com/Nivola/beedrones)
-* beehive 
+* beehive
 [GitHub](https://github.com/Nivola/beehive)
-* beehive-oauth2 
+* beehive-oauth2
 [GitHub](https://github.com/Nivola/beehive-oauth2)
-* beehive-resource 
+* beehive-resource
 [GitHub](https://github.com/Nivola/beehive-resource)
 * beehive-service
 [GitHub](https://github.com/Nivola/beehive-service)
 * beehive-service-netaas
 [GitHub](https://github.com/Nivola/beehive-service-netaas)
-* beehive-ssh 
+* beehive-ssh
 [GitHub](https://github.com/Nivola/beehive-ssh)
-* beehive3-cli 
+* beehive3-cli
 [GitHub](https://github.com/Nivola/beehive3-cli)
 
 
 The NSP is the portal for customers to set up their own cloud.
 
 It contains some components, you can find a description of each component within its README file:
-* serviceportal-backend 
+* serviceportal-backend
 [GitHub](https://github.com/Nivola/serviceportal-backend)
-* serviceportal-webres 
+* serviceportal-webres
 [GitHub](https://github.com/Nivola/serviceportal-webres)
-* serviceportal-db-scripts-utilities 
+* serviceportal-db-scripts-utilities
 [GitHub](https://github.com/Nivola/serviceportal-db-scripts-utilities)
 
 
@@ -56,7 +56,7 @@ Overview of the parts you are going to create:
 ### Prerequisites
 - You must have already downloaded this project __nivola__ and to start the projects beecell, beedrones, beehive in a "workspace" folder
 - Install Docker for building images.
-- You must have the Nivola CLI (shell console) already installed. 
+- You must have the Nivola CLI (shell console) already installed.
 See __beehive3-cli__ project [GitHub](https://github.com/Nivola/beehive3-cli)
 - You must have "minikube" installed (a tool that lets you run a single-node Kubernetes cluster on your personal computer)
 - CMP deployment using the Kubernetes command-line tool, kubectl.
@@ -151,11 +151,11 @@ $ kubectl create -k engine/mylab
 
 ### Build CMP Docker image
 To create the complete CMP Docker image you have also to download the projects:
-* beehive-oauth2 
-* beehive-resource 
-* beehive-service 
-* beehive-service-netaas 
-* beehive-ssh  
+* beehive-oauth2
+* beehive-resource
+* beehive-service
+* beehive-service-netaas
+* beehive-ssh
 
 In deploy directory __nivola/deploy/k8s__ you find dockerfiles.
 Build docker image "nivola/nivola-uwsgi" from your workspace folder:
@@ -180,7 +180,7 @@ docker image build --build-arg GITUSER=<USER> --build-arg GITPWD=<PASSWORD> --ta
 NOTE: image "nivola/cmp" is referenced in k8s files used below.
 
 If you start minikube with --driver=docker
-you can upload image to a docker registry and update references in kubernates files auth/mylab.yml...  
+you can upload image to a docker registry and update references in kubernates files auth/mylab.yml...
 or save your image in a file and then load it in minikube docker:
 ```
 docker save nivola/cmp:latest > $HOME/nivola_cmp_latest.tar
@@ -256,9 +256,9 @@ Assign the ApiSuperAdmin role to the oauth2 client that you use for server to se
 beehive3 auth users add-role client-beehive@local ApiSuperAdmin
 ```
 
-Update the customization files for the various modules by setting the client uuid and the secret.  
-Look in files /deploy/k8s/<COMPONENT>/mylab/mylab.yml at property API_OAUTH2_CLIENT, 
-that you have to set with "UUID : SECRET".  
+Update the customization files for the various modules by setting the client uuid and the secret.
+Look in files /deploy/k8s/<COMPONENT>/mylab/mylab.yml at property API_OAUTH2_CLIENT,
+that you have to set with "UUID : SECRET".
 Client data can be obtained with the command:
 ```
 beehive3 auth oauth2-clients get -id client-beehive
@@ -270,9 +270,9 @@ This component exposes ability to capture and manipulate events
 
 Schema and user creation on db
 ```
-beehive3 platform mysql dbs add event 
-beehive3 platform mysql dbusers add event event 
-beehive3 platform mysql dbusers grant event -db event 
+beehive3 platform mysql dbs add event
+beehive3 platform mysql dbusers add event event
+beehive3 platform mysql dbusers grant event -db event
 ```
 
 Data population on the database and registration of permissions on some entities
@@ -301,12 +301,12 @@ Console api test
 beehive3 auth tokens delete all -y
 beehive3 auth users get
 beehive3 platform cmp logs api
-beehive3 platform cmp logs api-engine auth 
+beehive3 platform cmp logs api-engine auth
 beehive3 platform cmp logs worker-engine auth
-beehive3 platform scheduler tasks test auth 
+beehive3 platform scheduler tasks test auth
 beehive3 platform scheduler tasks get auth
 beehive3 platform scheduler tasks trace auth <task id>
-beehive3 platform scheduler tasks log auth <task id> 
+beehive3 platform scheduler tasks log auth <task id>
 ```
 
 
@@ -337,15 +337,15 @@ kubectl create -f ssh/mylab
 Test deployment.app on the k8s cluster
 ```
 kubectl get pod -n beehive-mylab -o wide
-kubectl describe pod ... -n beehive-mylab 
+kubectl describe pod ... -n beehive-mylab
 kubectl logs ... -n beehive-mylab -f
 ```
 
 Console api test
 ```
-beehive3 ssh node-groups get 
+beehive3 ssh node-groups get
 beehive3 ssh nodes get
-beehive3 ssh node-users get 
+beehive3 ssh node-users get
 beehive3 ssh keys get
 ```
 
@@ -355,9 +355,9 @@ This component expose all the technological and low level orchestration capabili
 
 Schema and user creation on db
 ```
-beehive3 platform mysql dbs add resource 
+beehive3 platform mysql dbs add resource
 beehive3 platform mysql dbusers add resource resource
-beehive3 platform mysql dbusers grant resource -db resource 
+beehive3 platform mysql dbusers grant resource -db resource
 ```
 
 Data population on the database and registration of permissions on some entities
@@ -373,7 +373,7 @@ kubectl create -f resource/mylab
 Test deployment.app on the k8s cluster
 ```
 kubectl get pod -n beehive-mylab -o wide
-kubectl describe pod ... -n beehive-mylab 
+kubectl describe pod ... -n beehive-mylab
 kubectl logs ... -n beehive-mylab -f
 ```
 
@@ -386,20 +386,20 @@ beehive3 platform cmp customize run test/resource/tag
 Console api test
 ```
 beehive3 res entities get
-beehive3 platform scheduler tasks test resource 
+beehive3 platform scheduler tasks test resource
 ```
 
 
 ### Service component creation
-This component exposes all the business and high user level orchestration capabilities.  
-Interact with the resource subsystem.  
+This component exposes all the business and high user level orchestration capabilities.
+Interact with the resource subsystem.
 Expose synchronous and asynchronous capabilities using business process
 
 Schema and user creation on db
 ```
 beehive3 platform mysql dbs add service
-beehive3 platform mysql dbusers add service service 
-beehive3 platform mysql dbusers grant service -db service 
+beehive3 platform mysql dbusers add service service
+beehive3 platform mysql dbusers grant service -db service
 ```
 
 Data population on the database and registration of permissions on some entities
@@ -444,7 +444,7 @@ Current version is: 1.9.0
 See the list of contributors who participated in this project in the file AUTHORS.md contained in each specific project.
 
 ## Copyright
-CSI Piemonte - 2018-2022
+CSI Piemonte - 2018-2023
 
 Regione Piemonte - 2020-2022
 
