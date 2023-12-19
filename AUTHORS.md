@@ -1,10 +1,14 @@
 nivola is written and maintained by:
 
-* Sergio Tonani
-* Michele Bello
-* Gianni Doria
+* Ahmad Nazha
+* Alessandro Morè
 * Davide Sacchetto
 * Felice Cipriani
 * Filippo Vallero
-* Ignazio Cassano
+* Franco Frattini
+* Gianni Doria
 * Gianpiero Ardissono
+* Ignazio Cassano
+* Michele Bello
+* Pietro Pilolli
+* Sergio Tonani

@@ -1,5 +1,97 @@
 # Changelog
 
+## Version  1.15.1
+* Fixed
+  * Correzione bug vari
+* Added
+  * Audit Log CMP
+  * Tracciatura degli accessi alle vm CMP dalle CLI in esecuzione sulle console di amministrazione
+  * Revisione load balancer
+
+
+## Version  1.15.0
+* Fixed
+* Added
+  * Nuovi servizi di definizione soglie ed alert (as-a-service)
+  * Gestione eventi - log
+    * Tracciamento user agent nelle chiamate alle API per distinguere chiamate dalla CLI (con versione utilizzata), batch schedulati, Service Portal
+    * Configurazione su Kibana: creato space Csi.nivola.event per visualizzare dati chiamate alle API CMP
+  * Compute Service
+    * Service Importazione di volumi presenti a livello resource ma assenti a livello business, per maggiori dettagli: $ beehive bu cpaas volumes load -h
+  * Monitoring service:
+    * Rilascio servizio per la gestione degli alert [BETA]
+    * Monitoring service: Dashboard “Template” di Grafana importate in resource per evitare modifiche al layout non intenzionali, per successiva copia
+  * Network Service
+    * Creazione, import e cancellazione load balancer in ambiente private
+    * Abilitazione quote load balancer
+  * Resource
+    * Importazione dei project volume openstack mancanti e collegamento con project server: $ beehive res-openstack server-patch -h
+    * Importazione di compute volume e creazione dei link tra compute volume e project volume e collegamento tra compute instance e compute volume: $ beehive res-provider instance-patch
+    * Extend di un ComputeVolume agganciato a una ComputeInstance: $ beehive res-openstack server-patch -h
+    * In vsphere il comando funziona senza dover spegnere la vm, su openstack è necessario preventivamente spegnere la vm; nel caso sia accesa e si lancia il comando la cli lo segnala.
+
+
+## Version  1.14.1
+* Fixed
+  *	High	Bug	NPC-986	Durante la creazione degli account i ruoli creati mancano dei permessi su ApiMethod
+  * High	Improvement	NPC-988	Max 2 core_per_socket in vm vsphere
+  * Medium	Bug	NPC-985	Errore in calcellazione vm vmware quando le vm hanno volumi con ext _id posizionale e non con object id univoco vmwareo
+  * Medium	Bug	NPC-987	Nei log della cmp compaiono informazioni riservate
+* Added
+
+## Version  1.14.0
+* Fixed
+* Added
+  * Network Service - Load Balancer
+  * Network Service - SSH gateway
+  * modificare impostazioni di sicurezza in modo che sia possibile accedere alle console
+  * apertura delle console delle vm da internet
+  * aggiunta di 2 nodi al mariadb galera cluster sul podto1
+  * Compute Service - Compute instance - gestione backup server vsphere
+  * API Service	Unassigned	RESOLVED
+  * Creazione sessione con un subset dei permessi disponibili all'utente (un ruolo)
+  * Automazione installazione zabbix agent su vm Windows
+    * Gestione dei permessi per singolo metodo
+  * Gestione Sessione
+    * Possibilità di ridurre  i permessi della sessione attiva ad un sottoinsieme dei permessi dell’utente.
+    * Possibilità di ridurre i permessi della sessione attiva  ai soli permessi di un ruolo
+  * Funzioni di business
+    * Gestione sessione
+      * Possibilità di ridurre i permessi della sessione attiva ai soli permessi necessari ad amministrare un Account
+      * Possibilità di ridurre i permessi della sessione attiva ai soli permessi necessari a vedere un Account
+      * Possibilità di ridurre i permessi della sessione attiva ai soli permessi necessari ad operare su di un Account
+  * Monitoring Service
+    * Automazione installazione zabbix agent su vm Windows
+  * Network Service
+    * Import load balancer
+    * Creazione, cancellazione, “attivazione” ssh gateway configuration
+  * Compute Service
+    * Ottimizzazione in termini di tempo nell’ottenere la lista delle vm per account
+  * Funzioni di orchestrazione
+  * Backup
+    * Integrazione con Veeam
+  * VsphereServerHardware Supporto di 64 volumi per bus scsi se nella vm è preinstallato virtual hardware di una versione superiore alla 14. Nel caso di virtual hardware inferiore alla 14 quando si aggancia il sedicesimo volume dice che non può montare il volume e suggerisce di aggiornare manualmente virtual hardware
+  * VsphereServerHardware Spegnimento a freddo; ora il sistema operativo chiudere i processi e smonta i dischi prima della terminazione delle vm
+  * VsphereServerHardware Possibilità di estendere volumi vsphere da cli attraverso comando res-provider
+
+
+## Version 1.13.1R
+
+* Fixed
+  * 	Bug	NPC-964	la modifica di una imagine non supporta il parametro customization_spec_name	DORIA Gianni 72386	CLOSED
+  * 	Bug	NPC-973	Errore in creazione Oracle 12EE	SACCHETTO Davide 2162	CLOSED
+  * 	Bug	NPC-974	Consumi da Sanare	VALLERO Filippo 73338	CLOSED
+  * 	Bug	NPC-976	modifica delle configurazione di risorse e servizi forza i valori a stringa	Unassigned	CLOSED
+* Added
+  *	Improvement	NPC-972	Creazione di volumi su vm Vsphere oltre il 16esimo fino al 64esimo.	PILOLLI Pietro 74008	CLOSED
+
+## Version 1.13.0
+* Fixed
+  *	Revision of Openstack snapshot without usinig Volume Group
+  * Some errors while creating dbaas postgres 12.4
+
+
+
 ## Version 1.12.0
 * Fixed
   * fixed problem new elastic library
@@ -22,15 +114,15 @@
 * Integrated ...
 * Various bugfixes
 * Internal Packages updated
-  * beecell 
-  * beedrones 
-  * beehive 
-  * beehive-oauth2 
+  * beecell
+  * beedrones
+  * beehive
+  * beehive-oauth2
   * beehive-resource
   * beehive-service
-  * beehive-service-netaas 
-  * beehive-ssh 
-  * beehive-ansible 
+  * beehive-service-netaas
+  * beehive-ssh
+  * beehive-ansible
   * beehive3-cli
 
 ## Version 1.10.0 (feb 11, 2022)
@@ -92,13 +184,13 @@
 	* add task field in some api view schemas
 	* add check of subnet type in db instance create. If subnet is public an error was returned
 	* add some check in compute volume attach and detach
-	* add account apis v2.0 with new delete api. Now when delete you can specify if delete all child services  
+	* add account apis v2.0 with new delete api. Now when delete you can specify if delete all child services
 * Various bugfixes
 * Internal Packages
   * beecell 1.8.0
   * beedrones 1.6.0
   * beehive 1.10.0
-  * beehive-oauth2 1.2.2  
+  * beehive-oauth2 1.2.2
   * beehive-resource 1.11.0
   * beehive-service 1.9.0
   * beehive-service-netaas 1.1.0
@@ -112,17 +204,17 @@
   * add new api ping (with sql check), capabilities and version to /v1.0/nas, /v1.0/nes, /v1.0/nws, /v1.0/nrs, /v1.0/gas
   * add service instance check api
   * add service instance name validation
-  * add owner propagation from keypair to ssh key  
+  * add owner propagation from keypair to ssh key
 * Fixed
   * removed error propagation that block dbaas instance query
-  * fixed implementation of share delete  
+  * fixed implementation of share delete
 * Integrated ...
 * Various bugfixes
 * Internal Packages
   * beecell 1.7.1
   * beedrones 1.5.1
   * beehive 1.9.0
-  * beehive-oauth2 1.2.2  
+  * beehive-oauth2 1.2.2
   * beehive-resource 1.10.0
   * beehive-service 1.8.0
   * beehive-service-netaas 1.0.0
@@ -140,7 +232,7 @@
   * beecell 1.7.0
   * beedrones 1.5.0
   * beehive 1.8.0
-  * beehive-oauth2 1.2.2  
+  * beehive-oauth2 1.2.2
   * beehive-resource 1.9.0
   * beehive-service 1.7.0
   * beehive-service-netaas 1.0.0
@@ -159,11 +251,11 @@
     * added ApiComputeInstance action to add/remove/revert snapshots
     * added ApiServiceDefinition field config in update api
     * add resource entity api to clean cache
-* Fixed 
+* Fixed
 	* some minor fixed in schema fields definitions in order to get better swagger descriptions
 	* api oid field declaration for post services with {oid} in path
 * Integrated ...
-    * added ApiStorageEFS api param PerformanceMode used to manage share based on netapp and new share base on local 
+    * added ApiStorageEFS api param PerformanceMode used to manage share based on netapp and new share base on local
       openstack server
 * Various bugfixes
     * apply patch to method ApiComputeSecurityGroup.get_rule_info_params
@@ -172,7 +264,7 @@
   * beecell 1.6.1
   * beedrones 1.4.2
   * beehive 1.7.2
-  * beehive-oauth2 1.2.2  
+  * beehive-oauth2 1.2.2
   * beehive-resource 1.9.0
   * beehive-service 1.7.0
   * beehive-service-netaas 1.0.0
@@ -205,7 +297,7 @@
   * beecell 1.6.1
   * beedrones 1.4.0
   * beehive 1.7.0
-  * beehive-oauth2 1.2.2  
+  * beehive-oauth2 1.2.2
   * beehive-resource 1.8.0
   * beehive-service 1.6.0
   * beehive-ssh 1.3.0
@@ -222,7 +314,7 @@
   * beecell 1.6.0
   * beedrones 1.3.0
   * beehive 1.6.0
-  * beehive-oauth2 1.2.0  
+  * beehive-oauth2 1.2.0
   * beehive-resource 1.6.0
   * beehive-service 1.5.0
   * beehive-ssh 1.2.0
@@ -240,7 +332,7 @@
   * beecell 1.5.0
   * beedrones 1.3.0
   * beehive 1.5.0
-  * beehive-oauth2 1.2.0  
+  * beehive-oauth2 1.2.0
   * beehive-resource 1.6.0
   * beehive-service 1.5.0
   * beehive-ssh 1.2.0
@@ -257,7 +349,7 @@
   * beecell 1.4.0
   * beedrones 1.2.0
   * beehive 1.4.0
-  * beehive-oauth2 1.1.0  
+  * beehive-oauth2 1.1.0
   * beehive-resource 1.5.0
   * beehive-service 1.4.0
   * beehive-ssh 1.1.0
@@ -274,7 +366,7 @@
   * beecell 1.3.0
   * beedrones 1.1.0
   * beehive 1.3.0
-  * beehive-oauth2 1.0.0  
+  * beehive-oauth2 1.0.0
   * beehive-resource 1.4.0
   * beehive-service 1.3.0
   * beehive-ssh 1.0.0
@@ -291,7 +383,7 @@
   * beecell 1.2.0
   * beedrones 1.1.0
   * beehive 1.2.0
-  * beehive-oauth2 1.0.0  
+  * beehive-oauth2 1.0.0
   * beehive-resource 1.3.0
   * beehive-service 1.2.0
   * beehive-ssh 1.0.0
@@ -308,12 +400,12 @@
   * beecell 1.1.0
   * beedrones 1.1.0
   * beehive 1.1.0
-  * beehive-oauth2 1.0.0  
+  * beehive-oauth2 1.0.0
   * beehive-resource 1.2.0
   * beehive-service 1.1.0
   * beehive-ssh 1.0.0
   * beehive-mgmt 1.0.0
-  * beehive-cli 1.1.0 
+  * beehive-cli 1.1.0
 
 ## Version 1.0 (July 31 2018)
 
@@ -332,4 +424,4 @@ First release.
   * beehive-service 1.0.0
   * beehive-ssh 1.0.0
   * beehive-mgmt 1.0.0
-  * beehive-cli 1.0.0  
+  * beehive-cli 1.0.0
