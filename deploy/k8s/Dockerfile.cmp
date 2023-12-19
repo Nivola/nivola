@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: EUPL-1.2
 #
-# (C) Copyright 2018-2022 CSI-Piemonte
+# (C) Copyright 2018-2023 CSI-Piemonte
 FROM nivola/nivola-uwsgi
 
 ARG GITUSER=''
@@ -56,7 +56,7 @@ RUN mkdir -p /usr/local/uwsgi/pkgs && \
     #cd $PYTHONPATH && pip3 install beehive-resource/  && \
     #cd $PYTHONPATH && pip3 install beehive-ssh/
     pip3 install uWSGI==2.0.20
-    
+
 # uncomment if you don't install projects
 ENV PYTHONPATH $PYTHONPATH/beehive:$PYTHONPATH/beecell:$PYTHONPATH/beedrones:$PYTHONPATH/beehive-oauth2:\
 $PYTHONPATH/beehive-service:$PYTHONPATH/beehive-service-netaas:$PYTHONPATH/beehive-resource:$PYTHONPATH/beehive-ssh
