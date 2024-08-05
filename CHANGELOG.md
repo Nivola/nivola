@@ -1,5 +1,165 @@
 # Changelog
 
+## version 1.16.5
+* Fixed
+  - Rilascio Ip su vsphere: l' ip  non era rilasciarto se l'est_id il server Vsphere era None or inesistente
+  - Verifica su tipi boolean
+  - flavor in pre-import per vms con più di una cpu
+* Added
+  - log nel metodo delete rule
+  - refactoring delle regole dfw di vsphere
+  - Verifiche su tipi boolean
+
+  - grafana: supporto a version 11 gestiti errori e warning
+  - rivista alcuni alert relativi alla confogurazione monitoraggio
+* Impruved
+  - chiarezzi dei messaggi di errore quando l'immagine non esiste nella zona (pod) cercata
+
+
+## version 1.16.4
+* Fixed
+  - creazione dbaas scelta dell'ìinterprete python usando i template e la versione del  DB
+  -  uuid mancante dopo aggiornamento account
+
+## version 1.16.3
+* Added
+  - Enabled server actions (e.g. change flavor) on SQLServer engine
+  - versione completa e metadata nel metodo db engines list
+* Changed:
+    - DNS_TTL
+* Fixed
+  - regressione nella aggiornamento di db-instances update
+
+## version 1.16.2
+* Fixed
+  - fix install_zabbix_proxy
+
+## version 1.16.1
+* Fixed
+  - descovering and configure of zabbix proxy
+  - zabbix uri without port (if port is not present in conf)
+  - manage image default min_ram_size while creating servers
+  - ripristanata firma precedente per copatibilà backward
+  - errori legati alla lunchezza del nome del server
+  - verifica dei permessi relativi alle definizioni usate nella creazione di un dbaas
+* Added
+  - aggiunti attributi espliciti negli account per modello di gestione, zone(pods) di deploy, e modello di rete
+  - verifica della coerenza delle capability rispetto agli attributi dell'account
+  - espsoto metodo di verifica dell'Account
+  - gerstione vista per esporre consumi a livello di servizio
+
+
+
+## Version 1.16.0
+
+* Added ...
+  - Chisura degli account: aggiunto parametro  "close_account"  pagli account chisi prima ed invece della cancellazione
+  - Account operator e Ruolo Account operator mancanti
+  - Clonazione su vsphere
+  - get account deleted, Account is_active
+  - get node password
+  - rivisti metiodi per il cloning
+  - Commentato codice obsolete
+  - sync user revert per Grafana
+  - update swagger users
+  - sync_users con nuovo campo ldap di user
+  - dbaas: check min_ram_size creating db
+  - vsphere clone with instanceId of source VM
+  - Fix check on last snapshot @see https://jira.csi.it/browse/NSP-2895
+  - service metric: type hint, log
+  - private cload network using vsphere_only
+  - blacked
+  - headers updated
+  - Debian 11 support
+  - vsphere customization
+  - vsphere clone
+  - mariadb: fix task path
+  - more robust waiting customization; this has been ported on platform, use vim and vsphere api from resource
+    it goes against our layered architecture
+* Fixed
+  - clone swagger definition fix
+  - fix log sync user if ldap is none
+  - fix delete account: expiry date, active
+  - fix wrong permission objid that resulted in error while creating account
+  - user with taxcode
+  - username and password
+  - fix ubuntu: username get from ssh (ubuntu or root)
+  - LB: add check for multiple uplink vnics
+  - Correct lb import bug
+  - Fix ssh authorized_keys in right location for non root users
+  - Fix lb issue occurring when site-network is passed by name
+  - bastion: fix delete if some data aren't present
+  - links: find by objid
+  - better logging for edge cases detection when wrong parent id
+  - fix grafana sync user fornitori, fix cache resource not active
+  - clone: minor
+  - clone: add some comments
+  - minor
+  - clone patchset to use real admin user
+  - fix username in ssh node
+  - wip clone
+  - vpshere clone, this step is not needed
+  - fix new server instance
+  - inst new
+  - redis eliminate righe commentate
+  - clone add ext_id to volume resource
+  - Fix prvious commit
+  - fix race condition on server creation; after a create MUST wait guest tool; this run after the startup of vm
+  - fix wait for customization implementation; the old one continue to loop if the customization failed
+  - server_event_exist
+  - ssh and password
+  - clone funzionante stessa zona
+  - hostname for server
+  - clone on same zone
+  - openstack: check connection valid
+  - Errori vari
+  - alcuni branch rinominati
+  - fix bug nel  token openstack
+  - verifiche vsphere template server
+  - Aggiornato changelog
+  - Aggiornati autori using git shortlog
+  - blacked files resi compiant pep8
+  - aggiornameto headers
+  - NPC-1011 - fix escaping range cidr in like condition e.g. %32 ->  \\\\/32
+
+
+
+## Version v.1.15.3
+
+* Added ...
+  - Funzinalità per aggiornaere progetti awx ad una customazation esistente
+  - aggiunte nove metriche: vm_power_on, db_<engine>_power_on
+  - supporto per mariadb
+
+
+* Fixed ...
+  - backup dei nuovi pods - gestione dell'errore no orchestrators found
+  - customization: aggiornati o rimosse codice temporaneo inserito per gestione di nuovi pod
+  - type hint: ResourceCache
+  - verificate aggiornamenti ComputeFlavor
+  - Computeflavor.pre_update
+  - restore point: default response
+  - Veeam reuse connection token, aggiunta debug log
+  - private cloud: vsphere only
+  - mariadb: utilizzate variabili e nomi job parlanti
+  - image: check pre_delete, param "min_ram_size"
+  - update image: change msg error
+  - fix insert/update image
+  - vsphere template server check
+  - See merge request nivola/cmp2/beehive-resource!6
+  - vsphere template server check
+  - fix CreateCustomizationAwxProjectRequestSchema
+  - MariaDB Added new classes
+  - Ssh gateway remove log
+  - Vpc: commentato orchestrator_select_types
+  - AvailabilityZone: orchestrator_select_types while creating in creazione e per get hypervisor, commentato altrove
+  - fix msg applied_customization: Ansible connection with winrm is not supported through bastion
+  - bugfix NPC-1009 NSP-1337
+  - NPC-1009 NSP-1337 fix totale sbagliato dopo applicazione filtro objdef
+  - type hint: vpc get proxy
+  - Afggiornato manifest
+
+
 ## Version  1.15.1
 * Fixed
   * Correzione bug vari
