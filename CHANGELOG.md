@@ -1,64 +1,63 @@
 # Changelog
 
-## version 1.16.5
-* Fixed
-  - Rilascio Ip su vsphere: l' ip  non era rilasciarto se l'est_id il server Vsphere era None or inesistente
-  - Verifica su tipi boolean
+## versione 1.16.5
+* Risolto
+  - Rilascio Ip su vsphere: l'ip non era rilasciato se l'est_id il server Vsphere era None or inesistente
+  - Verifica su tipi booleano
   - flavor in pre-import per vms con più di una cpu
-* Added
+* Aggiunto
   - log nel metodo delete rule
   - refactoring delle regole dfw di vsphere
-  - Verifiche su tipi boolean
+  - Verifiche su tipi booleano
+  - grafana: supporto a versione 11 gestiti errori e warning
+  - rivista alcuni alert relativi alla configurazione monitoraggio
+* Migliorato
+  - messaggio di errore quando l'immagine non esiste nella zona (pod) cercata
 
-  - grafana: supporto a version 11 gestiti errori e warning
-  - rivista alcuni alert relativi alla confogurazione monitoraggio
-* Impruved
-  - chiarezzi dei messaggi di errore quando l'immagine non esiste nella zona (pod) cercata
 
-
-## version 1.16.4
-* Fixed
-  - creazione dbaas scelta dell'ìinterprete python usando i template e la versione del  DB
+## versione 1.16.4
+* Risolto
+  - creazione dbaas scelta del'interprete python usando i template e la versione del  DB
   -  uuid mancante dopo aggiornamento account
 
-## version 1.16.3
-* Added
+## versione 1.16.3
+* Aggiunto
   - Enabled server actions (e.g. change flavor) on SQLServer engine
   - versione completa e metadata nel metodo db engines list
-* Changed:
+* Migliorato:
     - DNS_TTL
-* Fixed
+* Risolto
   - regressione nella aggiornamento di db-instances update
 
-## version 1.16.2
-* Fixed
+## versione 1.16.2
+* Risolto
   - fix install_zabbix_proxy
 
-## version 1.16.1
-* Fixed
+## versione 1.16.1
+* Risolto
   - descovering and configure of zabbix proxy
   - zabbix uri without port (if port is not present in conf)
   - manage image default min_ram_size while creating servers
-  - ripristanata firma precedente per copatibilà backward
-  - errori legati alla lunchezza del nome del server
+  - ripristinata firma precedente per compatibilità backward
+  - errori legati alla lunghezza del nome del server
   - verifica dei permessi relativi alle definizioni usate nella creazione di un dbaas
-* Added
+* Aggiunto
   - aggiunti attributi espliciti negli account per modello di gestione, zone(pods) di deploy, e modello di rete
-  - verifica della coerenza delle capability rispetto agli attributi dell'account
-  - espsoto metodo di verifica dell'Account
-  - gerstione vista per esporre consumi a livello di servizio
+  - verifica della coerenza delle capability rispetto agli attributi del'account
+  - esposto metodo di verifica del'Account
+  - gestione vista per esporre consumi a livello di servizio
 
 
 
 ## Version 1.16.0
 
-* Added ...
-  - Chisura degli account: aggiunto parametro  "close_account"  pagli account chisi prima ed invece della cancellazione
+* Aggiunto ...
+  - Chiusura degli account: aggiunto parametro  "close_account"  pagli account chiusi prima ed invece della cancellazione
   - Account operator e Ruolo Account operator mancanti
   - Clonazione su vsphere
   - get account deleted, Account is_active
   - get node password
-  - rivisti metiodi per il cloning
+  - rivisti metodi per il cloning
   - Commentato codice obsolete
   - sync user revert per Grafana
   - update swagger users
@@ -67,7 +66,7 @@
   - vsphere clone with instanceId of source VM
   - Fix check on last snapshot @see https://jira.csi.it/browse/NSP-2895
   - service metric: type hint, log
-  - private cload network using vsphere_only
+  - private cloud network using vsphere_only
   - blacked
   - headers updated
   - Debian 11 support
@@ -76,7 +75,7 @@
   - mariadb: fix task path
   - more robust waiting customization; this has been ported on platform, use vim and vsphere api from resource
     it goes against our layered architecture
-* Fixed
+* Risolto
   - clone swagger definition fix
   - fix log sync user if ldap is none
   - fix delete account: expiry date, active
@@ -126,13 +125,13 @@
 
 ## Version v.1.15.3
 
-* Added ...
+* Aggiunto ...
   - Funzinalità per aggiornaere progetti awx ad una customazation esistente
   - aggiunte nove metriche: vm_power_on, db_<engine>_power_on
   - supporto per mariadb
 
 
-* Fixed ...
+* Risolto ...
   - backup dei nuovi pods - gestione dell'errore no orchestrators found
   - customization: aggiornati o rimosse codice temporaneo inserito per gestione di nuovi pod
   - type hint: ResourceCache
@@ -149,7 +148,7 @@
   - See merge request nivola/cmp2/beehive-resource!6
   - vsphere template server check
   - fix CreateCustomizationAwxProjectRequestSchema
-  - MariaDB Added new classes
+  - MariaDB Aggiunto new classes
   - Ssh gateway remove log
   - Vpc: commentato orchestrator_select_types
   - AvailabilityZone: orchestrator_select_types while creating in creazione e per get hypervisor, commentato altrove
@@ -161,17 +160,17 @@
 
 
 ## Version  1.15.1
-* Fixed
+* Risolto
   * Correzione bug vari
-* Added
+* Aggiunto
   * Audit Log CMP
   * Tracciatura degli accessi alle vm CMP dalle CLI in esecuzione sulle console di amministrazione
   * Revisione load balancer
 
 
 ## Version  1.15.0
-* Fixed
-* Added
+* Risolto
+* Aggiunto
   * Nuovi servizi di definizione soglie ed alert (as-a-service)
   * Gestione eventi - log
     * Tracciamento user agent nelle chiamate alle API per distinguere chiamate dalla CLI (con versione utilizzata), batch schedulati, Service Portal
@@ -192,16 +191,16 @@
 
 
 ## Version  1.14.1
-* Fixed
+* Risolto
   *	High	Bug	NPC-986	Durante la creazione degli account i ruoli creati mancano dei permessi su ApiMethod
   * High	Improvement	NPC-988	Max 2 core_per_socket in vm vsphere
   * Medium	Bug	NPC-985	Errore in calcellazione vm vmware quando le vm hanno volumi con ext _id posizionale e non con object id univoco vmwareo
   * Medium	Bug	NPC-987	Nei log della cmp compaiono informazioni riservate
-* Added
+* Aggiunto
 
 ## Version  1.14.0
-* Fixed
-* Added
+* Risolto
+* Aggiunto
   * Network Service - Load Balancer
   * Network Service - SSH gateway
   * modificare impostazioni di sicurezza in modo che sia possibile accedere alle console
@@ -237,23 +236,23 @@
 
 ## Version 1.13.1R
 
-* Fixed
+* Risolto
   * 	Bug	NPC-964	la modifica di una imagine non supporta il parametro customization_spec_name	DORIA Gianni 72386	CLOSED
   * 	Bug	NPC-973	Errore in creazione Oracle 12EE	SACCHETTO Davide 2162	CLOSED
   * 	Bug	NPC-974	Consumi da Sanare	VALLERO Filippo 73338	CLOSED
   * 	Bug	NPC-976	modifica delle configurazione di risorse e servizi forza i valori a stringa	Unassigned	CLOSED
-* Added
+* Aggiunto
   *	Improvement	NPC-972	Creazione di volumi su vm Vsphere oltre il 16esimo fino al 64esimo.	PILOLLI Pietro 74008	CLOSED
 
 ## Version 1.13.0
-* Fixed
+* Risolto
   *	Revision of Openstack snapshot without usinig Volume Group
   * Some errors while creating dbaas postgres 12.4
 
 
 
 ## Version 1.12.0
-* Fixed
+* Risolto
   * fixed problem new elastic library
   * move from library dicttoxml to dict2xml
   * fixed problem deleting vm
@@ -261,13 +260,13 @@
 
 ## Version 1.11.0 (oct 21, 2022)
 
-* Added ...
+* Aggiunto ...
     * now compute instance support static ip passed from api
     * add compute instance host_group openstack: bck and nobck
     * add field nvl_HostGroup in DescribeInstancesV20 api
     * add LoggingServiceAPI, MonitoringSpaceServiceAPI, MonitoringInstanceServiceAPI,
     * add ApiMonitoringService, ApiMonitoringSpace, ApiMonitoringInstance
-* Fixed
+* Risolto
     * fixed problem with default name of logging space
     * fixed problem with icmp rule in security group
     * fixed problem with instance host_group when show flavor
@@ -287,7 +286,7 @@
 
 ## Version 1.10.0 (feb 11, 2022)
 
-* Added ...
+* Aggiunto ...
     * modified now return 404 if core service is not present when getting or modifying account's attributes
     * add method v2.0/nws/accounts/.../definitions to get which definition are available for the account
     * add AccountServiceDefinition. Now the Account knows which definition can instantiate
@@ -304,7 +303,7 @@
     * add ApiLoggingService, ApiLoggingSpace, ApiLoggingInstance
     * add database instance mailx configuration and haproxy registration based on definition config
     * add model method get_service_definition_by_config
-* Fixed
+* Risolto
     * fixed bug in SecurityGroup set_service_info. It Does not manage icmp sub protocol field
     * fixed api /v2.0/nws/computeservices/instance/describeinstancetypes to support new account service catalog.
       Now required filter by account
@@ -325,7 +324,7 @@
 
 ## Version 1.9.0 (Jun 11, 2021)
 
-* Added ...
+* Aggiunto ...
     * add service instance set config api
 	* add ComputeInstance import
 	* add ComputeInstance create from existing volume
@@ -338,7 +337,7 @@
 	* add DatabaseInstance user api describedbinstanceuser, createdbinstanceuser, deletedbinstanceuser,
 	  changedbinstanceuserpassword, grantdbinstanceuserprivileges, revokedbinstanceuserprivileges
 	* add filter by account in ComputeTag api
-* Fixed
+* Risolto
 * Integrated ...
 	* add propagation of task error from resource to service
 	* add task field in some api view schemas
@@ -360,12 +359,12 @@
 
 ## Version 1.8.2 (Feb 05, 2021)
 
-* Added ...
-  * add new api ping (with sql check), capabilities and version to /v1.0/nas, /v1.0/nes, /v1.0/nws, /v1.0/nrs, /v1.0/gas
+* Aggiunto ...
+  * add new api ping (with sql check), capabilities and versione to /v1.0/nas, /v1.0/nes, /v1.0/nws, /v1.0/nrs, /v1.0/gas
   * add service instance check api
   * add service instance name validation
   * add owner propagation from keypair to ssh key
-* Fixed
+* Risolto
   * removed error propagation that block dbaas instance query
   * fixed implementation of share delete
 * Integrated ...
@@ -384,8 +383,8 @@
 
 ## Version 1.8.1 (Dec 31, 2020)
 
-* Added ...
-* Fixed
+* Aggiunto ...
+* Risolto
 * Integrated ...
 * Various bugfixes
 * Internal Packages
@@ -402,7 +401,7 @@
 
 ## Version 1.8 (Oct 23, 2020)
 
-* Added ...
+* Aggiunto ...
     * add sql_stack_v2 with sql stack based on stack_v2
     * added dbaas api v2.0. Class ApiDatabaseServiceInstance was replaced with ApiDatabaseServiceInstanceV2
         * engine supported: mysql, postgresql, oracle, sqlserver
@@ -411,7 +410,7 @@
     * added ApiComputeInstance action to add/remove/revert snapshots
     * added ApiServiceDefinition field config in update api
     * add resource entity api to clean cache
-* Fixed
+* Risolto
 	* some minor fixed in schema fields definitions in order to get better swagger descriptions
 	* api oid field declaration for post services with {oid} in path
 * Integrated ...
@@ -434,7 +433,7 @@
 
 ## Version 1.7 (Jun 21, 2020)
 
-* Added
+* Aggiunto
   * Architectural change
     * Porting of code to python 3.7.x
     * beehive shell console was rewritten in python 3.7.x using cement 3 and included in package beehive3_cli
@@ -449,7 +448,7 @@
     * Volume management from business service
   * New package
     * package beehive-mgmt was replaced by beehive-ansible
-* Fixed
+* Risolto
   * Revisione of openapi schema after python requirements update
 * Integrated
 * Various bugfixes
@@ -466,8 +465,8 @@
 
 ## Version 1.6 (Dec 24, 2019)
 
-* Added
-* Fixed
+* Aggiunto
+* Risolto
 * Integrated
 * Various bugfixes
 * Internal Packages
@@ -484,8 +483,8 @@
 
 ## Version 1.5 (Sep 04, 2019)
 
-* Added
-* Fixed
+* Aggiunto
+* Risolto
 * Integrated
 * Various bugfixes
 * Internal Packages
@@ -501,8 +500,8 @@
 
 ## Version 1.4 (May 24, 2019)
 
-* Added
-* Fixed
+* Aggiunto
+* Risolto
 * Integrated
 * Various bugfixes
 * Internal Packages
@@ -518,8 +517,8 @@
 
 ## Version 1.3 (February 27, 2019)
 
-* Added
-* Fixed
+* Aggiunto
+* Risolto
 * Integrated
 * Various bugfixes
 * Internal Packages
@@ -535,8 +534,8 @@
 
 ## Version 1.2 (February 01, 2019)
 
-* Added
-* Fixed
+* Aggiunto
+* Risolto
 * Integrated
 * Various bugfixes
 * Internal Packages
@@ -552,8 +551,8 @@
 
 ## Version 1.1 (January 13, 2019)
 
-* Added
-* Fixed
+* Aggiunto
+* Risolto
 * Integrated
 * Various bugfixes
 * Internal Packages
@@ -571,8 +570,8 @@
 
 First release.
 
-* Added
-* Fixed
+* Aggiunto
+* Risolto
 * Integrated
 * Various bugfixes
 * Internal Packages
