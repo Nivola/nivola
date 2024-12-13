@@ -444,13 +444,12 @@ Current version is: 1.9.0
 See the list of contributors who participated in this project in the file AUTHORS.md contained in each specific project.
 
 ## Copyright
-CSI Piemonte - 2018-2023
+CSI Piemonte - 2018-2024
 
 Regione Piemonte - 2020-2022
 
 ## License
-The license used to distribute software is EUPL-1.2.
-See also the *LICENSE.txt file contained in this repository and in each specific project for details.
+See EUPL v1_2 EN-LICENSE.txt or EUPL v1_2 IT-LICENSE.txt file for details
 
 ## Community site (Optional)
 At https://www.nivolapiemonte.it/ could find all the informations about the project.

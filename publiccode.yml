@@ -1,4 +1,4 @@
-﻿# This repository adheres to the publiccode.yml standard by including this 
+﻿# This repository adheres to the publiccode.yml standard by including this
 # metadata file that makes public software easily discoverable.
 # More info at https://github.com/italia/publiccode.yml
 
@@ -6,8 +6,8 @@ publiccodeYmlVersion: '0.2'
 name: Nivola
 url: 'https://github.com/Nivola/nivola.git'
 landingURL: 'https://github.com/nivola'
-softwareVersion: '1.15.0'
-releaseDate: '2023-12-20'
+softwareVersion: '1.11'
+releaseDate: '2022-10-21'
 logo: img/logo.png
 inputTypes:
   - application/json
