@@ -5,7 +5,7 @@ apiVersion: v1
 data:
   API_CATALOG: beehive-internal
   API_ENV: mylab
-  API_FERNET_KEY: 3_k6xV77qhnuiRCKdCcwjIxUUHwPemQgLW3j_NdSVb8=
+  API_FERNET_KEY: xxxkey
   API_LOG: /tmp/
   # API_OAUTH2_CLIENT = UUID : SECRET
   API_OAUTH2_CLIENT: 0d1e4043-751e-4bc7-95d8-e95dd1202367:RD79QYeC5eIgyihrjCGzUm66JypTBXklxOnN9rNj
