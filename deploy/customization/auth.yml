@@ -24,37 +24,37 @@ config: []
 users:
   - type: admin
     name: admin@local
-    pwd: beehive_admin
+    pwd: xxxxxxxxxxxxxxxx
     desc: Super Administrator
   - type: user
     name: test1@local
-    pwd: beehive_test1
+    pwd: xxxxxxxxxxxxxxxx
     desc: Test user 1
   - type: user
     name: test2@local
-    pwd: beehive_test1
+    pwd: xxxxxxxxxxxxxxxx
     desc: Test user 2
   - type: admin
     name: test3@local
-    pwd: beehive_test3
+    pwd: xxxxxxxxxxxxxxxx
     desc: Test admin user 3
     attribs:
     - name: auth-filters
       value: simplehttp
       desc: simplehttp
     - name: auth-cidrs
-      value: 158.102.160.0/24,10.102.160.0/24
+      value: 10.102.160.0/24
       desc: admin cidr
   - type: admin
     name: camunda@local
-    pwd: camunda
+    pwd: xxxxxxxxxxxxxxxx
     desc: Camunda user
     attribs:
     - name: auth-filters
       value: simplehttp
       desc: simplehttp
     - name: auth-cidrs
-      value: 158.102.160.0/24,10.102.160.0/24,10.102.184.0/24
+      value: 10.102.160.0/24,10.102.184.0/24
       desc: admin cidr
 catalogs:
   - name: beehive-internal
