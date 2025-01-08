@@ -33,6 +33,9 @@ CMP contains some components, you can find a description of each component withi
 [GitHub](https://github.com/Nivola/beehive-ssh)
 * beehive3-cli
 [GitHub](https://github.com/Nivola/beehive3-cli)
+* bee_client
+[GitHub](https://github.com/Nivola/bee_client)
+
 
 
 The NSP is the portal for customers to set up their own cloud.
