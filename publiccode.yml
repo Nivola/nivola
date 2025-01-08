@@ -43,8 +43,6 @@ dependsOn:
       version: '1.15.8'
     - name: Uwsgi
       version: '2.0.20'
-    - name: Camunda
-      version: '7.7'
     - name: openstack
       version: queens
 
