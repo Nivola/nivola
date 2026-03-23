@@ -6,8 +6,8 @@ publiccodeYmlVersion: '0.2'
 name: Nivola
 url: 'https://github.com/Nivola/nivola.git'
 landingURL: 'https://github.com/nivola'
-softwareVersion: '1.16.8'
-releaseDate: '2024-12-13'
+softwareVersion: '1.18.2'
+releaseDate: '2026-03-23'
 logo: img/logo.png
 inputTypes:
   - application/json
