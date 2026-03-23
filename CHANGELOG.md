@@ -1,5 +1,226 @@
 # Changelog
 
+## version 1.18.2
+* Aggiunto
+  - Cancellazione di volumi
+  - Edb con TDE
+  - Db simple list
+  - Generazione di fake_response per testing 
+* Risolto
+  - Migliorato richiamo vSphere API
+  - Recovery automatico da socket/SSL timeout durate connessione LDAP
+  - Acquisizione metriche ComputeStack
+  - Modernize string formatting using f-strings and logging placeholders to resolve linter warnings (E713, W1203).
+  - Eliminati alcuni warning
+  - Ottimizzazioni
+  - Aggiornati requirements
+  - Rimosso codice obsoleto
+  - Problemi minori ed errori di battitura
+
+## version 1.18.1
+*Aggiunto
+  - Aggiornamento ProxySQL e RabbitMQ
+  - ECAAS: aggiornamento versione application 0.25.0 per log elastic  
+  - CPAAS: servizio light elenco vm 
+* Risolto
+  - Bugfix cambio flavor test oid (. valid in names)
+  - Fix resource in status ERROR dopo azione su CPAAS, DBAAS (start, stop, attivazione/disattivazione logging, monitoring)
+  - Fix ruoli utente relativi ad account cancellati
+  - Bug fixing NSX firewall rules optimization 
+
+## version 1.18.0
+* Aggiunto
+  - Upgrade del runtime Python da 3.9 a 3.12
+  - Aggiornamento delle dipendenze di progetto alle versioni più recenti compatibili
+  - Rimosse alcune librerie non necessarie
+  - STAAS v2: informazioni sull'aggregato e sulle policy di snaplock
+  - STAAS v2: raccolta metriche relative alla tipologie di volumi condivisi
+  - Gestione LBAAS come PAAS
+  - Raccolta consumi relativi all'utilizzo di IP pubblici
+  - Aggiunti test di non regressione
+  - Aggiunti type hints e migliorata leggibilità del codice
+  - Eliminato client Camunda
+  - Eliminati file inutilizzati e metodi duplicati
+* Risolto
+  - Corrette definizioni di schemi usati per la validazione dei parametri e la generazione delle specifiche delle API
+  - Modificata gestione delle sessioni LDAP
+  - Eliminata possibilità di SQL Injection
+  - Corretti test di non regressione
+  - Corretti errori di digitazione
+  - Corretti errori vari
+
+## version 1.17.13
+*Risolto
+  - STAAS v2: Corretto bug per cui il size di un volume nel comando di list poteva non essere visualizzato correttamente
+  - ECAAS: namespace: remove check_environment in update (namspaces created with no rules)
+
+## version 1.17.12
+* Aggiunto
+  - STAAS v2: compliance management: aggiunta volume snaplock a volume non-compliant
+  - DBAAS: refactoring: dati e parametri per la creazione dei dbaas sono stati spostati dal codice alle definizioni
+  - ECAAS: gestione delle network Policy
+  - Nuovo metodo per cancellare l'associazione delle definizioni all'account
+  - Parametrizzazione delle metriche di consumo per ComputeInstance, ComputeVolume attraverso attributo metrics_prefix
+  - Informazione relative al middleware installato sulle ApiComputeInstace
+  - Supporto trasparente ad oggetti privi di cache
+  - Liste di log in GrafanaFolder
+  - vSphere NSX: aggiornamento sezione del DFW
+  - Account Amco e Sirmet: introdotta validazione volume_types in creazione vm
+* Risolto
+  - Eliminato bug nel calcolo degli IP disponbili per i VPC private
+  - Eliminato bug in abilitazione e disabilitazione della compliance su share v2
+  - Type hints
+  - Migliorie varie al codice
+
+## version 1.17.11
+*Aggiunto
+  - hard poweroff when deleting vm or db
+  - added 19EE3 as oracle 19c
+  - stack helper commons
+  - ECAAS:
+  - create/update namespace calling ns-provisioning-api
+  - namespace: check valid mandatory fields, complete delete
+  - namespace: minor: add check changes to namespace to avoid update task
+* Risolto
+  - imports fix
+  - Vulnerability Assestment fixes: added CSP header and removed remote-server http response header
+  - ECAAS namespace: fix allowed fields empty
+  - ECAAS namespace: fix allowed... fields
+  - STAAS v2: aggiunto attributo CreationToken in share_data di DR e volume unlinked
+  - increase timeout creating openstack volume
+  - fix ColoredFormatter
+
+## version 1.17.10
+* Aggiunto
+  - Aggiunta funzionalità di creazione metriche ad-hoc in base agli attributi dei DBAAS 
+  - Porting delle automazioni MariaDB 
+  - Controlli per la disponibilità di IP liberi nel VPC 
+  - Definizione delle API per funzionalità CRUD dei namespace k8s (servizio ECAAS)
+* Risolto
+  - Fix di errori dovuti allo spegnimento di Manila 
+  - Aggiornata la gestione accessi STAAS v2 
+  - Eliminazione di MariaDB versione 11.2 in favore della versione 11.4
+
+## version 1.17.8
+* Aggiunto
+  - STAAS v2: import volumi v1.0
+  - STAAS v2: compliance management: rimozione volume snaplock 
+  - STAAS v2: logging dell'azione di abilitazione/disabilitazione della compliance
+  - DBAAS: logica CMP + playbook ansible per gestione creazione/cancellazione volumi su DataDomain
+* Risolto
+  - bug in STAAS v2
+
+## version 1.17.7
+* Aggiunto
+  - Ottimizzazione regole firewall distribuito di NSX e Openstack:
+  - regola applicata al security group invece che al distributed firewall (NSX)
+  - creazione della sola regola di ingress nel caso di regola per mettere in comunicazione due security group (NSX e Openstack)
+  - logging selettivo delle regole (NSX)
+  
+## version 1.17.5
+* Aggiunto
+  - STAAS v2: aggiornamento della snapshot policy di un volume
+  - STAAS v2: elenco policy di replica supportate
+  - STAAS v2: aggiornamento della policy di replica di un volume DR
+  - STAAS v2: cancellazione multipla di export policy rule
+  - Nuove definizioni per policy di replica
+  - Aggiornate capability con nuove definizioni per policy di replica
+* Risolto
+  - fix nella gestione delle connessioni alla coda rabbitmq per la gestione dei task asincroni della CMP
+  - allentato il controllo con cui viene sollevato l'errore "Unable to get server status"
+
+
+## version 1.17.4
+
+* Aggiunto 
+  - STAAS v2: cancellazione export policy rule tramite rule ID 
+  - STAAS v2: elenco snapshot policy supportate 
+  - STAAS v2: creazione volume passando snapshot policy come parametro opzionale 
+  - Nuove definizioni per snapshot policy 
+  - Aggiornate capability con nuove definizioni per snapshot policy 
+  - logging instance: check database instance version before creating (ComputeStack not suppported) 
+  - backup fast load instance and add plugintype, restore point for databaseservice 
+  - Migrazione a LDAPS per autenticazione utenze di tipo keyauth 
+
+* Risolto
+  - keypair, efs mount list filter accounts 
+  - security group delete vm must have at least one security group 
+
+## version 1.17.3
+* Risolto
+  - Bugfix creazione volumi Openstack in tenant admin
+  - Read identity providers first from configuration table, if present, and then, from values in uwsgi.yaml file, if present
+  - Bugfix ssh get_nodes_and_groups macchine con utente ubuntu ora sono incluse
+  - Add common ssh connection params to inventory export
+  - STAAS metrics don't raise exception even on error
+  - STAAS: removed invalid RPO 15m
+
+## version 1.17.2
+* Risolto
+  - Correzione bug nuovo servizio STAAS
+  - Correzione bug DBAAS PostgreSQL
+
+## version 1.17.1
+
+* Aggiunto
+  - Gestione cifratura volumi nuovo servizio STAAS
+* Risolto
+  - Ripristino creazione vm con chiavi SSH di lunghezza 2048 bit
+  - Corretto problema generazione swagger in view di business nuovo servizio STAAS
+  - Fix minori
+  - Irrobustita la cancellazione delle regole dei security group su VMware NSX
+
+## version 1.17.0
+* Aggiunto
+  - Nuova gestione STAAS basata sui nuovi AWX e Ansible Netapp Collection
+  - Aggiunta dettagli alle chiavi e ai nodi SSH nella gestione SSH
+  - Il componente Resource espone le API solo per chiamate interne o per utenti con privilegi amministrativi
+  - Le capability gestiscono la data in cui sono state applicate in modo che sia possibile verificare se la capability è cambiata dopo che è stata assegnata/applicata ad un account
+  - Modificate alcune tabelle per gestire attributi aggiuntivi
+  - Aggiunte funzionalità per abilitare in ambienti di sviluppo la profilazione dei processi Celery dei tasks asincroni, e dei processi uwsgi di esposizione API
+  - Riscritte le API interne di crittografia per limitare le dipendenze e facilitare le build
+  - Nuove logiche di gestione delle chiavi e key SSH e obbligatorietà delle chiavi su Linux
+  - Nuova configurazione di AWX e nuove logiche che permettono l'uso di AWX nuovi e vecchi per sito
+  - Ottimizzazioni di alcuni parametri per la creazione di DBAAS
+* Risolto
+  - Riviste ampie sezioni di codice, aggiungendo commenti e type hints per miglior documentazione e maggior navigabilità
+  - Alcuni comportamenti relativi a campi recentemente introdotti nella gestione degli utenti
+  - Revisione commenti e riferimenti per la pubblicazione del codice
+  - Comportamento della clonazione di macchine cross siti su Openstack
+  - Alcuni timeout non dovuti
+  - Invio di audit log da piattaforme di sviluppo
+  - Molti schema OpenApi che non corrispondevano alla effettiva risposta dei metodi
+  - Alcune caratteristiche della configurazione dei DBAAS
+  - Refactoring della configurazione dei server vSphere
+  - Molti piccoli difetti
+* Rimosso
+  - Rimosse diverse dipendenze da librerie crittografiche
+  - Dati non usati nelle configurazione dei servizi
+  - Codice obsoleto o non usato
+
+## versione 1.16.9
+* Aggiunto
+ - parametri per starter pack Oracle al provisioning di dbaas;
+ - uso di orchestrator_tag al lancio delle customization;
+ - aggiunta configurazione mailx e mount dei file system NFS per backup durante il provisioning di dbaas Oracle; 
+* Risolto
+ - fix errore cancellazione volume se None (NSP-3617)
+ - fix metodo UpdateServiceConfigParamRequestSchema;
+ - fix orchestrator enable_log_module;
+ - fix add tag on creation;
+ - aggiunto tag di backup per i dischi destinati ai buckup fisici in fase di creazione di dbaas Oracle;
+* Migliorato
+ - logging space ora cancella dashboard per vm, dbaas;
+ - migrata cutomization os-utility2 su nuovi awx server;
+ - gestione job_tags per awx nei module (logaas);
+ - logging instance per dbaas ora aggiunge e cancella le dashboard
+  
+## versione 1.16.8
+* Aggiunto
+  - orchestrazione nuovi AWX
+* Risolto
+ - fix impostazioni http_proxy su distribuzione RedhatLinux9
+
 ## versione 1.16.5
 * Risolto
   - Rilascio Ip su vsphere: l'ip non era rilasciato se l'est_id il server Vsphere era None or inesistente
