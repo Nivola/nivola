@@ -2,7 +2,7 @@
 # metadata file that makes public software easily discoverable.
 # More info at https://github.com/italia/publiccode.yml
 
-publiccodeYmlVersion: '0.2'
+publiccodeYmlVersion: '0.5.0'
 name: Nivola
 url: 'https://github.com/Nivola/nivola.git'
 landingURL: 'https://github.com/nivola'
@@ -30,7 +30,7 @@ intendedAudience:
   scope:
     - infrastructures
   countries:
-    - it
+    - IT
 dependsOn:
   open:
     - name: Mariadb
@@ -46,18 +46,18 @@ dependsOn:
     - name: openstack
       version: queens
 
-it:
+IT:
   countryExtensionVersion: '0.2'
   conforme:
-    lineeGuidaDesign: yes
-    modelloInteroperabilita: yes
-    misureMinimeSicurezza: yes
-    gdpr: yes
+    lineeGuidaDesign: true
+    modelloInteroperabilita: true
+    misureMinimeSicurezza: true
+    gdpr: true
   piattaforme:
-    spid: yes
-    cie: no
-    anpr: no
-    pagopa: no
+    spid: true
+    cie: false
+    anpr: false
+    pagopa: false
   riuso:
     codiceIPA: csi_piem
 
@@ -96,6 +96,7 @@ description:
     documentation: 'https://nivola-userguide.readthedocs.io/it/latest/index.html'
     features:
       - Creazione macchine virtuali
+      - Gestione Dbaas
       - Gestione Virtual Private Cloud
       - Gestione profilata accessi
     awards:
